@@ -1,0 +1,35 @@
+<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- 猫咪头部轮廓 -->
+  <path d="M24 4C12.954 4 4 12.954 4 24C4 35.046 12.954 44 24 44C35.046 44 44 35.046 44 24C44 12.954 35.046 4 24 4Z" fill="#F9FAFB" stroke="#0096FA" stroke-width="2"/>
+  
+  <!-- 猫咪耳朵 -->
+  <path d="M14 14L18 20H12L14 14Z" fill="#0096FA"/>
+  <path d="M34 14L30 20H36L34 14Z" fill="#0096FA"/>
+  
+  <!-- 猫咪眼睛 -->
+  <ellipse cx="18" cy="24" rx="3" ry="4" fill="#0096FA"/>
+  <ellipse cx="30" cy="24" rx="3" ry="4" fill="#0096FA"/>
+  
+  <!-- 猫咪鼻子和嘴 -->
+  <path d="M24 28L21 31H27L24 28Z" fill="#FF9500"/>
+  <path d="M21 31C21 33 24 34 24 34C24 34 27 33 27 31" stroke="#0096FA" stroke-width="1" stroke-linecap="round"/>
+  
+  <!-- 猫咪胡须 -->
+  <line x1="12" y1="30" x2="19" y2="29" stroke="#0096FA" stroke-width="1" stroke-linecap="round"/>
+  <line x1="12" y1="31" x2="19" y2="31" stroke="#0096FA" stroke-width="1" stroke-linecap="round"/>
+  <line x1="12" y1="32" x2="19" y2="33" stroke="#0096FA" stroke-width="1" stroke-linecap="round"/>
+  <line x1="36" y1="30" x2="29" y2="29" stroke="#0096FA" stroke-width="1" stroke-linecap="round"/>
+  <line x1="36" y1="31" x2="29" y2="31" stroke="#0096FA" stroke-width="1" stroke-linecap="round"/>
+  <line x1="36" y1="32" x2="29" y2="33" stroke="#0096FA" stroke-width="1" stroke-linecap="round"/>
+  
+  <!-- 猫咪性格类型的点点 -->
+  <circle cx="10" cy="9" r="1.5" fill="#FF6B6B"/>
+  <circle cx="13" cy="7" r="1.5" fill="#FF9500"/>
+  <circle cx="16" cy="6" r="1.5" fill="#0096FA"/>
+  <circle cx="19" cy="6" r="1.5" fill="#40C057"/>
+  
+  <circle cx="29" cy="6" r="1.5" fill="#FF6B6B"/>
+  <circle cx="32" cy="6" r="1.5" fill="#FF9500"/>
+  <circle cx="35" cy="7" r="1.5" fill="#0096FA"/>
+  <circle cx="38" cy="9" r="1.5" fill="#40C057"/>
+</svg> 

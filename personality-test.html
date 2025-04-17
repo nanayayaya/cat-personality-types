@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cat Personality Test | Scientific Assessment</title>
+    <meta name="description" content="Take our scientific Feline Five cat personality test to understand your cat's unique behavioral traits and psychological needs.">
+    <link rel="icon" href="public/favicon.ico">
+    <style>
+        /* Base styles */
+        :root {
+            --primary: #0096fa;
+            --primary-light: #a5d8ff;
+            --secondary: #ff9500;
+            --secondary-light: #ffd8a8;
+            --success: #40c057;
+            --success-light: #b2f2bb;
+            --danger: #ff6b6b;
+            --danger-light: #ffc9c9;
+            --neutral-100: #f8f9fa;
+            --neutral-200: #e9ecef;
+            --neutral-300: #dee2e6;
+            --neutral-400: #ced4da;
+            --neutral-500: #adb5bd;
+            --neutral-600: #6c757d;
+            --neutral-700: #495057;
+            --neutral-800: #343a40;
+            --neutral-900: #212529;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'SF Pro Display', Helvetica, Arial, sans-serif;
+            background-color: var(--neutral-100);
+            color: var(--neutral-900);
+            line-height: 1.6;
+        }
+
+        a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: var(--primary-dark);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Button styles */
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 12px;
+            font-weight: 500;
+            transition: all 0.2s;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #0077cc;
+        }
+
+        .btn-secondary {
+            background-color: var(--neutral-200);
+            color: var(--neutral-700);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--neutral-300);
+        }
+
+        .btn-success {
+            background-color: var(--success);
+            color: white;
+        }
+
+        .btn-success:hover {
+            background-color: #37b24d;
+        }
+
+        .btn-lg {
+            padding: 12px 24px;
+            font-size: 1.1rem;
+        }
+
+        .btn-block {
+            display: block;
+            width: 100%;
+            text-align: center;
+        }
+
+        /* Card styles */
+        .card {
+            background-color: white;
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        /* Form styles */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--neutral-700);
+        }
+
+        .form-control {
+            display: block;
+            width: 100%;
+            padding: 10px 16px;
+            border: 1px solid var(--neutral-300);
+            border-radius: 8px;
+            background-color: white;
+            font-size: 1rem;
+            transition: border-color 0.2s;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(0, 150, 250, 0.1);
+        }
+
+        .form-select {
+            display: block;
+            width: 100%;
+            padding: 10px 16px;
+            border: 1px solid var(--neutral-300);
+            border-radius: 8px;
+            background-color: white;
+            font-size: 1rem;
+            transition: border-color 0.2s;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236c757d' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 16px center;
+            background-size: 16px;
+        }
+
+        .form-select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(0, 150, 250, 0.1);
+        }
+
+        /* Header navigation styles */
+        header {
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--neutral-200);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 40px;
+            margin-right: 12px;
+        }
+
+        .logo span {
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+
+        nav {
+            display: none;
+        }
+
+        @media (min-width: 768px) {
+            nav {
+                display: flex;
+                gap: 32px;
+            }
+
+            nav a {
+                color: var(--neutral-900);
+                font-weight: 500;
+            }
+
+            nav a:hover {
+                color: var(--primary);
+            }
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .menu-button {
+            display: block;
+        }
+
+        @media (min-width: 768px) {
+            .menu-button {
+                display: none;
+            }
+        }
+
+        /* Test page styles */
+        .test-header {
+            background-color: var(--primary);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .test-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .test-description {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .test-container {
+            padding: 60px 0;
+        }
+
+        .test-card {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .test-step-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+            color: var(--neutral-800);
+        }
+
+        .test-intro {
+            color: var(--neutral-600);
+            margin-bottom: 32px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        @media (min-width: 640px) {
+            .form-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .form-actions {
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        /* Progress indicator */
+        .progress-container {
+            margin-bottom: 40px;
+        }
+
+        .progress-text {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .progress-text span {
+            font-size: 14px;
+            color: var(--neutral-600);
+        }
+
+        .progress-bar {
+            height: 8px;
+            background-color: var(--neutral-200);
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-indicator {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            background-color: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .progress-marker {
+            position: absolute;
+            top: 0;
+            height: 100%;
+            transform: translateX(-50%);
+            width: 16px;
+            background-color: white;
+            border: 2px solid var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Questions styles */
+        .question-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .option-card {
+            padding: 16px;
+            border: 1px solid var(--neutral-300);
+            border-radius: 8px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .option-card:hover {
+            border-color: var(--primary);
+            background-color: var(--primary-light);
+            color: var(--primary);
+        }
+
+        .option-card.selected {
+            border-color: var(--primary);
+            background-color: var(--primary-light);
+            color: var(--primary);
+        }
+
+        .question-tip {
+            margin-top: 20px;
+            padding: 12px;
+            background-color: var(--neutral-100);
+            border-radius: 8px;
+            font-size: 0.9rem;
+            color: var(--neutral-600);
+        }
+
+        .question-tip strong {
+            color: var(--primary);
+        }
+
+        /* Footer styles */
+        footer {
+            background-color: var(--neutral-800);
+            color: white;
+            padding: 48px 0;
+            margin-top: 60px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 32px;
+        }
+
+        @media (min-width: 768px) {
+            .footer-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        .footer-brand {
+            margin-bottom: 16px;
+        }
+
+        .footer-description {
+            color: var(--neutral-400);
+        }
+
+        .footer-section-title {
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 8px;
+        }
+
+        .footer-links a {
+            color: var(--neutral-400);
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            margin-top: 32px;
+            padding-top: 32px;
+            border-top: 1px solid var(--neutral-700);
+            text-align: center;
+            color: var(--neutral-400);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header navigation -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">
+                    <img src="public/images/logo.svg" alt="Cat Personality Types">
+                    <span>Cat Personality Test</span>
+                </a>
+                
+                <nav>
+                    <a href="personality-test.html">Personality Test</a>
+                    <a href="personality-types.html">Personality Types</a>
+                    <a href="about.html">About Us</a>
+                    <a href="blog.html">Blog</a>
+                </nav>
+                
+                <div class="header-actions">
+                    <a href="personality-test.html" class="btn btn-primary">Take the Test</a>
+                    <button class="menu-button">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="3" y1="12" x2="21" y2="12"></line>
+                            <line x1="3" y1="6" x2="21" y2="6"></line>
+                            <line x1="3" y1="18" x2="21" y2="18"></line>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Test header -->
+    <section class="test-header">
+        <div class="container">
+            <h1 class="test-title">Cat Personality Test</h1>
+            <p class="test-description">
+                Discover your cat's unique personality type with our scientific assessment based on the Feline Five theory. Just 20 questions to better understand your feline friend.
+            </p>
+        </div>
+    </section>
+
+    <!-- Test container -->
+    <section class="test-container">
+        <div class="container">
+            <!-- Pre-test form -->
+            <div class="test-card card" id="pre-test-form">
+                <h2 class="test-step-title">Before we start, please provide some basic information</h2>
+                <p class="test-intro">
+                    This information will help us provide a more accurate assessment of your cat's personality type and personalized recommendations.
+                </p>
+
+                <form id="catInfoForm">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label" for="catName">Cat's Name</label>
+                            <input type="text" id="catName" class="form-control" placeholder="e.g., Whiskers" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="catAge">Cat's Age</label>
+                            <input type="text" id="catAge" class="form-control" placeholder="e.g., 2 years 3 months" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="catGender">Gender</label>
+                            <select id="catGender" class="form-select" required>
+                                <option value="">Please select</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                                <option value="male-neutered">Male (neutered)</option>
+                                <option value="female-spayed">Female (spayed)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="catBreed">Breed</label>
+                            <input type="text" id="catBreed" class="form-control" placeholder="e.g., Tabby, Siamese, Mixed" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="livingSpace">Living Space</label>
+                            <select id="livingSpace" class="form-select" required>
+                                <option value="small">Small (less than 30㎡)</option>
+                                <option value="medium" selected>Medium (30-90㎡)</option>
+                                <option value="large">Large (more than 90㎡)</option>
+                                <option value="indoor-outdoor">Indoor/Outdoor mixed</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="multiCatHousehold">Multi-cat Household?</label>
+                            <select id="multiCatHousehold" class="form-select" required>
+                                <option value="no">No</option>
+                                <option value="yes-few">Yes (2-3 cats)</option>
+                                <option value="yes-many">Yes (4+ cats)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="humanCatRatio">Human-Cat Ratio</label>
+                            <select id="humanCatRatio" class="form-select" required>
+                                <option value="1:1">1 human : 1 cat</option>
+                                <option value="2:1">2 humans : 1 cat</option>
+                                <option value="3+:1">3+ humans : 1 cat</option>
+                                <option value="1:2+">1 human : multiple cats</option>
+                                <option value="2+:2+">Multiple humans : multiple cats</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary btn-lg">Start the Test</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Test questions -->
+            <div class="test-card card" id="test-questions" style="display: none;">
+                <div class="progress-container">
+                    <div class="progress-text">
+                        <span>Question <span id="current-question">1</span> of <span id="total-questions">20</span></span>
+                        <span><span id="progress-percent">5</span>% completed</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div id="progress-indicator" class="progress-indicator" style="width: 5%;"></div>
+                        <div id="progress-marker" class="progress-marker" style="left: 5%;"></div>
+                    </div>
+                </div>
+
+                <div id="question-container">
+                    <h3 class="question-title">When visitors come to your home, your cat typically:</h3>
+                    
+                    <div class="option-card" data-scores='{"activity":2,"sociability":2,"decision":1,"stress":-1}'>
+                        Immediately approaches and interacts with guests
+                    </div>
+                    
+                    <div class="option-card" data-scores='{"activity":0,"sociability":1,"decision":-1,"stress":0}'>
+                        Observes from a distance before approaching
+                    </div>
+                    
+                    <div class="option-card" data-scores='{"activity":-1,"sociability":-2,"decision":0,"stress":2}'>
+                        Hides until visitors leave
+                    </div>
+                    
+                    <div class="option-card" data-scores='{"activity":0,"sociability":-1,"decision":0,"stress":1}'>
+                        Stays in the room but maintains a safe distance
+                    </div>
+
+                    <div class="question-tip">
+                        <strong>Did you know?</strong> 27% of cats immediately interact with strangers, most commonly Siamese and Maine Coon breeds.
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button id="next-button" class="btn btn-primary btn-lg" disabled>Next Question</button>
+                </div>
+            </div>
+
+            <!-- Results preview (will be shown after all questions) -->
+            <div class="test-card card" id="test-results-preview" style="display: none;">
+                <h2 class="test-step-title">Analyzing your cat's personality...</h2>
+                <p class="test-intro">
+                    Based on your responses, we're calculating your cat's personality profile. This will take just a moment.
+                </p>
+                
+                <div style="text-align: center; margin: 40px 0;">
+                    <div style="width: 80px; height: 80px; border: 5px solid var(--primary-light); border-top-color: var(--primary); border-radius: 50%; margin: 0 auto; animation: spin 1s linear infinite;"></div>
+                </div>
+                
+                <style>
+                    @keyframes spin {
+                        0% { transform: rotate(0deg); }
+                        100% { transform: rotate(360deg); }
+                    }
+                </style>
+                
+                <div class="form-actions">
+                    <p style="margin-bottom: 20px; color: var(--neutral-600);">
+                        Your results are almost ready...
+                    </p>
+                    <a href="personality-results.html" class="btn btn-primary btn-lg" style="display: none;" id="view-results-button">
+                        View Full Results
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h3 class="footer-brand">Cat Personality Test</h3>
+                    <p class="footer-description">A scientific cat personality assessment system helping you better understand your feline friend.</p>
+                </div>
+                
+                <div>
+                    <h4 class="footer-section-title">Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="personality-test.html">Personality Test</a></li>
+                        <li><a href="personality-types.html">Personality Types</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="footer-section-title">Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="research.html">Research Foundation</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Use</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="footer-section-title">Follow Us</h4>
+                    <div class="social-links">
+                        <a href="#">
+                            <svg fill="currentColor" viewBox="0 0 24 24" width="24" height="24">
+                                <path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z" />
+                            </svg>
+                        </a>
+                        <a href="#">
+                            <svg fill="currentColor" viewBox="0 0 24 24" width="24" height="24">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4 1.79-4 4 0 2.209 1.791 4 4 4s4-1.791 4-4c0-2.21-1.791-4-4-4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                            </svg>
+                        </a>
+                        <a href="#">
+                            <svg fill="currentColor" viewBox="0 0 24 24" width="24" height="24">
+                                <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>© <script>document.write(new Date().getFullYear())</script> Cat Personality Test. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.menu-button').addEventListener('click', function() {
+            const nav = document.querySelector('nav');
+            nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
+        });
+
+        // Test form handling
+        document.getElementById('catInfoForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Store form data
+            const catData = {
+                name: document.getElementById('catName').value,
+                age: document.getElementById('catAge').value,
+                gender: document.getElementById('catGender').value,
+                breed: document.getElementById('catBreed').value,
+                livingSpace: document.getElementById('livingSpace').value,
+                multiCatHousehold: document.getElementById('multiCatHousehold').value,
+                humanCatRatio: document.getElementById('humanCatRatio').value
+            };
+            
+            // Store data in localStorage for persistence
+            localStorage.setItem('catTestData', JSON.stringify(catData));
+            
+            // Hide pre-test form and show questions
+            document.getElementById('pre-test-form').style.display = 'none';
+            document.getElementById('test-questions').style.display = 'block';
+            
+            // Initialize test state
+            initializeTest();
+        });
+
+        // Test logic
+        let currentQuestionIndex = 0;
+        let totalQuestions = 16;
+        let selectedAnswers = [];
+        let scores = {
+            activity: 0,
+            sociability: 0,
+            decision: 0,
+            stress: 0
+        };
+
+        // Test questions data
+        const questions = [
+            {
+                id: 1,
+                question: "When visitors come to your home, your cat typically:",
+                options: [
+                    { text: "Immediately approaches and interacts with guests", scores: { activity: 2, sociability: 2, decision: 1, stress: -1 } },
+                    { text: "Observes from a distance before approaching", scores: { activity: 0, sociability: 1, decision: -1, stress: 0 } },
+                    { text: "Hides until visitors leave", scores: { activity: -1, sociability: -2, decision: 0, stress: 2 } },
+                    { text: "Stays in the room but maintains a safe distance", scores: { activity: 0, sociability: -1, decision: 0, stress: 1 } }
+                ],
+                tip: "27% of cats immediately interact with strangers, most commonly Siamese and Maine Coon breeds."
+            },
+            {
+                id: 2,
+                question: "When presented with a new toy, your cat usually:",
+                options: [
+                    { text: "Immediately pounces and plays with it", scores: { activity: 2, sociability: 0, decision: 2, stress: -1 } },
+                    { text: "Approaches cautiously, touches it before deciding", scores: { activity: 0, sociability: 0, decision: -1, stress: 1 } },
+                    { text: "Shows no interest at all", scores: { activity: -2, sociability: 0, decision: 0, stress: 0 } },
+                    { text: "Actively avoids or seems afraid of it", scores: { activity: -1, sociability: -1, decision: -1, stress: 2 } }
+                ],
+                tip: "Highly active cats have lower vestibular sensitivity and more active dopamine receptors."
+            },
+            {
+                id: 3,
+                question: "When another cat enters your cat's territory, your cat typically:",
+                options: [
+                    { text: "Immediately challenges or gives warning", scores: { activity: 1, sociability: -1, decision: 2, stress: 1 } },
+                    { text: "Keeps distance and observes, gradually approaches", scores: { activity: 0, sociability: 0, decision: -1, stress: 0 } },
+                    { text: "Hides and avoids contact", scores: { activity: -1, sociability: -2, decision: -1, stress: 2 } },
+                    { text: "Attempts friendly interaction and sniffing", scores: { activity: 1, sociability: 2, decision: 0, stress: -1 } }
+                ],
+                tip: "Cats with strong territorial defense typically have testosterone levels 28% higher than average."
+            },
+            {
+                id: 4,
+                question: "At mealtime, your cat:",
+                options: [
+                    { text: "Is extremely eager and may even try to open food containers", scores: { activity: 2, sociability: 0, decision: 2, stress: 0 } },
+                    { text: "Shows interest but waits patiently", scores: { activity: 0, sociability: 1, decision: 0, stress: -1 } },
+                    { text: "Approaches food cautiously, may sniff before eating", scores: { activity: -1, sociability: 0, decision: -1, stress: 1 } },
+                    { text: "Is picky and sometimes refuses to eat", scores: { activity: -1, sociability: -1, decision: 1, stress: 2 } }
+                ],
+                tip: "A cat's eating behavior is strongly linked to their early feeding experiences in kittenhood."
+            },
+            {
+                id: 5,
+                question: "How does your cat react to loud or unexpected noises?",
+                options: [
+                    { text: "Barely reacts or investigates curiously", scores: { activity: 1, sociability: 0, decision: 1, stress: -2 } },
+                    { text: "Alerts but calms down quickly", scores: { activity: 0, sociability: 0, decision: 0, stress: 0 } },
+                    { text: "Startles and may hide temporarily", scores: { activity: -1, sociability: 0, decision: -1, stress: 1 } },
+                    { text: "Becomes very distressed and may hide for hours", scores: { activity: -2, sociability: -1, decision: -1, stress: 2 } }
+                ],
+                tip: "Sensitivity to noise is partly genetic—longhaired breeds tend to be less reactive to sounds than shorthaired cats."
+            },
+            {
+                id: 6,
+                question: "When it comes to high places (shelves, cat trees), your cat:",
+                options: [
+                    { text: "Loves climbing and is often found in high places", scores: { activity: 2, sociability: 0, decision: 1, stress: -1 } },
+                    { text: "Sometimes climbs, especially when playing", scores: { activity: 1, sociability: 0, decision: 0, stress: 0 } },
+                    { text: "Rarely climbs, prefers lower surfaces", scores: { activity: -1, sociability: 0, decision: -1, stress: 0 } },
+                    { text: "Shows fear of heights or difficulty climbing", scores: { activity: -2, sociability: 0, decision: -1, stress: 1 } }
+                ],
+                tip: "Vertical space preference is linked to a cat's natural instinct to observe their territory from safe vantage points."
+            },
+            {
+                id: 7,
+                question: "When left alone, your cat typically:",
+                options: [
+                    { text: "Is completely fine, independent and self-entertaining", scores: { activity: 0, sociability: -1, decision: 1, stress: -1 } },
+                    { text: "Is generally fine but greets you enthusiastically upon return", scores: { activity: 0, sociability: 1, decision: 0, stress: 0 } },
+                    { text: "Shows some signs of anxiety or boredom", scores: { activity: 1, sociability: 2, decision: -1, stress: 1 } },
+                    { text: "Becomes very distressed (excessive meowing, destructive behavior)", scores: { activity: 2, sociability: 2, decision: -2, stress: 2 } }
+                ],
+                tip: "Contrary to popular belief, many cats do form separation anxiety—approximately 13% show significant distress when left alone."
+            },
+            {
+                id: 8,
+                question: "When interacting with new objects in the home:",
+                options: [
+                    { text: "Immediately investigates without hesitation", scores: { activity: 2, sociability: 1, decision: 2, stress: -2 } },
+                    { text: "Shows curiosity but approaches cautiously", scores: { activity: 1, sociability: 0, decision: 0, stress: 0 } },
+                    { text: "Observes from a distance for a long time before approaching", scores: { activity: -1, sociability: -1, decision: -1, stress: 1 } },
+                    { text: "Avoids or shows fear of new objects", scores: { activity: -1, sociability: -1, decision: -2, stress: 2 } }
+                ],
+                tip: "Neophilia (love of novelty) is more common in cats from enriched early environments with multiple stimuli."
+            },
+            {
+                id: 9,
+                question: "When being carried or handled:",
+                options: [
+                    { text: "Enjoys being held, may even seek it out", scores: { activity: -1, sociability: 2, decision: -1, stress: -2 } },
+                    { text: "Tolerates handling briefly but prefers to be put down soon", scores: { activity: 0, sociability: 1, decision: 0, stress: 0 } },
+                    { text: "Resists being picked up but may tolerate once held", scores: { activity: 1, sociability: -1, decision: 1, stress: 1 } },
+                    { text: "Strongly dislikes being picked up or carried", scores: { activity: 1, sociability: -2, decision: 2, stress: 2 } }
+                ],
+                tip: "Handling tolerance is often established during the first 8 weeks of life and remains relatively stable throughout adulthood."
+            },
+            {
+                id: 10,
+                question: "When it comes to play behavior, your cat:",
+                options: [
+                    { text: "Plays enthusiastically for long periods daily", scores: { activity: 2, sociability: 1, decision: 1, stress: -1 } },
+                    { text: "Enjoys regular play sessions but tires after moderate exercise", scores: { activity: 1, sociability: 0, decision: 0, stress: 0 } },
+                    { text: "Shows occasional interest in toys but plays briefly", scores: { activity: -1, sociability: 0, decision: -1, stress: 0 } },
+                    { text: "Shows little to no interest in play", scores: { activity: -2, sociability: -1, decision: -1, stress: 1 } }
+                ],
+                tip: "Play behavior in adult cats maintains many of the same neural pathways as hunting behavior in wild felids."
+            },
+            {
+                id: 11,
+                question: "Your cat's vocalization pattern is:",
+                options: [
+                    { text: "Very vocal, communicates frequently with various sounds", scores: { activity: 1, sociability: 2, decision: 1, stress: 0 } },
+                    { text: "Moderately vocal in specific situations", scores: { activity: 0, sociability: 1, decision: 0, stress: 0 } },
+                    { text: "Generally quiet, meows occasionally for specific needs", scores: { activity: -1, sociability: 0, decision: -1, stress: 0 } },
+                    { text: "Almost silent, rarely vocalizes", scores: { activity: -2, sociability: -1, decision: -1, stress: 0 } }
+                ],
+                tip: "Vocalization patterns have both genetic and environmental components—some breeds like Siamese are naturally more talkative."
+            },
+            {
+                id: 12,
+                question: "During car rides or travel, your cat:",
+                options: [
+                    { text: "Remains calm, may even explore or enjoy the experience", scores: { activity: 0, sociability: 1, decision: 1, stress: -2 } },
+                    { text: "Shows mild anxiety but settles down", scores: { activity: 0, sociability: 0, decision: 0, stress: 0 } },
+                    { text: "Becomes quite distressed (vocalizing, panting)", scores: { activity: 1, sociability: 0, decision: -1, stress: 1 } },
+                    { text: "Exhibits extreme stress (excessive vocalization, elimination, escape attempts)", scores: { activity: 2, sociability: -1, decision: -2, stress: 2 } }
+                ],
+                tip: "Early positive exposure to carriers and vehicles (before 16 weeks) significantly reduces travel anxiety in adult cats."
+            },
+            {
+                id: 13,
+                question: "Regarding personal space, your cat:",
+                options: [
+                    { text: "Is very cuddly, always wants to be in contact with people", scores: { activity: 0, sociability: 2, decision: -1, stress: -1 } },
+                    { text: "Enjoys closeness but also values some independence", scores: { activity: 0, sociability: 1, decision: 0, stress: 0 } },
+                    { text: "Prefers to be near but not touching people", scores: { activity: 0, sociability: 0, decision: 1, stress: 0 } },
+                    { text: "Generally maintains distance, rarely seeks physical contact", scores: { activity: 0, sociability: -2, decision: 2, stress: 1 } }
+                ],
+                tip: "A cat's preference for physical closeness is partly determined by maternal behavior during the first 12 weeks of life."
+            },
+            {
+                id: 14,
+                question: "When faced with an unfamiliar situation, your cat typically:",
+                options: [
+                    { text: "Confidently explores and adapts quickly", scores: { activity: 1, sociability: 1, decision: 2, stress: -2 } },
+                    { text: "Shows initial caution but adjusts within a reasonable time", scores: { activity: 0, sociability: 0, decision: 0, stress: 0 } },
+                    { text: "Takes a long time to adapt to changes", scores: { activity: -1, sociability: -1, decision: -1, stress: 1 } },
+                    { text: "Strongly resists changes and may show signs of distress", scores: { activity: -1, sociability: -1, decision: -2, stress: 2 } }
+                ],
+                tip: "Adaptability to change varies greatly between individuals but is highly predictive of overall stress reactivity."
+            },
+            {
+                id: 15,
+                question: "When grooming, your cat:",
+                options: [
+                    { text: "Maintains a perfect coat with regular self-grooming", scores: { activity: 0, sociability: 0, decision: 1, stress: -1 } },
+                    { text: "Grooms normally, accepts assistance if needed", scores: { activity: 0, sociability: 1, decision: 0, stress: 0 } },
+                    { text: "Sometimes under-grooms, may have matted fur in hard-to-reach areas", scores: { activity: -1, sociability: 0, decision: -1, stress: 1 } },
+                    { text: "Over-grooms, sometimes to the point of hair loss", scores: { activity: 1, sociability: -1, decision: -1, stress: 2 } }
+                ],
+                tip: "Over-grooming behavior is linked to elevated endorphin levels which help reduce anxiety—it's a self-soothing mechanism."
+            },
+            {
+                id: 16,
+                question: "When your cat wants something (food, play, attention), they:",
+                options: [
+                    { text: "Is very persistent, will continually demand until satisfied", scores: { activity: 1, sociability: 1, decision: 2, stress: 0 } },
+                    { text: "Makes clear requests but accepts 'no' after moderate attempts", scores: { activity: 0, sociability: 0, decision: 1, stress: 0 } },
+                    { text: "Makes subtle requests, gives up easily if not immediately fulfilled", scores: { activity: -1, sociability: -1, decision: -1, stress: 1 } },
+                    { text: "Rarely makes direct requests, waits for offerings", scores: { activity: -2, sociability: -2, decision: -2, stress: 1 } }
+                ],
+                tip: "A cat's communication style with humans is partly taught through reinforced learning—cats repeat behaviors that have previously succeeded."
+            }
+        ];
+
+        function initializeTest() {
+            currentQuestionIndex = 0;
+            selectedAnswers = [];
+            scores = { activity: 0, sociability: 0, decision: 0, stress: 0 };
+            
+            // Display the first question
+            displayQuestion(currentQuestionIndex);
+            
+            // Update progress indicators
+            updateProgress();
+        }
+
+        function displayQuestion(index) {
+            // If we've reached the end of questions, show results
+            if (index >= questions.length) {
+                showResults();
+                return;
+            }
+            
+            const question = questions[index];
+            const container = document.getElementById('question-container');
+            
+            // Build question HTML
+            let html = `<h3 class="question-title">${question.question}</h3>`;
+            
+            question.options.forEach((option, i) => {
+                html += `<div class="option-card" data-option="${i}" data-scores='${JSON.stringify(option.scores)}'>
+                    ${option.text}
+                </div>`;
+            });
+            
+            html += `<div class="question-tip">
+                <strong>Did you know?</strong> ${question.tip}
+            </div>`;
+            
+            container.innerHTML = html;
+            
+            // Add click handlers to options
+            document.querySelectorAll('.option-card').forEach(option => {
+                option.addEventListener('click', function() {
+                    // Deselect any previously selected option
+                    document.querySelectorAll('.option-card').forEach(opt => {
+                        opt.classList.remove('selected');
+                    });
+                    
+                    // Select this option
+                    this.classList.add('selected');
+                    
+                    // Enable next button
+                    document.getElementById('next-button').disabled = false;
+                    
+                    // Store selected answer data
+                    const scoresData = JSON.parse(this.getAttribute('data-scores'));
+                    selectedAnswers[currentQuestionIndex] = {
+                        optionIndex: this.getAttribute('data-option'),
+                        scores: scoresData
+                    };
+                });
+            });
+            
+            // Update progress display
+            document.getElementById('current-question').textContent = index + 1;
+            document.getElementById('total-questions').textContent = questions.length;
+            
+            // Reset next button
+            const nextButton = document.getElementById('next-button');
+            nextButton.disabled = true;
+            
+            // Handle next button click
+            nextButton.onclick = function() {
+                // Add scores from selected answer
+                const selectedScores = selectedAnswers[currentQuestionIndex].scores;
+                for (const dimension in selectedScores) {
+                    scores[dimension] += selectedScores[dimension];
+                }
+                
+                // Move to next question
+                currentQuestionIndex++;
+                updateProgress();
+                displayQuestion(currentQuestionIndex);
+            };
+        }
+
+        function updateProgress() {
+            // Use the actual questions array length instead of fixed totalQuestions value
+            const progress = ((currentQuestionIndex) / questions.length) * 100;
+            document.getElementById('progress-percent').textContent = Math.round(progress);
+            document.getElementById('progress-indicator').style.width = `${progress}%`;
+            document.getElementById('progress-marker').style.left = `${progress}%`;
+        }
+
+        function showResults() {
+            // Hide questions
+            document.getElementById('test-questions').style.display = 'none';
+            
+            // Show results preview
+            document.getElementById('test-results-preview').style.display = 'block';
+            
+            // Store scores in localStorage
+            localStorage.setItem('catTestScores', JSON.stringify(scores));
+            
+            // Simulate analysis (in a real app, this would be more sophisticated)
+            setTimeout(function() {
+                const resultsButton = document.getElementById('view-results-button');
+                resultsButton.style.display = 'inline-block';
+            }, 3000);
+        }
+    </script>
+</body>
+</html> 

@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cat Personality Test Results | Based on Feline Five Theory</title>
+    <meta name="description" content="View your cat's personality test results and understand their behavioral traits and psychological needs.">
+    <link rel="icon" href="public/favicon.ico">
+    <style>
+        /* Base styles */
+        :root {
+            --primary: #0096fa;
+            --primary-light: #a5d8ff;
+            --secondary: #ff9500;
+            --secondary-light: #ffd8a8;
+            --success: #40c057;
+            --success-light: #b2f2bb;
+            --danger: #ff6b6b;
+            --danger-light: #ffc9c9;
+            --neutral-100: #f8f9fa;
+            --neutral-200: #e9ecef;
+            --neutral-300: #dee2e6;
+            --neutral-400: #ced4da;
+            --neutral-500: #adb5bd;
+            --neutral-600: #6c757d;
+            --neutral-700: #495057;
+            --neutral-800: #343a40;
+            --neutral-900: #212529;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'SF Pro Display', Helvetica, Arial, sans-serif;
+            background-color: var(--neutral-100);
+            color: var(--neutral-900);
+            line-height: 1.6;
+        }
+
+        a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: var(--primary-dark);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Button styles */
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 12px;
+            font-weight: 500;
+            transition: all 0.2s;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #0077cc;
+        }
+
+        .btn-secondary {
+            background-color: var(--neutral-200);
+            color: var(--neutral-700);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--neutral-300);
+        }
+
+        .btn-success {
+            background-color: var(--success);
+            color: white;
+        }
+
+        .btn-success:hover {
+            background-color: #37b24d;
+        }
+
+        .btn-lg {
+            padding: 12px 24px;
+            font-size: 1.1rem;
+        }
+
+        /* Card styles */
+        .card {
+            background-color: white;
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            margin-bottom: 24px;
+        }
+        
+        /* Header navigation styles */
+        header {
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--neutral-200);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 40px;
+            margin-right: 12px;
+        }
+
+        .logo span {
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+
+        nav {
+            display: none;
+        }
+
+        @media (min-width: 768px) {
+            nav {
+                display: flex;
+                gap: 32px;
+            }
+
+            nav a {
+                color: var(--neutral-900);
+                font-weight: 500;
+            }
+
+            nav a:hover {
+                color: var(--primary);
+            }
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .menu-button {
+            display: block;
+        }
+
+        @media (min-width: 768px) {
+            .menu-button {
+                display: none;
+            }
+        }
+        
+        /* Results page styles */
+        .results-header {
+            background-color: var(--primary);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .results-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .results-subtitle {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .results-container {
+            padding: 60px 0;
+        }
+
+        .results-card {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cat-profile {
+            display: flex;
+            align-items: center;
+            margin-bottom: 32px;
+        }
+
+        .cat-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background-color: var(--primary-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-right: 24px;
+            flex-shrink: 0;
+        }
+
+        .cat-info h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .cat-info p {
+            color: var(--neutral-600);
+        }
+
+        .personality-type {
+            padding: 24px;
+            background-color: var(--primary-light);
+            border-radius: 12px;
+            margin-bottom: 32px;
+            text-align: center;
+        }
+
+        .type-code {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        .type-name {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .type-description {
+            color: var(--neutral-700);
+        }
+
+        .dimension-scores {
+            margin-bottom: 32px;
+        }
+
+        .dimension-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 24px;
+        }
+
+        .dimension {
+            margin-bottom: 20px;
+        }
+
+        .dimension-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .dimension-label span {
+            font-weight: 500;
+        }
+
+        .dimension-bar {
+            height: 12px;
+            background-color: var(--neutral-200);
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .dimension-value {
+            height: 100%;
+            border-radius: 6px;
+        }
+
+        .action-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        @media (min-width: 640px) {
+            .action-buttons {
+                flex-direction: row;
+                justify-content: center;
+            }
+        }
+
+        /* Footer styles */
+        footer {
+            background-color: var(--neutral-800);
+            color: white;
+            padding: 48px 0;
+            margin-top: 60px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 32px;
+        }
+
+        @media (min-width: 768px) {
+            .footer-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        .footer-brand {
+            margin-bottom: 16px;
+        }
+
+        .footer-description {
+            color: var(--neutral-400);
+        }
+
+        .footer-section-title {
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 8px;
+        }
+
+        .footer-links a {
+            color: var(--neutral-400);
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            margin-top: 32px;
+            padding-top: 32px;
+            border-top: 1px solid var(--neutral-700);
+            text-align: center;
+            color: var(--neutral-400);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header navigation -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">
+                    <img src="public/images/logo.svg" alt="Cat Personality Types">
+                    <span>Cat Personality Test</span>
+                </a>
+                
+                <nav>
+                    <a href="personality-test.html">Personality Test</a>
+                    <a href="personality-types.html">Personality Types</a>
+                    <a href="about.html">About Us</a>
+                    <a href="blog.html">Blog</a>
+                </nav>
+                
+                <div class="header-actions">
+                    <a href="personality-test.html" class="btn btn-primary">Take the Test</a>
+                    <button class="menu-button">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="3" y1="12" x2="21" y2="12"></line>
+                            <line x1="3" y1="6" x2="21" y2="6"></line>
+                            <line x1="3" y1="18" x2="21" y2="18"></line>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Results header -->
+    <section class="results-header">
+        <div class="container">
+            <h1 class="results-title">Your Cat's Personality Test Results</h1>
+            <p class="results-subtitle">
+                A scientific assessment based on the Feline Five theory to understand your cat's unique behavioral traits and psychological needs.
+            </p>
+        </div>
+    </section>
+
+    <!-- Results container -->
+    <section class="results-container">
+        <div class="container">
+            <div class="results-card card">
+                <div class="cat-profile">
+                    <div class="cat-avatar" id="cat-initial">?</div>
+                    <div class="cat-info">
+                        <h2 id="cat-name">Your Cat</h2>
+                        <p id="cat-details">Loading...</p>
+                    </div>
+                </div>
+
+                <div class="personality-type">
+                    <div class="type-code" id="type-code">XXXX</div>
+                    <div class="type-name" id="type-name">Loading...</div>
+                    <p class="type-description" id="type-description">Analyzing your cat's personality traits...</p>
+                </div>
+
+                <div class="card">
+                    <h3 class="dimension-title">Detailed Scientific Analysis</h3>
+                    <p class="extended-description" id="extended-description">Loading detailed analysis...</p>
+                </div>
+
+                <div class="dimension-scores">
+                    <h3 class="dimension-title">Personality Dimension Scores</h3>
+                    
+                    <div class="dimension">
+                        <div class="dimension-label">
+                            <span>Activity Level</span>
+                            <span id="activity-score">0</span>
+                        </div>
+                        <div class="dimension-bar">
+                            <div class="dimension-value" id="activity-bar" style="width: 50%; background-color: var(--primary);"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="dimension">
+                        <div class="dimension-label">
+                            <span>Sociability</span>
+                            <span id="sociability-score">0</span>
+                        </div>
+                        <div class="dimension-bar">
+                            <div class="dimension-value" id="sociability-bar" style="width: 50%; background-color: var(--secondary);"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="dimension">
+                        <div class="dimension-label">
+                            <span>Decisiveness</span>
+                            <span id="decision-score">0</span>
+                        </div>
+                        <div class="dimension-bar">
+                            <div class="dimension-value" id="decision-bar" style="width: 50%; background-color: var(--success);"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="dimension">
+                        <div class="dimension-label">
+                            <span>Stress Sensitivity</span>
+                            <span id="stress-score">0</span>
+                        </div>
+                        <div class="dimension-bar">
+                            <div class="dimension-value" id="stress-bar" style="width: 50%; background-color: var(--danger);"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3 class="dimension-title">Personalized Recommendations</h3>
+                    <div id="recommendations">
+                        <p>Based on your cat's personality profile, we'll provide personalized recommendations for diet, toys, environment, and interaction methods.</p>
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <a href="personality-test.html" class="btn btn-secondary btn-lg">Retake Test</a>
+                    <a href="personality-types.html" class="btn btn-primary btn-lg">Explore All Cat Types</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h3 class="footer-brand">Cat Personality Test</h3>
+                    <p class="footer-description">A scientific cat personality assessment system helping you better understand your feline friend.</p>
+                </div>
+                
+                <div>
+                    <h4 class="footer-section-title">Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="personality-test.html">Personality Test</a></li>
+                        <li><a href="personality-types.html">Personality Types</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="footer-section-title">Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="research.html">Research Foundation</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Use</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="footer-section-title">Follow Us</h4>
+                    <div class="social-links">
+                        <a href="#">
+                            <svg fill="currentColor" viewBox="0 0 24 24" width="24" height="24">
+                                <path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z" />
+                            </svg>
+                        </a>
+                        <a href="#">
+                            <svg fill="currentColor" viewBox="0 0 24 24" width="24" height="24">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4 1.79-4 4 0 2.209 1.791 4 4 4s4-1.791 4-4c0-2.21-1.791-4-4-4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                            </svg>
+                        </a>
+                        <a href="#">
+                            <svg fill="currentColor" viewBox="0 0 24 24" width="24" height="24">
+                                <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>© <script>document.write(new Date().getFullYear())</script> Cat Personality Test. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.menu-button').addEventListener('click', function() {
+            const nav = document.querySelector('nav');
+            nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
+        });
+        
+        // Load and display test results
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get cat info and test scores from localStorage
+            const catData = JSON.parse(localStorage.getItem('catTestData') || '{}');
+            const scores = JSON.parse(localStorage.getItem('catTestScores') || '{"activity":0,"sociability":0,"decision":0,"stress":0}');
+            
+            // Display cat info
+            if (catData.name) {
+                document.getElementById('cat-name').textContent = catData.name;
+                document.getElementById('cat-initial').textContent = catData.name.charAt(0).toUpperCase();
+                
+                const details = [];
+                if (catData.age) details.push(catData.age);
+                if (catData.breed) details.push(catData.breed);
+                if (catData.gender) {
+                    const genderMap = {
+                        'male': 'Male',
+                        'female': 'Female',
+                        'male-neutered': 'Male (neutered)',
+                        'female-spayed': 'Female (spayed)'
+                    };
+                    details.push(genderMap[catData.gender] || catData.gender);
+                }
+                
+                document.getElementById('cat-details').textContent = details.join(' • ');
+            }
+            
+            // Normalize scores to 0-100 scale for display and calculate personality type
+            const normalizedScores = {
+                activity: normalizeScore(scores.activity, -40, 40),
+                sociability: normalizeScore(scores.sociability, -40, 40),
+                decision: normalizeScore(scores.decision, -40, 40),
+                stress: normalizeScore(scores.stress, -40, 40)
+            };
+            
+            // Update score displays
+            document.getElementById('activity-score').textContent = Math.round(normalizedScores.activity);
+            document.getElementById('activity-bar').style.width = `${normalizedScores.activity}%`;
+            
+            document.getElementById('sociability-score').textContent = Math.round(normalizedScores.sociability);
+            document.getElementById('sociability-bar').style.width = `${normalizedScores.sociability}%`;
+            
+            document.getElementById('decision-score').textContent = Math.round(normalizedScores.decision);
+            document.getElementById('decision-bar').style.width = `${normalizedScores.decision}%`;
+            
+            document.getElementById('stress-score').textContent = Math.round(normalizedScores.stress);
+            document.getElementById('stress-bar').style.width = `${normalizedScores.stress}%`;
+            
+            // Determine personality type
+            const type = determinePersonalityType(scores);
+            document.getElementById('type-code').textContent = type.code;
+            document.getElementById('type-name').textContent = type.name;
+            document.getElementById('type-description').textContent = type.description;
+            document.getElementById('extended-description').textContent = type.extended_description;
+            
+            // Generate recommendations
+            document.getElementById('recommendations').innerHTML = generateRecommendations(scores, type);
+        });
+        
+        // Helper function to normalize a score to 0-100 scale
+        function normalizeScore(score, min, max) {
+            return ((score - min) / (max - min)) * 100;
+        }
+        
+        // Determine personality type based on scores
+        function determinePersonalityType(scores) {
+            // Create type code based on scores
+            const activity = scores.activity > 0 ? 'H' : 'L'; // High or Low Activity
+            const sociability = scores.sociability > 0 ? 'E' : 'I'; // Extroverted or Introverted
+            const decision = scores.decision > 0 ? 'T' : 'P'; // Decisive or Observant
+            const stress = scores.stress > 0 ? 'A' : 'C'; // High or Low Stress
+            
+            const code = activity + sociability + decision + stress;
+            
+            const types = {
+                'HETC': { 
+                    name: 'Explorer', 
+                    description: 'Active and extroverted with confident decision-making and low stress response. Enjoys exploring new environments, interacting with humans, and making quick decisions.',
+                    extended_description: 'Based on feline behavioral science, Explorer cats display high dopamine sensitivity and are born with a neurological predisposition to seek novelty. Their strong physical development and confident temperament are rooted in early developmental patterns. With their owners, they establish secure attachments while maintaining independence. They appreciate interactive play sessions and regular environmental enrichment through new toys or rearranged spaces. These cats benefit from rotational feeding puzzles, scheduled play times, and confident handling techniques that respect their need for both stimulation and autonomy.'
+                },
+                'HETA': { 
+                    name: 'Commander', 
+                    description: 'Strong territorial awareness, likes to control situations, and is sensitive to changes. Needs ordered environments and clear rules.',
+                    extended_description: 'Commander cats exhibit heightened amygdala activity, making them vigilant and sometimes reactive to environmental changes. Their territorial behavior stems from evolutionary advantages of resource control. With their owners, they form selective but powerful bonds, often choosing one primary person. They thrive with consistent routines and benefit from structured environments with designated territories. These cats respond well to positive reinforcement training, regular but predictable play sessions, and environments that allow them to monitor their surroundings from elevated positions. Early socialization helps moderate their territorial tendencies.'
+                },
+                'HEPT': { 
+                    name: 'Performer', 
+                    description: 'Energetic, friendly and open, enjoys being the center of attention. Highly adaptable and skilled at finding enjoyment.',
+                    extended_description: 'Performer cats show elevated levels of oxytocin and dopamine during social interactions, making them naturally rewarded by attention. Their playful nature originates from extended juvenile developmental periods. With their human companions, they form strong social bonds and often display affiliative behaviors like purring, kneading, and face rubbing more frequently than other types. These cats thrive in households with consistent but varied social interaction. Interactive play that incorporates social rewards, positive reinforcement training for tricks, and environments that allow them to engage with household activities benefit their sociable nature.'
+                },
+                'HEPA': { 
+                    name: 'Adventurer', 
+                    description: 'Full of energy, curious, and socially capable, but may be prone to anxiety. Enjoys novel experiences but requires security.',
+                    extended_description: 'Adventurer cats possess a unique neurological profile combining high dopamine sensitivity with elevated cortisol responses. Their seemingly contradictory nature is explained by evolutionary adaptations requiring both exploration and caution. With their owners, they often display ambivalent attachment patterns - seeking interaction while remaining vigilant. These cats benefit from predictable routines with controlled novelty introduction. Enrichment should be gradual and include safe retreats nearby. Counter-conditioning techniques can help reduce anxiety triggers, while interactive play helps channel their energy constructively. Clicker training provides both stimulation and confidence-building opportunities.'
+                },
+                'HITC': { 
+                    name: 'Strategist', 
+                    description: 'Independent, thoughtful, decisive in action, and resilient to stress. Prefers making own decisions and needs personal space.',
+                    extended_description: 'Strategist cats display remarkable prefrontal cortex activity, allowing them to evaluate situations thoroughly before acting. Their independence stems from secure early development and balanced attachment systems. With their owners, they establish respectful boundaries while maintaining meaningful connections. These cats require environmental complexity that allows problem-solving opportunities. They benefit from puzzle feeders of increasing difficulty, observation perches, and interactive toys they can manipulate independently. Respect for their autonomy builds trust, while training should focus on mutual cooperation rather than compliance.'
+                },
+                'HITA': { 
+                    name: 'Protector', 
+                    description: 'Highly alert, independent, sensitive to changes and unfamiliar environments. Requires stability and predictable routines.',
+                    extended_description: 'Protector cats show heightened sensory perception and rapid amygdala processing, making them exceptionally aware of environmental changes. Their cautious nature stems from adaptive vigilance mechanisms with strong evolutionary advantages. With their owners, they form selective attachments characterized by vigilant protection and territorial monitoring. These cats thrive with predictable daily schedules and benefit from dedicated safe spaces within the home. Slow introduction to any changes, restricted access for unfamiliar visitors, and consistent feeding and play routines help manage their sensitivity. Environmental modifications like hiding places at various heights and pheromone diffusers create security.'
+                },
+                'HIPC': { 
+                    name: 'Observer', 
+                    description: 'Active but independent, observant, with calm stress responses. Enjoys exploring the world at their own pace.',
+                    extended_description: 'Observer cats display balanced neurotransmitter systems that allow heightened awareness without excessive stress responses. Their methodical exploration patterns reflect evolutionary hunting strategies prioritizing efficiency over speed. With their owners, they establish comfortable but independent relationships based on mutual respect rather than neediness. These cats benefit from environments rich in observation opportunities - window perches, climbing trees with views, and protected outdoor access where possible. They appreciate interactive play that mimics hunting sequences and predictable daily routines with freedom to choose participation levels. Training should focus on cooperation and respect for their need to assess situations before engaging.'
+                },
+                'HIPA': { 
+                    name: 'Artist', 
+                    description: 'Strongly independent, sensitive, with distinct rhythms and preferences. Needs respect for their individuality and space.',
+                    extended_description: 'Artist cats possess unique neurological sensitivity patterns, with heightened responses to subtle environmental stimuli others might miss. Their distinctive preferences stem from complex sensory processing variations. With their owners, they form selective bonds characterized by depth rather than constant engagement. These cats thrive when allowed to establish their own routines and benefit from environments with multiple sensory retreat options. Gentle, predictable handling techniques, recognition of their communication cues, and respect for their personal boundaries build trust. Environmental enrichment should include texture variety, protected exploration opportunities, and interactive play that respects their initiative.'
+                },
+                'LETC': { 
+                    name: 'Diplomat', 
+                    description: 'Peaceful and friendly with strong social skills, good adaptability, and low stress response. Enjoys human interaction without excessive activity.',
+                    extended_description: 'Diplomat cats show balanced oxytocin and serotonin systems, creating natural sociability without hyperactivity. Their adaptable nature stems from secure early socialization and positive association building. With their owners, they form consistent and reliable bonds characterized by mutual comfort and easy communication. These cats excel in multi-pet households and benefit from regular but gentle social interaction. They appreciate interactive play focused on connection rather than high activity, predictable daily routines, and environments that allow them to join family activities comfortably. Their adaptable nature makes them excellent therapy cats with proper training.'
+                },
+                'LETA': { 
+                    name: 'Counselor', 
+                    description: 'Gentle and friendly, but sensitive to environmental changes. Needs stable social relationships and secure environments.',
+                    extended_description: 'Counselor cats display heightened empathic tendencies, responding to their owners&apos; emotional states through mirror neuron activation. Their sensitive nature combines social connection with environmental awareness. With their owners, they form deep bonds characterized by mutual emotional attunement. These cats thrive in calm, stable environments and benefit from gentle, consistent handling. They appreciate quiet interaction periods, scheduled routines that minimize surprises, and secure spaces where they can retreat when overwhelmed. Their sensitivity makes them exceptional companions for those who value emotional connection, but requires protection from chaotic environments.'
+                },
+                'LEPT': { 
+                    name: 'Mediator', 
+                    description: 'Mild-mannered and sociable, dislikes conflict. Adapts well to various social situations but dislikes overstimulation.',
+                    extended_description: 'Mediator cats possess balanced neurological systems with heightened sensitivity to social harmony. Their conflict-avoiding tendencies stem from evolutionary advantages of group cohesion. With their owners, they form reliable bonds characterized by consistent affection and social awareness. These cats often excel in multi-cat or multi-species households and benefit from environments with clear resources to prevent competition. They appreciate gentle but regular handling, predictable social routines, and moderate play sessions. Their adaptable nature makes them excellent family cats, though they need protection from excessive stimulation and household tension.'
+                },
+                'LEPA': { 
+                    name: 'Harmonizer', 
+                    description: 'Friendly but sensitive, sociable yet potentially anxious. Needs positive support and safe social environments.',
+                    extended_description: 'Harmonizer cats show a unique neurological profile combining social reward systems with heightened stress responses. Their seemingly contradictory nature reflects evolutionary adaptations balancing group benefits with vigilance. With their owners, they form attachment bonds characterized by social seeking and reassurance needs. These cats thrive in predictable social environments and benefit from gentle, consistent handling techniques. They appreciate quiet interaction periods, safe social exposure with positive reinforcement, and secure retreat spaces always accessible. Environmental modifications like pheromone diffusers, anxiety wraps during stressful periods, and calming music can help manage their sensitivity.'
+                },
+                'LITC': { 
+                    name: 'Sage', 
+                    description: 'Calm and composed, independent thinker, undisturbed by external influences. Prefers quiet environments and ordered living.',
+                    extended_description: 'Sage cats display remarkable neural efficiency, processing information thoroughly while maintaining physiological calm. Their composed nature stems from balanced stress response systems and secure early development. With their owners, they establish respectful relationships characterized by mutual independence and quiet companionship. These cats thrive in orderly, peaceful environments and benefit from predictable routines with minimal disruption. They appreciate thoughtful environmental enrichment like puzzle feeders, observation perches, and quiet interactive play sessions. Their calm demeanor makes them excellent companions for those seeking meaningful but undemanding relationships.'
+                },
+                'LITA': { 
+                    name: 'Hermit', 
+                    description: 'Introverted and independent, sensitive to environment, needs stability and predictability. Prefers quiet and familiar settings.',
+                    extended_description: 'Hermit cats possess heightened sensory sensitivity combined with strong territorial attachment. Their preference for solitude and familiarity stems from evolutionary advantages of established territory knowledge. With their owners, they form selective but deep bonds characterized by trust rather than constant interaction. These cats require environmental stability and benefit from consistent daily routines. They appreciate quiet, undisturbed spaces, limited exposure to strangers, and respect for their personal boundaries. Environmental modifications like dedicated hiding places, elevated perches for secure observation, and minimal household changes help manage their sensitivity to disruption.'
+                },
+                'LIPC': { 
+                    name: 'Philosopher', 
+                    description: 'Quiet observer, independent, peaceful within. Enjoys contemplation and calm environments without excessive stimulation.',
+                    extended_description: 'Philosopher cats display remarkable serotonin balance, creating natural contentment with minimal external stimulation. Their observant nature stems from evolutionary advantages of energy conservation and strategic assessment. With their owners, they establish comfortable but independent relationships based on mutual respect for personal space. These cats thrive in predictable, peaceful environments and benefit from thoughtful enrichment opportunities like window perches, simple puzzle feeders, and nature observation. They appreciate gentle, undemanding interaction, respect for their contemplative periods, and environments that minimize unnecessary stimulation. Their calm presence makes them ideal companions for those seeking peaceful coexistence.'
+                },
+                'LIPA': { 
+                    name: 'Dreamer', 
+                    description: 'Sensitive and introverted, prefers familiar environments, adapts slowly to change. Needs quiet, predictable living and gentle interaction.',
+                    extended_description: 'Dreamer cats show heightened neurological sensitivity to both sensory input and internal states. Their introspective nature combines deep territorial attachment with careful processing of experiences. With their owners, they form selective, deep bonds characterized by trust developed through consistent, gentle interaction. These cats require peaceful, stable environments and benefit from minimized household changes with gradual transitions when necessary. They appreciate quiet companionship without demands, secure hiding places, and gentle enrichment that respects their processing needs. Environmental modifications like soothing background sounds, pheromone therapy, and microenvironments with varying comfort features support their sensitive nature.'
+                }
+            };
+            
+            return {
+                code: code,
+                name: types[code]?.name || 'Unknown Type',
+                description: types[code]?.description || 'Unable to determine specific personality type description.',
+                extended_description: types[code]?.extended_description || 'Extended description not available for this personality type.'
+            };
+        }
+        
+        // Generate personalized recommendations based on scores and type
+        function generateRecommendations(scores, type) {
+            let recommendations = '<h4>Diet Recommendations</h4><ul>';
+            
+            // Diet recommendations
+            if (scores.activity > 15) {
+                recommendations += '<li>High-energy diet, consider increased feeding frequency with smaller portions</li>';
+            } else if (scores.activity < -15) {
+                recommendations += '<li>Lower-calorie diet, control portion sizes to prevent obesity</li>';
+            } else {
+                recommendations += '<li>Balanced diet with regular feeding schedule and consistent portions</li>';
+            }
+            
+            if (scores.stress > 15) {
+                recommendations += '<li>Consider cat food or supplements with calming ingredients</li>';
+            }
+            
+            recommendations += '</ul><h4>Toy Recommendations</h4><ul>';
+            
+            // Toy recommendations
+            if (scores.activity > 10) {
+                recommendations += '<li>Interactive toys like wand toys and electronic motion toys</li>';
+            } else {
+                recommendations += '<li>Simple toys such as plush toys or balls</li>';
+            }
+            
+            if (scores.decision > 10) {
+                recommendations += '<li>Puzzle toys and treat dispensers that challenge problem-solving skills</li>';
+            }
+            
+            recommendations += '</ul><h4>Environment Recommendations</h4><ul>';
+            
+            // Environment recommendations
+            if (scores.sociability > 10) {
+                recommendations += '<li>Open spaces with multiple social interaction areas</li>';
+            } else if (scores.sociability < -10) {
+                recommendations += '<li>Provide multiple hiding spots and secluded resting areas</li>';
+            }
+            
+            if (scores.stress > 10) {
+                recommendations += '<li>Quiet, consistent environment with minimal changes and noise</li>';
+                recommendations += '<li>Consider using pheromone diffusers to reduce stress</li>';
+            }
+            
+            recommendations += '</ul><h4>Interaction Recommendations</h4><ul>';
+            
+            // Interaction recommendations
+            if (scores.sociability > 15) {
+                recommendations += '<li>Frequent interaction and petting, may enjoy socializing with other cats or pets</li>';
+            } else if (scores.sociability < -15) {
+                recommendations += '<li>Respect their independence, provide moderate attention without forcing interaction</li>';
+            }
+            
+            if (scores.stress > 15) {
+                recommendations += '<li>Avoid sudden movements or sounds, interact in a gentle and consistent manner</li>';
+            }
+            
+            recommendations += '</ul>';
+            
+            return recommendations;
+        }
+    </script>
+</body>
+</html> 
