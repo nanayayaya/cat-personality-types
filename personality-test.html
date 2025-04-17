@@ -686,16 +686,14 @@
                     </div>
                 </div>
 
-                <div class="card">
+                <div class="card" id="recommendations">
                     <h3 class="dimension-title">Personalized Recommendations</h3>
-                    <div id="recommendations">
-                        <p>Based on your cat's personality profile, we'll provide personalized recommendations for diet, toys, environment, and interaction methods.</p>
-                    </div>
+                    <p>Loading recommendations...</p>
                 </div>
 
                 <div class="action-buttons">
-                    <button class="btn btn-secondary btn-lg" id="restart-test-button">Retake Test</button>
-                    <a href="personality-types.html" class="btn btn-primary btn-lg">Explore All Cat Types</a>
+                    <button id="restart-test-button" class="btn btn-lg btn-primary">Take Test Again</button>
+                    <a href="personality-types.html" class="btn btn-lg btn-secondary">Explore All Types</a>
                 </div>
             </div>
         </div>
@@ -1127,15 +1125,19 @@
             // Update score displays
             document.getElementById('activity-score').textContent = Math.round(normalizedScores.activity);
             document.getElementById('activity-bar').style.width = `${normalizedScores.activity}%`;
+            document.getElementById('activity-bar').style.backgroundColor = 'var(--primary)';
             
             document.getElementById('sociability-score').textContent = Math.round(normalizedScores.sociability);
             document.getElementById('sociability-bar').style.width = `${normalizedScores.sociability}%`;
+            document.getElementById('sociability-bar').style.backgroundColor = 'var(--secondary)';
             
             document.getElementById('decision-score').textContent = Math.round(normalizedScores.decision);
             document.getElementById('decision-bar').style.width = `${normalizedScores.decision}%`;
+            document.getElementById('decision-bar').style.backgroundColor = 'var(--success)';
             
             document.getElementById('stress-score').textContent = Math.round(normalizedScores.stress);
             document.getElementById('stress-bar').style.width = `${normalizedScores.stress}%`;
+            document.getElementById('stress-bar').style.backgroundColor = 'var(--danger)';
             
             // Determine personality type
             const type = determinePersonalityType(scores);
@@ -1157,6 +1159,16 @@
                 
                 // Reset form fields
                 document.getElementById('catInfoForm').reset();
+                
+                // Reset state
+                currentQuestionIndex = 0;
+                selectedAnswers = {};
+                scores = {
+                    activity: 0,
+                    sociability: 0,
+                    decision: 0,
+                    stress: 0
+                };
             });
         }
         
@@ -1261,66 +1273,78 @@
             };
         }
         
-        // Generate personalized recommendations based on scores and type
+        // Generate personalized recommendations based on personality type
         function generateRecommendations(scores, type) {
-            let recommendations = '<h4>Diet Recommendations</h4><ul>';
+            let html = '<h3 class="dimension-title">Personalized Recommendations</h3>';
             
             // Diet recommendations
+            html += '<h4>Diet Recommendations</h4><ul>';
             if (scores.activity > 15) {
-                recommendations += '<li>High-energy diet, consider increased feeding frequency with smaller portions</li>';
+                html += '<li>High-energy diet with increased protein content</li>';
+                html += '<li>Multiple small meals throughout the day to match high activity levels</li>';
             } else if (scores.activity < -15) {
-                recommendations += '<li>Lower-calorie diet, control portion sizes to prevent obesity</li>';
+                html += '<li>Portion-controlled diet to prevent weight gain</li>';
+                html += '<li>Lower calorie options suitable for less active cats</li>';
             } else {
-                recommendations += '<li>Balanced diet with regular feeding schedule and consistent portions</li>';
+                html += '<li>Balanced diet with regular feeding schedule</li>';
             }
             
             if (scores.stress > 15) {
-                recommendations += '<li>Consider cat food or supplements with calming ingredients</li>';
+                html += '<li>Consider foods with calming ingredients or supplements</li>';
             }
-            
-            recommendations += '</ul><h4>Toy Recommendations</h4><ul>';
+            html += '</ul>';
             
             // Toy recommendations
+            html += '<h4>Toy Recommendations</h4><ul>';
             if (scores.activity > 10) {
-                recommendations += '<li>Interactive toys like wand toys and electronic motion toys</li>';
+                html += '<li>Interactive toys that encourage movement and exercise</li>';
+                html += '<li>Electronic motion toys that satisfy hunting instincts</li>';
             } else {
-                recommendations += '<li>Simple toys such as plush toys or balls</li>';
+                html += '<li>Simple toys like stuffed mice or balls</li>';
             }
             
             if (scores.decision > 10) {
-                recommendations += '<li>Puzzle toys and treat dispensers that challenge problem-solving skills</li>';
+                html += '<li>Puzzle toys and treat dispensers to challenge problem-solving skills</li>';
             }
             
-            recommendations += '</ul><h4>Environment Recommendations</h4><ul>';
+            if (scores.sociability > 10) {
+                html += '<li>Interactive toys that you can play together</li>';
+            }
+            html += '</ul>';
             
             // Environment recommendations
+            html += '<h4>Environment Recommendations</h4><ul>';
             if (scores.sociability > 10) {
-                recommendations += '<li>Open spaces with multiple social interaction areas</li>';
+                html += '<li>Create open spaces where your cat can be near family activities</li>';
+                html += '<li>Consider getting a companion cat if you\'re often away</li>';
             } else if (scores.sociability < -10) {
-                recommendations += '<li>Provide multiple hiding spots and secluded resting areas</li>';
+                html += '<li>Provide multiple hiding spots and quiet retreats</li>';
+                html += '<li>Create vertical spaces (cat trees, shelves) for observation at a distance</li>';
             }
             
             if (scores.stress > 10) {
-                recommendations += '<li>Quiet, consistent environment with minimal changes and noise</li>';
-                recommendations += '<li>Consider using pheromone diffusers to reduce stress</li>';
+                html += '<li>Maintain consistent routines and minimize environmental changes</li>';
+                html += '<li>Create a dedicated "safe room" with all necessities during high-stress times</li>';
             }
-            
-            recommendations += '</ul><h4>Interaction Recommendations</h4><ul>';
+            html += '</ul>';
             
             // Interaction recommendations
-            if (scores.sociability > 15) {
-                recommendations += '<li>Frequent interaction and petting, may enjoy socializing with other cats or pets</li>';
-            } else if (scores.sociability < -15) {
-                recommendations += '<li>Respect their independence, provide moderate attention without forcing interaction</li>';
+            html += '<h4>Interaction Recommendations</h4><ul>';
+            if (scores.sociability > 10) {
+                html += '<li>Regular interactive play sessions and frequent social contact</li>';
+                html += '<li>Allow your cat to be part of family activities</li>';
+            } else {
+                html += '<li>Respect boundaries and allow your cat to initiate interaction</li>';
+                html += '<li>Short, positive interaction sessions spread throughout the day</li>';
             }
             
-            if (scores.stress > 15) {
-                recommendations += '<li>Avoid sudden movements or sounds, interact in a gentle and consistent manner</li>';
+            if (scores.stress > 10) {
+                html += '<li>Use slow blinking and soft voices when interacting</li>';
+                html += '<li>Avoid sudden movements or loud noises</li>';
             }
+            html += '</ul>';
             
-            recommendations += '</ul>';
-            
-            return recommendations;
+            return html;
         }
     </script>
 </body>

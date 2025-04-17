@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cat Personality Test Results | Based on Feline Five Theory</title>
-    <meta name="description" content="View your cat's personality test results and understand their behavioral traits and psychological needs.">
+    <meta name="description" content="View your cat's scientific personality assessment results based on the Feline Five theory.">
     <link rel="icon" href="public/favicon.ico">
+    <link rel="stylesheet" href="styles/results.css">
     <style>
         /* Base styles */
         :root {
@@ -433,7 +434,7 @@
                     <p class="extended-description" id="extended-description">Loading detailed analysis...</p>
                 </div>
 
-                <div class="dimension-scores">
+                <div class="card">
                     <h3 class="dimension-title">Personality Dimension Scores</h3>
                     
                     <div class="dimension">
@@ -477,16 +478,14 @@
                     </div>
                 </div>
 
-                <div class="card">
+                <div class="card" id="recommendations">
                     <h3 class="dimension-title">Personalized Recommendations</h3>
-                    <div id="recommendations">
-                        <p>Based on your cat's personality profile, we'll provide personalized recommendations for diet, toys, environment, and interaction methods.</p>
-                    </div>
+                    <p>Loading recommendations...</p>
                 </div>
 
                 <div class="action-buttons">
-                    <a href="personality-test.html" class="btn btn-secondary btn-lg">Retake Test</a>
-                    <a href="personality-types.html" class="btn btn-primary btn-lg">Explore All Cat Types</a>
+                    <a href="personality-test.html" class="btn btn-lg btn-primary">Take Test Again</a>
+                    <a href="personality-types.html" class="btn btn-lg btn-secondary">Explore All Types</a>
                 </div>
             </div>
         </div>
@@ -594,15 +593,19 @@
             // Update score displays
             document.getElementById('activity-score').textContent = Math.round(normalizedScores.activity);
             document.getElementById('activity-bar').style.width = `${normalizedScores.activity}%`;
+            document.getElementById('activity-bar').style.backgroundColor = 'var(--primary)';
             
             document.getElementById('sociability-score').textContent = Math.round(normalizedScores.sociability);
             document.getElementById('sociability-bar').style.width = `${normalizedScores.sociability}%`;
+            document.getElementById('sociability-bar').style.backgroundColor = 'var(--secondary)';
             
             document.getElementById('decision-score').textContent = Math.round(normalizedScores.decision);
             document.getElementById('decision-bar').style.width = `${normalizedScores.decision}%`;
+            document.getElementById('decision-bar').style.backgroundColor = 'var(--success)';
             
             document.getElementById('stress-score').textContent = Math.round(normalizedScores.stress);
             document.getElementById('stress-bar').style.width = `${normalizedScores.stress}%`;
+            document.getElementById('stress-bar').style.backgroundColor = 'var(--danger)';
             
             // Determine personality type
             const type = determinePersonalityType(scores);
@@ -630,157 +633,168 @@
             
             const code = activity + sociability + decision + stress;
             
+            // Map type code to personality data
             const types = {
-                'HETC': { 
-                    name: 'Explorer', 
-                    description: 'Active and extroverted with confident decision-making and low stress response. Enjoys exploring new environments, interacting with humans, and making quick decisions.',
-                    extended_description: 'Based on feline behavioral science, Explorer cats display high dopamine sensitivity and are born with a neurological predisposition to seek novelty. Their strong physical development and confident temperament are rooted in early developmental patterns. With their owners, they establish secure attachments while maintaining independence. They appreciate interactive play sessions and regular environmental enrichment through new toys or rearranged spaces. These cats benefit from rotational feeding puzzles, scheduled play times, and confident handling techniques that respect their need for both stimulation and autonomy.'
+                // High Activity Types
+                "HETC": {
+                    name: "The Energetic Social Butterfly",
+                    description: "Outgoing, energetic, and confident. Loves interaction with people and other pets.",
+                    extended_description: "Your cat is highly sociable and thrives on interaction. They typically enjoy busy environments and adapt quickly to new situations. They often welcome visitors and may follow you from room to room seeking companionship. These cats make wonderful family pets and typically get along well with respectful children and other pets."
                 },
-                'HETA': { 
-                    name: 'Commander', 
-                    description: 'Strong territorial awareness, likes to control situations, and is sensitive to changes. Needs ordered environments and clear rules.',
-                    extended_description: 'Commander cats exhibit heightened amygdala activity, making them vigilant and sometimes reactive to environmental changes. Their territorial behavior stems from evolutionary advantages of resource control. With their owners, they form selective but powerful bonds, often choosing one primary person. They thrive with consistent routines and benefit from structured environments with designated territories. These cats respond well to positive reinforcement training, regular but predictable play sessions, and environments that allow them to monitor their surroundings from elevated positions. Early socialization helps moderate their territorial tendencies.'
+                "HETA": {
+                    name: "The Adventurous Explorer",
+                    description: "Bold, curious, and always seeking new experiences. Needs plenty of stimulation.",
+                    extended_description: "Your cat has a bold and adventurous personality. They're curious about everything and love to explore. They need significant environmental enrichment to satisfy their high energy and curiosity. Without adequate stimulation, they may develop destructive behaviors out of boredom. Interactive toys, climbing spaces, and regular play sessions are essential for this type."
                 },
-                'HEPT': { 
-                    name: 'Performer', 
-                    description: 'Energetic, friendly and open, enjoys being the center of attention. Highly adaptable and skilled at finding enjoyment.',
-                    extended_description: 'Performer cats show elevated levels of oxytocin and dopamine during social interactions, making them naturally rewarded by attention. Their playful nature originates from extended juvenile developmental periods. With their human companions, they form strong social bonds and often display affiliative behaviors like purring, kneading, and face rubbing more frequently than other types. These cats thrive in households with consistent but varied social interaction. Interactive play that incorporates social rewards, positive reinforcement training for tricks, and environments that allow them to engage with household activities benefit their sociable nature.'
+                "HEPC": {
+                    name: "The Playful Companion",
+                    description: "Energetic, friendly, and adaptable. Enjoys play and social activities.",
+                    extended_description: "Your cat combines high energy with social tendencies and adaptability. They're typically good with new people and situations as long as they feel secure. They may not be as bold as other high-energy types but compensate with their adaptable, friendly nature. They thrive on interactive play and form strong bonds with their human companions."
                 },
-                'HEPA': { 
-                    name: 'Adventurer', 
-                    description: 'Full of energy, curious, and socially capable, but may be prone to anxiety. Enjoys novel experiences but requires security.',
-                    extended_description: 'Adventurer cats possess a unique neurological profile combining high dopamine sensitivity with elevated cortisol responses. Their seemingly contradictory nature is explained by evolutionary adaptations requiring both exploration and caution. With their owners, they often display ambivalent attachment patterns - seeking interaction while remaining vigilant. These cats benefit from predictable routines with controlled novelty introduction. Enrichment should be gradual and include safe retreats nearby. Counter-conditioning techniques can help reduce anxiety triggers, while interactive play helps channel their energy constructively. Clicker training provides both stimulation and confidence-building opportunities.'
+                "HEPA": {
+                    name: "The Sensitive Extrovert",
+                    description: "Sociable and active but can be sensitive to environmental changes.",
+                    extended_description: "While your cat enjoys social interaction and has plenty of energy, they can be sensitive to changes in their environment. They may become anxious during disruptions to their routine or unfamiliar situations. They benefit from consistent schedules and gradual introductions to new experiences, but their sociable nature helps them overcome initial hesitations."
                 },
-                'HITC': { 
-                    name: 'Strategist', 
-                    description: 'Independent, thoughtful, decisive in action, and resilient to stress. Prefers making own decisions and needs personal space.',
-                    extended_description: 'Strategist cats display remarkable prefrontal cortex activity, allowing them to evaluate situations thoroughly before acting. Their independence stems from secure early development and balanced attachment systems. With their owners, they establish respectful boundaries while maintaining meaningful connections. These cats require environmental complexity that allows problem-solving opportunities. They benefit from puzzle feeders of increasing difficulty, observation perches, and interactive toys they can manipulate independently. Respect for their autonomy builds trust, while training should focus on mutual cooperation rather than compliance.'
+                "HITC": {
+                    name: "The Independent Athlete",
+                    description: "Energetic and determined, but prefers independence to social interaction.",
+                    extended_description: "Your cat has high energy and determination but doesn't depend on social interaction. They're often focused on solo play and may see toys as prey to conquer rather than as a means of bonding. They appreciate having their own territory and may be aloof with strangers. Despite their independent nature, they often form strong bonds with their primary caregiver."
                 },
-                'HITA': { 
-                    name: 'Protector', 
-                    description: 'Highly alert, independent, sensitive to changes and unfamiliar environments. Requires stability and predictable routines.',
-                    extended_description: 'Protector cats show heightened sensory perception and rapid amygdala processing, making them exceptionally aware of environmental changes. Their cautious nature stems from adaptive vigilance mechanisms with strong evolutionary advantages. With their owners, they form selective attachments characterized by vigilant protection and territorial monitoring. These cats thrive with predictable daily schedules and benefit from dedicated safe spaces within the home. Slow introduction to any changes, restricted access for unfamiliar visitors, and consistent feeding and play routines help manage their sensitivity. Environmental modifications like hiding places at various heights and pheromone diffusers create security.'
+                "HITA": {
+                    name: "The Solo Adventurer",
+                    description: "Independent, highly active, and somewhat sensitive to stress. Requires space and stimulation.",
+                    extended_description: "Your cat combines high energy with a preference for independence and some sensitivity to stress. They need both space to explore and quiet retreats for security. They typically enjoy interactive play but on their own terms. These cats are often described as having 'wild' spirits and benefit from environmental enrichment that satisfies their instinctual needs."
                 },
-                'HIPC': { 
-                    name: 'Observer', 
-                    description: 'Active but independent, observant, with calm stress responses. Enjoys exploring the world at their own pace.',
-                    extended_description: 'Observer cats display balanced neurotransmitter systems that allow heightened awareness without excessive stress responses. Their methodical exploration patterns reflect evolutionary hunting strategies prioritizing efficiency over speed. With their owners, they establish comfortable but independent relationships based on mutual respect rather than neediness. These cats benefit from environments rich in observation opportunities - window perches, climbing trees with views, and protected outdoor access where possible. They appreciate interactive play that mimics hunting sequences and predictable daily routines with freedom to choose participation levels. Training should focus on cooperation and respect for their need to assess situations before engaging.'
+                "HIPC": {
+                    name: "The Gentle Athlete",
+                    description: "Active but reserved. Observant and thoughtful in approach to their environment.",
+                    extended_description: "Despite their high energy, your cat approaches new situations with care and observation. They're thoughtful explorers who may spend time assessing before engaging. They typically form close bonds with one or two people but may be reserved with others. Their playful side emerges once they feel comfortable and secure in their environment."
                 },
-                'HIPA': { 
-                    name: 'Artist', 
-                    description: 'Strongly independent, sensitive, with distinct rhythms and preferences. Needs respect for their individuality and space.',
-                    extended_description: 'Artist cats possess unique neurological sensitivity patterns, with heightened responses to subtle environmental stimuli others might miss. Their distinctive preferences stem from complex sensory processing variations. With their owners, they form selective bonds characterized by depth rather than constant engagement. These cats thrive when allowed to establish their own routines and benefit from environments with multiple sensory retreat options. Gentle, predictable handling techniques, recognition of their communication cues, and respect for their personal boundaries build trust. Environmental enrichment should include texture variety, protected exploration opportunities, and interactive play that respects their initiative.'
+                "HIPA": {
+                    name: "The Cautious Dynamo",
+                    description: "Energetic but sensitive. Needs safe spaces and reassurance alongside active play.",
+                    extended_description: "Your cat has seemingly contradictory traits - high energy combined with sensitivity and reserve. They may alternate between periods of intense activity and cautious retreat. They need both stimulation and security, with plenty of hiding spots and elevated resting areas. While they can be shy with strangers, they often form intense bonds with trusted individuals."
                 },
-                'LETC': { 
-                    name: 'Diplomat', 
-                    description: 'Peaceful and friendly with strong social skills, good adaptability, and low stress response. Enjoys human interaction without excessive activity.',
-                    extended_description: 'Diplomat cats show balanced oxytocin and serotonin systems, creating natural sociability without hyperactivity. Their adaptable nature stems from secure early socialization and positive association building. With their owners, they form consistent and reliable bonds characterized by mutual comfort and easy communication. These cats excel in multi-pet households and benefit from regular but gentle social interaction. They appreciate interactive play focused on connection rather than high activity, predictable daily routines, and environments that allow them to join family activities comfortably. Their adaptable nature makes them excellent therapy cats with proper training.'
+                
+                // Low Activity Types
+                "LETC": {
+                    name: "The Relaxed Socialite",
+                    description: "Calm and friendly. Enjoys company without the high-energy antics.",
+                    extended_description: "Your cat is socially confident but prefers a relaxed approach to life. They typically enjoy being where the family gathers but aren't demanding about interaction. They adapt well to different environments as long as they don't require too much physical exertion. These cats often make excellent therapy animals due to their calm, friendly demeanor."
                 },
-                'LETA': { 
-                    name: 'Counselor', 
-                    description: 'Gentle and friendly, but sensitive to environmental changes. Needs stable social relationships and secure environments.',
-                    extended_description: 'Counselor cats display heightened empathic tendencies, responding to their owners&apos; emotional states through mirror neuron activation. Their sensitive nature combines social connection with environmental awareness. With their owners, they form deep bonds characterized by mutual emotional attunement. These cats thrive in calm, stable environments and benefit from gentle, consistent handling. They appreciate quiet interaction periods, scheduled routines that minimize surprises, and secure spaces where they can retreat when overwhelmed. Their sensitivity makes them exceptional companions for those who value emotional connection, but requires protection from chaotic environments.'
+                "LETA": {
+                    name: "The Sensitive Companion",
+                    description: "Gentle, affectionate, but can be easily overwhelmed. Needs a calm, predictable environment.",
+                    extended_description: "Your cat combines a calm energy level with social tendencies and sensitivity to stress. They form strong attachments to their people but may be wary of changes or strangers. They thrive in quiet, consistent environments with gentle interaction. They're often described as sweet-natured and make devoted companions for those who appreciate their sensitive souls."
                 },
-                'LEPT': { 
-                    name: 'Mediator', 
-                    description: 'Mild-mannered and sociable, dislikes conflict. Adapts well to various social situations but dislikes overstimulation.',
-                    extended_description: 'Mediator cats possess balanced neurological systems with heightened sensitivity to social harmony. Their conflict-avoiding tendencies stem from evolutionary advantages of group cohesion. With their owners, they form reliable bonds characterized by consistent affection and social awareness. These cats often excel in multi-cat or multi-species households and benefit from environments with clear resources to prevent competition. They appreciate gentle but regular handling, predictable social routines, and moderate play sessions. Their adaptable nature makes them excellent family cats, though they need protection from excessive stimulation and household tension.'
+                "LEPC": {
+                    name: "The Easygoing Friend",
+                    description: "Sociable, patient, and adaptable. Goes with the flow and enjoys company.",
+                    extended_description: "Your cat has an exceptionally balanced, easygoing personality. They're socially confident without being demanding, and though not highly energetic, they enjoy occasional play and interaction. They adapt well to most environments and are typically good with children, other pets, and visitors. They're often described as having an 'old soul' temperament."
                 },
-                'LEPA': { 
-                    name: 'Harmonizer', 
-                    description: 'Friendly but sensitive, sociable yet potentially anxious. Needs positive support and safe social environments.',
-                    extended_description: 'Harmonizer cats show a unique neurological profile combining social reward systems with heightened stress responses. Their seemingly contradictory nature reflects evolutionary adaptations balancing group benefits with vigilance. With their owners, they form attachment bonds characterized by social seeking and reassurance needs. These cats thrive in predictable social environments and benefit from gentle, consistent handling techniques. They appreciate quiet interaction periods, safe social exposure with positive reinforcement, and secure retreat spaces always accessible. Environmental modifications like pheromone diffusers, anxiety wraps during stressful periods, and calming music can help manage their sensitivity.'
+                "LEPA": {
+                    name: "The Gentle Socializer",
+                    description: "Calm, friendly, but sometimes anxious. Needs gentle socialization and quiet environment.",
+                    extended_description: "Your cat enjoys social connection but needs it to be gentle and predictable. They have a naturally calm energy level but can become anxious with too much stimulation or sudden changes. They do best in households that maintain consistent routines and provide affection without overwhelming them. With the right environment, they're affectionate, sweet-natured companions."
                 },
-                'LITC': { 
-                    name: 'Sage', 
-                    description: 'Calm and composed, independent thinker, undisturbed by external influences. Prefers quiet environments and ordered living.',
-                    extended_description: 'Sage cats display remarkable neural efficiency, processing information thoroughly while maintaining physiological calm. Their composed nature stems from balanced stress response systems and secure early development. With their owners, they establish respectful relationships characterized by mutual independence and quiet companionship. These cats thrive in orderly, peaceful environments and benefit from predictable routines with minimal disruption. They appreciate thoughtful environmental enrichment like puzzle feeders, observation perches, and quiet interactive play sessions. Their calm demeanor makes them excellent companions for those seeking meaningful but undemanding relationships.'
+                "LITC": {
+                    name: "The Dignified Observer",
+                    description: "Independent, calm, and self-assured. Prefers observation to participation.",
+                    extended_description: "Your cat has a regal, dignified quality. They're content with their own company and don't seek constant interaction. They often observe household activities from comfortable perches rather than participating directly. While not demonstrative, they develop strong attachments to their homes and preferred people. They typically dislike being picked up or handled extensively but may enjoy sitting near (not necessarily on) their chosen humans."
                 },
-                'LITA': { 
-                    name: 'Hermit', 
-                    description: 'Introverted and independent, sensitive to environment, needs stability and predictability. Prefers quiet and familiar settings.',
-                    extended_description: 'Hermit cats possess heightened sensory sensitivity combined with strong territorial attachment. Their preference for solitude and familiarity stems from evolutionary advantages of established territory knowledge. With their owners, they form selective but deep bonds characterized by trust rather than constant interaction. These cats require environmental stability and benefit from consistent daily routines. They appreciate quiet, undisturbed spaces, limited exposure to strangers, and respect for their personal boundaries. Environmental modifications like dedicated hiding places, elevated perches for secure observation, and minimal household changes help manage their sensitivity to disruption.'
+                "LITA": {
+                    name: "The Private Homebody",
+                    description: "Reserved, quiet, and easily stressed. Needs a predictable environment with minimal demands.",
+                    extended_description: "Your cat values routine, familiarity, and quiet. They're typically reserved even with family members and may be quite shy with visitors. They need private spaces where they can retreat when feeling overwhelmed. While not typically playful or demonstrative, they can form deep bonds with patient caregivers who respect their need for space and gentle interaction."
                 },
-                'LIPC': { 
-                    name: 'Philosopher', 
-                    description: 'Quiet observer, independent, peaceful within. Enjoys contemplation and calm environments without excessive stimulation.',
-                    extended_description: 'Philosopher cats display remarkable serotonin balance, creating natural contentment with minimal external stimulation. Their observant nature stems from evolutionary advantages of energy conservation and strategic assessment. With their owners, they establish comfortable but independent relationships based on mutual respect for personal space. These cats thrive in predictable, peaceful environments and benefit from thoughtful enrichment opportunities like window perches, simple puzzle feeders, and nature observation. They appreciate gentle, undemanding interaction, respect for their contemplative periods, and environments that minimize unnecessary stimulation. Their calm presence makes them ideal companions for those seeking peaceful coexistence.'
+                "LIPC": {
+                    name: "The Contemplative Companion",
+                    description: "Quiet, observant, and thoughtful. Forms deep bonds but needs time and space.",
+                    extended_description: "Your cat has a thoughtful, measured approach to life. They're not highly active or overtly social, but they form deep, loyal attachments over time. They prefer watching and thinking to immediate action. They often enjoy quiet companionship - sitting near you while you read or work. These cats typically appreciate interactive play in short sessions and often have very specific preferences about when and how they like to be touched."
                 },
-                'LIPA': { 
-                    name: 'Dreamer', 
-                    description: 'Sensitive and introverted, prefers familiar environments, adapts slowly to change. Needs quiet, predictable living and gentle interaction.',
-                    extended_description: 'Dreamer cats show heightened neurological sensitivity to both sensory input and internal states. Their introspective nature combines deep territorial attachment with careful processing of experiences. With their owners, they form selective, deep bonds characterized by trust developed through consistent, gentle interaction. These cats require peaceful, stable environments and benefit from minimized household changes with gradual transitions when necessary. They appreciate quiet companionship without demands, secure hiding places, and gentle enrichment that respects their processing needs. Environmental modifications like soothing background sounds, pheromone therapy, and microenvironments with varying comfort features support their sensitive nature.'
+                "LIPA": {
+                    name: "The Shy Introvert",
+                    description: "Timid, quiet, and sensitive. Needs patience, protection, and gentle encouragement.",
+                    extended_description: "Your cat combines low activity with introversion and sensitivity to stress. They may have experienced insufficient early socialization or past trauma. They need exceptionally gentle handling and predictable environments. With patient, consistent care, they can develop trust and show affection, though they'll likely always be shy with strangers. Their sensitivity makes them attuned to their trusted person's emotions, often creating a special, intuitive bond."
                 }
             };
             
-            return {
-                code: code,
-                name: types[code]?.name || 'Unknown Type',
-                description: types[code]?.description || 'Unable to determine specific personality type description.',
-                extended_description: types[code]?.extended_description || 'Extended description not available for this personality type.'
-            };
+            return { code, ...types[code] };
         }
         
-        // Generate personalized recommendations based on scores and type
+        // Generate personalized recommendations based on personality type
         function generateRecommendations(scores, type) {
-            let recommendations = '<h4>Diet Recommendations</h4><ul>';
+            let html = '<h3 class="dimension-title">Personalized Recommendations</h3>';
             
             // Diet recommendations
+            html += '<h4>Diet Recommendations</h4><ul>';
             if (scores.activity > 15) {
-                recommendations += '<li>High-energy diet, consider increased feeding frequency with smaller portions</li>';
+                html += '<li>High-energy diet with increased protein content</li>';
+                html += '<li>Multiple small meals throughout the day to match high activity levels</li>';
             } else if (scores.activity < -15) {
-                recommendations += '<li>Lower-calorie diet, control portion sizes to prevent obesity</li>';
+                html += '<li>Portion-controlled diet to prevent weight gain</li>';
+                html += '<li>Lower calorie options suitable for less active cats</li>';
             } else {
-                recommendations += '<li>Balanced diet with regular feeding schedule and consistent portions</li>';
+                html += '<li>Balanced diet with regular feeding schedule</li>';
             }
             
             if (scores.stress > 15) {
-                recommendations += '<li>Consider cat food or supplements with calming ingredients</li>';
+                html += '<li>Consider foods with calming ingredients or supplements</li>';
             }
-            
-            recommendations += '</ul><h4>Toy Recommendations</h4><ul>';
+            html += '</ul>';
             
             // Toy recommendations
+            html += '<h4>Toy Recommendations</h4><ul>';
             if (scores.activity > 10) {
-                recommendations += '<li>Interactive toys like wand toys and electronic motion toys</li>';
+                html += '<li>Interactive toys that encourage movement and exercise</li>';
+                html += '<li>Electronic motion toys that satisfy hunting instincts</li>';
             } else {
-                recommendations += '<li>Simple toys such as plush toys or balls</li>';
+                html += '<li>Simple toys like stuffed mice or balls</li>';
             }
             
             if (scores.decision > 10) {
-                recommendations += '<li>Puzzle toys and treat dispensers that challenge problem-solving skills</li>';
+                html += '<li>Puzzle toys and treat dispensers to challenge problem-solving skills</li>';
             }
             
-            recommendations += '</ul><h4>Environment Recommendations</h4><ul>';
+            if (scores.sociability > 10) {
+                html += '<li>Interactive toys that you can play together</li>';
+            }
+            html += '</ul>';
             
             // Environment recommendations
+            html += '<h4>Environment Recommendations</h4><ul>';
             if (scores.sociability > 10) {
-                recommendations += '<li>Open spaces with multiple social interaction areas</li>';
+                html += '<li>Create open spaces where your cat can be near family activities</li>';
+                html += '<li>Consider getting a companion cat if you\'re often away</li>';
             } else if (scores.sociability < -10) {
-                recommendations += '<li>Provide multiple hiding spots and secluded resting areas</li>';
+                html += '<li>Provide multiple hiding spots and quiet retreats</li>';
+                html += '<li>Create vertical spaces (cat trees, shelves) for observation at a distance</li>';
             }
             
             if (scores.stress > 10) {
-                recommendations += '<li>Quiet, consistent environment with minimal changes and noise</li>';
-                recommendations += '<li>Consider using pheromone diffusers to reduce stress</li>';
+                html += '<li>Maintain consistent routines and minimize environmental changes</li>';
+                html += '<li>Create a dedicated "safe room" with all necessities during high-stress times</li>';
             }
-            
-            recommendations += '</ul><h4>Interaction Recommendations</h4><ul>';
+            html += '</ul>';
             
             // Interaction recommendations
-            if (scores.sociability > 15) {
-                recommendations += '<li>Frequent interaction and petting, may enjoy socializing with other cats or pets</li>';
-            } else if (scores.sociability < -15) {
-                recommendations += '<li>Respect their independence, provide moderate attention without forcing interaction</li>';
+            html += '<h4>Interaction Recommendations</h4><ul>';
+            if (scores.sociability > 10) {
+                html += '<li>Regular interactive play sessions and frequent social contact</li>';
+                html += '<li>Allow your cat to be part of family activities</li>';
+            } else {
+                html += '<li>Respect boundaries and allow your cat to initiate interaction</li>';
+                html += '<li>Short, positive interaction sessions spread throughout the day</li>';
             }
             
-            if (scores.stress > 15) {
-                recommendations += '<li>Avoid sudden movements or sounds, interact in a gentle and consistent manner</li>';
+            if (scores.stress > 10) {
+                html += '<li>Use slow blinking and soft voices when interacting</li>';
+                html += '<li>Avoid sudden movements or loud noises</li>';
             }
+            html += '</ul>';
             
-            recommendations += '</ul>';
-            
-            return recommendations;
+            return html;
         }
     </script>
 </body>
