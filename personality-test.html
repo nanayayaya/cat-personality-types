@@ -595,7 +595,7 @@
                 </div>
             </div>
 
-            <!-- Results preview (will be shown after all questions) -->
+            <!-- Test results preview -->
             <div class="test-card card" id="test-results-preview" style="display: none;">
                 <h2 class="test-step-title">Analyzing your cat's personality...</h2>
                 <p class="test-intro">
@@ -617,9 +617,84 @@
                     <p style="margin-bottom: 20px; color: var(--neutral-600);">
                         Your results are almost ready...
                     </p>
-                    <a href="personality-results.html" class="btn btn-primary btn-lg" style="display: none;" id="view-results-button">
-                        View Full Results
-                    </a>
+                </div>
+            </div>
+            
+            <!-- Test results -->
+            <div class="test-card card" id="test-results" style="display: none;">
+                <div class="cat-profile">
+                    <div class="cat-avatar" id="cat-initial">?</div>
+                    <div class="cat-info">
+                        <h2 id="cat-name">Your Cat</h2>
+                        <p id="cat-details">Loading...</p>
+                    </div>
+                </div>
+
+                <div class="personality-type">
+                    <div class="type-code" id="type-code">XXXX</div>
+                    <div class="type-name" id="type-name">Loading...</div>
+                    <p class="type-description" id="type-description">Analyzing your cat's personality traits...</p>
+                </div>
+
+                <div class="card">
+                    <h3 class="dimension-title">Detailed Scientific Analysis</h3>
+                    <p class="extended-description" id="extended-description">Loading detailed analysis...</p>
+                </div>
+
+                <div class="dimension-scores">
+                    <h3 class="dimension-title">Personality Dimension Scores</h3>
+                    
+                    <div class="dimension">
+                        <div class="dimension-label">
+                            <span>Activity Level</span>
+                            <span id="activity-score">0</span>
+                        </div>
+                        <div class="dimension-bar">
+                            <div class="dimension-value" id="activity-bar" style="width: 50%; background-color: var(--primary);"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="dimension">
+                        <div class="dimension-label">
+                            <span>Sociability</span>
+                            <span id="sociability-score">0</span>
+                        </div>
+                        <div class="dimension-bar">
+                            <div class="dimension-value" id="sociability-bar" style="width: 50%; background-color: var(--secondary);"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="dimension">
+                        <div class="dimension-label">
+                            <span>Decisiveness</span>
+                            <span id="decision-score">0</span>
+                        </div>
+                        <div class="dimension-bar">
+                            <div class="dimension-value" id="decision-bar" style="width: 50%; background-color: var(--success);"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="dimension">
+                        <div class="dimension-label">
+                            <span>Stress Sensitivity</span>
+                            <span id="stress-score">0</span>
+                        </div>
+                        <div class="dimension-bar">
+                            <div class="dimension-value" id="stress-bar" style="width: 50%; background-color: var(--danger);"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3 class="dimension-title">Personalized Recommendations</h3>
+                    <div id="recommendations">
+                        <p>Based on your cat's personality profile, we'll provide personalized recommendations for diet, toys, environment, and interaction methods.</p>
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <button class="btn btn-secondary btn-lg" id="restart-test-button">Retake Test</button>
+                    <a href="personality-types.html" class="btn btn-primary btn-lg">Explore All Cat Types</a>
                 </div>
             </div>
         </div>
@@ -798,104 +873,93 @@
                 id: 7,
                 question: "When left alone, your cat typically:",
                 options: [
-                    { text: "Is completely fine, independent and self-entertaining", scores: { activity: 0, sociability: -1, decision: 1, stress: -1 } },
-                    { text: "Is generally fine but greets you enthusiastically upon return", scores: { activity: 0, sociability: 1, decision: 0, stress: 0 } },
-                    { text: "Shows some signs of anxiety or boredom", scores: { activity: 1, sociability: 2, decision: -1, stress: 1 } },
-                    { text: "Becomes very distressed (excessive meowing, destructive behavior)", scores: { activity: 2, sociability: 2, decision: -2, stress: 2 } }
+                    { text: "Seems content and follows normal routines", scores: { activity: 0, sociability: 0, decision: 1, stress: -1 } },
+                    { text: "Becomes more active or playful", scores: { activity: 2, sociability: -1, decision: 1, stress: 0 } },
+                    { text: "Shows signs of distress (excessive meowing, destructive behavior)", scores: { activity: 1, sociability: 2, decision: -1, stress: 2 } },
+                    { text: "Becomes very inactive or sleeps more than usual", scores: { activity: -2, sociability: -1, decision: -1, stress: 1 } }
                 ],
-                tip: "Contrary to popular belief, many cats do form separation anxiety—approximately 13% show significant distress when left alone."
+                tip: "A cat's behavior when alone is partly driven by their attachment style, which develops in the first 16 weeks of life."
             },
             {
                 id: 8,
-                question: "When interacting with new objects in the home:",
+                question: "When it comes to new environments, your cat:",
                 options: [
-                    { text: "Immediately investigates without hesitation", scores: { activity: 2, sociability: 1, decision: 2, stress: -2 } },
-                    { text: "Shows curiosity but approaches cautiously", scores: { activity: 1, sociability: 0, decision: 0, stress: 0 } },
-                    { text: "Observes from a distance for a long time before approaching", scores: { activity: -1, sociability: -1, decision: -1, stress: 1 } },
-                    { text: "Avoids or shows fear of new objects", scores: { activity: -1, sociability: -1, decision: -2, stress: 2 } }
+                    { text: "Explores confidently and adapts quickly", scores: { activity: 2, sociability: 1, decision: 2, stress: -2 } },
+                    { text: "Is cautious at first but adjusts within hours", scores: { activity: 0, sociability: 0, decision: 0, stress: 0 } },
+                    { text: "Takes days or weeks to become comfortable", scores: { activity: -1, sociability: -1, decision: -1, stress: 1 } },
+                    { text: "Shows extreme stress and may never fully adapt", scores: { activity: -1, sociability: -2, decision: -2, stress: 2 } }
                 ],
-                tip: "Neophilia (love of novelty) is more common in cats from enriched early environments with multiple stimuli."
+                tip: "Environmental adaptability correlates with early exposure to diverse environments during the socialization period (2-7 weeks)."
             },
             {
                 id: 9,
-                question: "When being carried or handled:",
+                question: "Your cat's preference for physical contact is:",
                 options: [
-                    { text: "Enjoys being held, may even seek it out", scores: { activity: -1, sociability: 2, decision: -1, stress: -2 } },
-                    { text: "Tolerates handling briefly but prefers to be put down soon", scores: { activity: 0, sociability: 1, decision: 0, stress: 0 } },
-                    { text: "Resists being picked up but may tolerate once held", scores: { activity: 1, sociability: -1, decision: 1, stress: 1 } },
-                    { text: "Strongly dislikes being picked up or carried", scores: { activity: 1, sociability: -2, decision: 2, stress: 2 } }
+                    { text: "Loves being held and seeks constant physical contact", scores: { activity: 0, sociability: 2, decision: -1, stress: -1 } },
+                    { text: "Enjoys petting and occasional holding on their terms", scores: { activity: 0, sociability: 1, decision: 1, stress: 0 } },
+                    { text: "Prefers brief physical contact controlled by them", scores: { activity: 0, sociability: -1, decision: 2, stress: 0 } },
+                    { text: "Avoids most physical contact and may react negatively", scores: { activity: 0, sociability: -2, decision: 1, stress: 2 } }
                 ],
-                tip: "Handling tolerance is often established during the first 8 weeks of life and remains relatively stable throughout adulthood."
+                tip: "Touch preference correlates with socialization experiences between 2-7 weeks of age and maternal grooming patterns."
             },
             {
                 id: 10,
-                question: "When it comes to play behavior, your cat:",
+                question: "During playtime, your cat typically:",
                 options: [
-                    { text: "Plays enthusiastically for long periods daily", scores: { activity: 2, sociability: 1, decision: 1, stress: -1 } },
-                    { text: "Enjoys regular play sessions but tires after moderate exercise", scores: { activity: 1, sociability: 0, decision: 0, stress: 0 } },
-                    { text: "Shows occasional interest in toys but plays briefly", scores: { activity: -1, sociability: 0, decision: -1, stress: 0 } },
-                    { text: "Shows little to no interest in play", scores: { activity: -2, sociability: -1, decision: -1, stress: 1 } }
+                    { text: "Plays intensely with high energy and enthusiasm", scores: { activity: 2, sociability: 1, decision: 1, stress: -1 } },
+                    { text: "Shows moderate interest and plays calmly", scores: { activity: 0, sociability: 0, decision: 0, stress: 0 } },
+                    { text: "Loses interest quickly or plays in short bursts", scores: { activity: -1, sociability: -1, decision: 0, stress: 1 } },
+                    { text: "Rarely plays or shows no interest in toys", scores: { activity: -2, sociability: -1, decision: -1, stress: 0 } }
                 ],
-                tip: "Play behavior in adult cats maintains many of the same neural pathways as hunting behavior in wild felids."
+                tip: "Play behavior in cats retains many elements of predatory behavior sequences and is affected by early hunting experiences."
             },
             {
                 id: 11,
-                question: "Your cat's vocalization pattern is:",
+                question: "When a stranger approaches, your cat most often:",
                 options: [
-                    { text: "Very vocal, communicates frequently with various sounds", scores: { activity: 1, sociability: 2, decision: 1, stress: 0 } },
-                    { text: "Moderately vocal in specific situations", scores: { activity: 0, sociability: 1, decision: 0, stress: 0 } },
-                    { text: "Generally quiet, meows occasionally for specific needs", scores: { activity: -1, sociability: 0, decision: -1, stress: 0 } },
-                    { text: "Almost silent, rarely vocalizes", scores: { activity: -2, sociability: -1, decision: -1, stress: 0 } }
+                    { text: "Approaches them with curiosity and friendliness", scores: { activity: 1, sociability: 2, decision: 1, stress: -2 } },
+                    { text: "Watches cautiously but may approach eventually", scores: { activity: 0, sociability: 0, decision: -1, stress: 0 } },
+                    { text: "Retreats to a safe distance and observes", scores: { activity: -1, sociability: -1, decision: 0, stress: 1 } },
+                    { text: "Hides immediately and may not come out until they leave", scores: { activity: -1, sociability: -2, decision: -1, stress: 2 } }
                 ],
-                tip: "Vocalization patterns have both genetic and environmental components—some breeds like Siamese are naturally more talkative."
+                tip: "Sociability towards strangers is significantly influenced by genetics and early socialization between 2-7 weeks of age."
             },
             {
                 id: 12,
-                question: "During car rides or travel, your cat:",
+                question: "Your cat's vocalizations (meowing, chirping, etc.) are typically:",
                 options: [
-                    { text: "Remains calm, may even explore or enjoy the experience", scores: { activity: 0, sociability: 1, decision: 1, stress: -2 } },
-                    { text: "Shows mild anxiety but settles down", scores: { activity: 0, sociability: 0, decision: 0, stress: 0 } },
-                    { text: "Becomes quite distressed (vocalizing, panting)", scores: { activity: 1, sociability: 0, decision: -1, stress: 1 } },
-                    { text: "Exhibits extreme stress (excessive vocalization, elimination, escape attempts)", scores: { activity: 2, sociability: -1, decision: -2, stress: 2 } }
+                    { text: "Very frequent, vocal in many situations", scores: { activity: 1, sociability: 2, decision: 1, stress: 0 } },
+                    { text: "Moderate, mainly when seeking attention or food", scores: { activity: 0, sociability: 1, decision: 0, stress: 0 } },
+                    { text: "Infrequent, communicates more with body language", scores: { activity: -1, sociability: -1, decision: -1, stress: 0 } },
+                    { text: "Rare, almost never vocalizes", scores: { activity: -1, sociability: -2, decision: -1, stress: 0 } }
                 ],
-                tip: "Early positive exposure to carriers and vehicles (before 16 weeks) significantly reduces travel anxiety in adult cats."
+                tip: "Vocalization patterns vary by breed, with Siamese and Oriental breeds typically being more vocal due to genetic predisposition."
             },
             {
                 id: 13,
-                question: "Regarding personal space, your cat:",
+                question: "When faced with an unfamiliar object in their environment, your cat:",
                 options: [
-                    { text: "Is very cuddly, always wants to be in contact with people", scores: { activity: 0, sociability: 2, decision: -1, stress: -1 } },
-                    { text: "Enjoys closeness but also values some independence", scores: { activity: 0, sociability: 1, decision: 0, stress: 0 } },
-                    { text: "Prefers to be near but not touching people", scores: { activity: 0, sociability: 0, decision: 1, stress: 0 } },
-                    { text: "Generally maintains distance, rarely seeks physical contact", scores: { activity: 0, sociability: -2, decision: 2, stress: 1 } }
+                    { text: "Immediately investigates with confidence", scores: { activity: 2, sociability: 0, decision: 2, stress: -2 } },
+                    { text: "Approaches cautiously after observation", scores: { activity: 0, sociability: 0, decision: 0, stress: 0 } },
+                    { text: "Shows concern and takes significant time to approach", scores: { activity: -1, sociability: 0, decision: -1, stress: 1 } },
+                    { text: "Avoids it completely or shows fear responses", scores: { activity: -1, sociability: 0, decision: -2, stress: 2 } }
                 ],
-                tip: "A cat's preference for physical closeness is partly determined by maternal behavior during the first 12 weeks of life."
+                tip: "Neophobia (fear of new things) in cats is influenced by both genetics and early environmental exposure."
             },
             {
                 id: 14,
-                question: "When faced with an unfamiliar situation, your cat typically:",
+                question: "Your cat's response to being confined (carrier, small room) is:",
                 options: [
-                    { text: "Confidently explores and adapts quickly", scores: { activity: 1, sociability: 1, decision: 2, stress: -2 } },
-                    { text: "Shows initial caution but adjusts within a reasonable time", scores: { activity: 0, sociability: 0, decision: 0, stress: 0 } },
-                    { text: "Takes a long time to adapt to changes", scores: { activity: -1, sociability: -1, decision: -1, stress: 1 } },
-                    { text: "Strongly resists changes and may show signs of distress", scores: { activity: -1, sociability: -1, decision: -2, stress: 2 } }
+                    { text: "Typically calm and adaptable", scores: { activity: 0, sociability: 0, decision: 1, stress: -2 } },
+                    { text: "Initially resistant but settles down", scores: { activity: 0, sociability: 0, decision: 0, stress: 0 } },
+                    { text: "Shows ongoing discomfort but not extreme distress", scores: { activity: 0, sociability: 0, decision: -1, stress: 1 } },
+                    { text: "Extreme distress, possibly with escape attempts or aggression", scores: { activity: 1, sociability: -1, decision: -1, stress: 2 } }
                 ],
-                tip: "Adaptability to change varies greatly between individuals but is highly predictive of overall stress reactivity."
+                tip: "Response to confinement is linked to early experiences with spatial restriction and baseline stress response thresholds."
             },
             {
                 id: 15,
-                question: "When grooming, your cat:",
-                options: [
-                    { text: "Maintains a perfect coat with regular self-grooming", scores: { activity: 0, sociability: 0, decision: 1, stress: -1 } },
-                    { text: "Grooms normally, accepts assistance if needed", scores: { activity: 0, sociability: 1, decision: 0, stress: 0 } },
-                    { text: "Sometimes under-grooms, may have matted fur in hard-to-reach areas", scores: { activity: -1, sociability: 0, decision: -1, stress: 1 } },
-                    { text: "Over-grooms, sometimes to the point of hair loss", scores: { activity: 1, sociability: -1, decision: -1, stress: 2 } }
-                ],
-                tip: "Over-grooming behavior is linked to elevated endorphin levels which help reduce anxiety—it's a self-soothing mechanism."
-            },
-            {
-                id: 16,
-                question: "When your cat wants something (food, play, attention), they:",
+                question: "When your cat wants something, they typically:",
                 options: [
                     { text: "Is very persistent, will continually demand until satisfied", scores: { activity: 1, sociability: 1, decision: 2, stress: 0 } },
                     { text: "Makes clear requests but accepts 'no' after moderate attempts", scores: { activity: 0, sociability: 0, decision: 1, stress: 0 } },
@@ -1009,9 +1073,253 @@
             
             // Simulate analysis (in a real app, this would be more sophisticated)
             setTimeout(function() {
-                const resultsButton = document.getElementById('view-results-button');
-                resultsButton.style.display = 'inline-block';
-            }, 3000);
+                // Hide results preview
+                document.getElementById('test-results-preview').style.display = 'none';
+                
+                // Show full results
+                document.getElementById('test-results').style.display = 'block';
+                
+                // Display results
+                displayResults();
+            }, 2000);
+        }
+        
+        // Helper function to normalize a score to 0-100 scale
+        function normalizeScore(score, min, max) {
+            return ((score - min) / (max - min)) * 100;
+        }
+        
+        // Display the test results
+        function displayResults() {
+            // Get cat info from localStorage
+            const catData = JSON.parse(localStorage.getItem('catTestData') || '{}');
+            
+            // Display cat info
+            if (catData.name) {
+                document.getElementById('cat-name').textContent = catData.name;
+                document.getElementById('cat-initial').textContent = catData.name.charAt(0).toUpperCase();
+                
+                const details = [];
+                if (catData.age) details.push(catData.age);
+                if (catData.breed) details.push(catData.breed);
+                if (catData.gender) {
+                    const genderMap = {
+                        'male': 'Male',
+                        'female': 'Female',
+                        'male-neutered': 'Male (neutered)',
+                        'female-spayed': 'Female (spayed)'
+                    };
+                    details.push(genderMap[catData.gender] || catData.gender);
+                }
+                
+                document.getElementById('cat-details').textContent = details.join(' • ');
+            }
+            
+            // Normalize scores to 0-100 scale for display
+            const normalizedScores = {
+                activity: normalizeScore(scores.activity, -40, 40),
+                sociability: normalizeScore(scores.sociability, -40, 40),
+                decision: normalizeScore(scores.decision, -40, 40),
+                stress: normalizeScore(scores.stress, -40, 40)
+            };
+            
+            // Update score displays
+            document.getElementById('activity-score').textContent = Math.round(normalizedScores.activity);
+            document.getElementById('activity-bar').style.width = `${normalizedScores.activity}%`;
+            
+            document.getElementById('sociability-score').textContent = Math.round(normalizedScores.sociability);
+            document.getElementById('sociability-bar').style.width = `${normalizedScores.sociability}%`;
+            
+            document.getElementById('decision-score').textContent = Math.round(normalizedScores.decision);
+            document.getElementById('decision-bar').style.width = `${normalizedScores.decision}%`;
+            
+            document.getElementById('stress-score').textContent = Math.round(normalizedScores.stress);
+            document.getElementById('stress-bar').style.width = `${normalizedScores.stress}%`;
+            
+            // Determine personality type
+            const type = determinePersonalityType(scores);
+            document.getElementById('type-code').textContent = type.code;
+            document.getElementById('type-name').textContent = type.name;
+            document.getElementById('type-description').textContent = type.description;
+            document.getElementById('extended-description').textContent = type.extended_description;
+            
+            // Generate recommendations
+            document.getElementById('recommendations').innerHTML = generateRecommendations(scores, type);
+            
+            // Set up restart button
+            document.getElementById('restart-test-button').addEventListener('click', function() {
+                // Hide results
+                document.getElementById('test-results').style.display = 'none';
+                
+                // Show pre-test form
+                document.getElementById('pre-test-form').style.display = 'block';
+                
+                // Reset form fields
+                document.getElementById('catInfoForm').reset();
+            });
+        }
+        
+        // Determine personality type based on scores
+        function determinePersonalityType(scores) {
+            // Create type code based on scores
+            const activity = scores.activity > 0 ? 'H' : 'L'; // High or Low Activity
+            const sociability = scores.sociability > 0 ? 'E' : 'I'; // Extroverted or Introverted
+            const decision = scores.decision > 0 ? 'T' : 'P'; // Decisive or Observant
+            const stress = scores.stress > 0 ? 'A' : 'C'; // High or Low Stress
+            
+            const code = activity + sociability + decision + stress;
+            
+            const types = {
+                'HETC': { 
+                    name: 'Explorer', 
+                    description: 'Active and extroverted with confident decision-making and low stress response. Enjoys exploring new environments, interacting with humans, and making quick decisions.',
+                    extended_description: 'Based on feline behavioral science, Explorer cats display high dopamine sensitivity and are born with a neurological predisposition to seek novelty. Their strong physical development and confident temperament are rooted in early developmental patterns. With their owners, they establish secure attachments while maintaining independence. They appreciate interactive play sessions and regular environmental enrichment through new toys or rearranged spaces. These cats benefit from rotational feeding puzzles, scheduled play times, and confident handling techniques that respect their need for both stimulation and autonomy.'
+                },
+                'HETA': { 
+                    name: 'Commander', 
+                    description: 'Strong territorial awareness, likes to control situations, and is sensitive to changes. Needs ordered environments and clear rules.',
+                    extended_description: 'Commander cats exhibit heightened amygdala activity, making them vigilant and sometimes reactive to environmental changes. Their territorial behavior stems from evolutionary advantages of resource control. With their owners, they form selective but powerful bonds, often choosing one primary person. They thrive with consistent routines and benefit from structured environments with designated territories. These cats respond well to positive reinforcement training, regular but predictable play sessions, and environments that allow them to monitor their surroundings from elevated positions. Early socialization helps moderate their territorial tendencies.'
+                },
+                'HEPT': { 
+                    name: 'Performer', 
+                    description: 'Energetic, friendly and open, enjoys being the center of attention. Highly adaptable and skilled at finding enjoyment.',
+                    extended_description: 'Performer cats show elevated levels of oxytocin and dopamine during social interactions, making them naturally rewarded by attention. Their playful nature originates from extended juvenile developmental periods. With their human companions, they form strong social bonds and often display affiliative behaviors like purring, kneading, and face rubbing more frequently than other types. These cats thrive in households with consistent but varied social interaction. Interactive play that incorporates social rewards, positive reinforcement training for tricks, and environments that allow them to engage with household activities benefit their sociable nature.'
+                },
+                'HEPA': { 
+                    name: 'Adventurer', 
+                    description: 'Full of energy, curious, and socially capable, but may be prone to anxiety. Enjoys novel experiences but requires security.',
+                    extended_description: 'Adventurer cats possess a unique neurological profile combining high dopamine sensitivity with elevated cortisol responses. Their seemingly contradictory nature is explained by evolutionary adaptations requiring both exploration and caution. With their owners, they often display ambivalent attachment patterns - seeking interaction while remaining vigilant. These cats benefit from predictable routines with controlled novelty introduction. Enrichment should be gradual and include safe retreats nearby. Counter-conditioning techniques can help reduce anxiety triggers, while interactive play helps channel their energy constructively. Clicker training provides both stimulation and confidence-building opportunities.'
+                },
+                'HITC': { 
+                    name: 'Strategist', 
+                    description: 'Independent, thoughtful, decisive in action, and resilient to stress. Prefers making own decisions and needs personal space.',
+                    extended_description: 'Strategist cats display remarkable prefrontal cortex activity, allowing them to evaluate situations thoroughly before acting. Their independence stems from secure early development and balanced attachment systems. With their owners, they establish respectful boundaries while maintaining meaningful connections. These cats require environmental complexity that allows problem-solving opportunities. They benefit from puzzle feeders of increasing difficulty, observation perches, and interactive toys they can manipulate independently. Respect for their autonomy builds trust, while training should focus on mutual cooperation rather than compliance.'
+                },
+                'HITA': { 
+                    name: 'Protector', 
+                    description: 'Highly alert, independent, sensitive to changes and unfamiliar environments. Requires stability and predictable routines.',
+                    extended_description: 'Protector cats show heightened sensory perception and rapid amygdala processing, making them exceptionally aware of environmental changes. Their cautious nature stems from adaptive vigilance mechanisms with strong evolutionary advantages. With their owners, they form selective attachments characterized by vigilant protection and territorial monitoring. These cats thrive with predictable daily schedules and benefit from dedicated safe spaces within the home. Slow introduction to any changes, restricted access for unfamiliar visitors, and consistent feeding and play routines help manage their sensitivity. Environmental modifications like hiding places at various heights and pheromone diffusers create security.'
+                },
+                'HIPC': { 
+                    name: 'Observer', 
+                    description: 'Active but independent, observant, with calm stress responses. Enjoys exploring the world at their own pace.',
+                    extended_description: 'Observer cats display balanced neurotransmitter systems that allow heightened awareness without excessive stress responses. Their methodical exploration patterns reflect evolutionary hunting strategies prioritizing efficiency over speed. With their owners, they establish comfortable but independent relationships based on mutual respect rather than neediness. These cats benefit from environments rich in observation opportunities - window perches, climbing trees with views, and protected outdoor access where possible. They appreciate interactive play that mimics hunting sequences and predictable daily routines with freedom to choose participation levels. Training should focus on cooperation and respect for their need to assess situations before engaging.'
+                },
+                'HIPA': { 
+                    name: 'Artist', 
+                    description: 'Strongly independent, sensitive, with distinct rhythms and preferences. Needs respect for their individuality and space.',
+                    extended_description: 'Artist cats possess unique neurological sensitivity patterns, with heightened responses to subtle environmental stimuli others might miss. Their distinctive preferences stem from complex sensory processing variations. With their owners, they form selective bonds characterized by depth rather than constant engagement. These cats thrive when allowed to establish their own routines and benefit from environments with multiple sensory retreat options. Gentle, predictable handling techniques, recognition of their communication cues, and respect for their personal boundaries build trust. Environmental enrichment should include texture variety, protected exploration opportunities, and interactive play that respects their initiative.'
+                },
+                'LETC': { 
+                    name: 'Diplomat', 
+                    description: 'Peaceful and friendly with strong social skills, good adaptability, and low stress response. Enjoys human interaction without excessive activity.',
+                    extended_description: 'Diplomat cats show balanced oxytocin and serotonin systems, creating natural sociability without hyperactivity. Their adaptable nature stems from secure early socialization and positive association building. With their owners, they form consistent and reliable bonds characterized by mutual comfort and easy communication. These cats excel in multi-pet households and benefit from regular but gentle social interaction. They appreciate interactive play focused on connection rather than high activity, predictable daily routines, and environments that allow them to join family activities comfortably. Their adaptable nature makes them excellent therapy cats with proper training.'
+                },
+                'LETA': { 
+                    name: 'Counselor', 
+                    description: 'Gentle and friendly, but sensitive to environmental changes. Needs stable social relationships and secure environments.',
+                    extended_description: 'Counselor cats display heightened empathic tendencies, responding to their owners\' emotional states through mirror neuron activation. Their sensitive nature combines social connection with environmental awareness. With their owners, they form deep bonds characterized by mutual emotional attunement. These cats thrive in calm, stable environments and benefit from gentle, consistent handling. They appreciate quiet interaction periods, scheduled routines that minimize surprises, and secure spaces where they can retreat when overwhelmed. Their sensitivity makes them exceptional companions for those who value emotional connection, but requires protection from chaotic environments.'
+                },
+                'LEPT': { 
+                    name: 'Mediator', 
+                    description: 'Mild-mannered and sociable, dislikes conflict. Adapts well to various social situations but dislikes overstimulation.',
+                    extended_description: 'Mediator cats possess balanced neurological systems with heightened sensitivity to social harmony. Their conflict-avoiding tendencies stem from evolutionary advantages of group cohesion. With their owners, they form reliable bonds characterized by consistent affection and social awareness. These cats often excel in multi-cat or multi-species households and benefit from environments with clear resources to prevent competition. They appreciate gentle but regular handling, predictable social routines, and moderate play sessions. Their adaptable nature makes them excellent family cats, though they need protection from excessive stimulation and household tension.'
+                },
+                'LEPA': { 
+                    name: 'Harmonizer', 
+                    description: 'Friendly but sensitive, sociable yet potentially anxious. Needs positive support and safe social environments.',
+                    extended_description: 'Harmonizer cats show a unique neurological profile combining social reward systems with heightened stress responses. Their seemingly contradictory nature reflects evolutionary adaptations balancing group benefits with vigilance. With their owners, they form attachment bonds characterized by social seeking and reassurance needs. These cats thrive in predictable social environments and benefit from gentle, consistent handling techniques. They appreciate quiet interaction periods, safe social exposure with positive reinforcement, and secure retreat spaces always accessible. Environmental modifications like pheromone diffusers, anxiety wraps during stressful periods, and calming music can help manage their sensitivity.'
+                },
+                'LITC': { 
+                    name: 'Sage', 
+                    description: 'Calm and composed, independent thinker, undisturbed by external influences. Prefers quiet environments and ordered living.',
+                    extended_description: 'Sage cats display remarkable neural efficiency, processing information thoroughly while maintaining physiological calm. Their composed nature stems from balanced stress response systems and secure early development. With their owners, they establish respectful relationships characterized by mutual independence and quiet companionship. These cats thrive in orderly, peaceful environments and benefit from predictable routines with minimal disruption. They appreciate thoughtful environmental enrichment like puzzle feeders, observation perches, and quiet interactive play sessions. Their calm demeanor makes them excellent companions for those seeking meaningful but undemanding relationships.'
+                },
+                'LITA': { 
+                    name: 'Hermit', 
+                    description: 'Introverted and independent, sensitive to environment, needs stability and predictability. Prefers quiet and familiar settings.',
+                    extended_description: 'Hermit cats possess heightened sensory sensitivity combined with strong territorial attachment. Their preference for solitude and familiarity stems from evolutionary advantages of established territory knowledge. With their owners, they form selective but deep bonds characterized by trust rather than constant interaction. These cats require environmental stability and benefit from consistent daily routines. They appreciate quiet, undisturbed spaces, limited exposure to strangers, and respect for their personal boundaries. Environmental modifications like dedicated hiding places, elevated perches for secure observation, and minimal household changes help manage their sensitivity to disruption.'
+                },
+                'LIPC': { 
+                    name: 'Philosopher', 
+                    description: 'Quiet observer, independent, peaceful within. Enjoys contemplation and calm environments without excessive stimulation.',
+                    extended_description: 'Philosopher cats display remarkable serotonin balance, creating natural contentment with minimal external stimulation. Their observant nature stems from evolutionary advantages of energy conservation and strategic assessment. With their owners, they establish comfortable but independent relationships based on mutual respect for personal space. These cats thrive in predictable, peaceful environments and benefit from thoughtful enrichment opportunities like window perches, simple puzzle feeders, and nature observation. They appreciate gentle, undemanding interaction, respect for their contemplative periods, and environments that minimize unnecessary stimulation. Their calm presence makes them ideal companions for those seeking peaceful coexistence.'
+                },
+                'LIPA': { 
+                    name: 'Dreamer', 
+                    description: 'Sensitive and introverted, prefers familiar environments, adapts slowly to change. Needs quiet, predictable living and gentle interaction.',
+                    extended_description: 'Dreamer cats show heightened neurological sensitivity to both sensory input and internal states. Their introspective nature combines deep territorial attachment with careful processing of experiences. With their owners, they form selective, deep bonds characterized by trust developed through consistent, gentle interaction. These cats require peaceful, stable environments and benefit from minimized household changes with gradual transitions when necessary. They appreciate quiet companionship without demands, secure hiding places, and gentle enrichment that respects their processing needs. Environmental modifications like soothing background sounds, pheromone therapy, and microenvironments with varying comfort features support their sensitive nature.'
+                }
+            };
+            
+            return {
+                code: code,
+                name: types[code]?.name || 'Unknown Type',
+                description: types[code]?.description || 'Unable to determine specific personality type description.',
+                extended_description: types[code]?.extended_description || 'Extended description not available for this personality type.'
+            };
+        }
+        
+        // Generate personalized recommendations based on scores and type
+        function generateRecommendations(scores, type) {
+            let recommendations = '<h4>Diet Recommendations</h4><ul>';
+            
+            // Diet recommendations
+            if (scores.activity > 15) {
+                recommendations += '<li>High-energy diet, consider increased feeding frequency with smaller portions</li>';
+            } else if (scores.activity < -15) {
+                recommendations += '<li>Lower-calorie diet, control portion sizes to prevent obesity</li>';
+            } else {
+                recommendations += '<li>Balanced diet with regular feeding schedule and consistent portions</li>';
+            }
+            
+            if (scores.stress > 15) {
+                recommendations += '<li>Consider cat food or supplements with calming ingredients</li>';
+            }
+            
+            recommendations += '</ul><h4>Toy Recommendations</h4><ul>';
+            
+            // Toy recommendations
+            if (scores.activity > 10) {
+                recommendations += '<li>Interactive toys like wand toys and electronic motion toys</li>';
+            } else {
+                recommendations += '<li>Simple toys such as plush toys or balls</li>';
+            }
+            
+            if (scores.decision > 10) {
+                recommendations += '<li>Puzzle toys and treat dispensers that challenge problem-solving skills</li>';
+            }
+            
+            recommendations += '</ul><h4>Environment Recommendations</h4><ul>';
+            
+            // Environment recommendations
+            if (scores.sociability > 10) {
+                recommendations += '<li>Open spaces with multiple social interaction areas</li>';
+            } else if (scores.sociability < -10) {
+                recommendations += '<li>Provide multiple hiding spots and secluded resting areas</li>';
+            }
+            
+            if (scores.stress > 10) {
+                recommendations += '<li>Quiet, consistent environment with minimal changes and noise</li>';
+                recommendations += '<li>Consider using pheromone diffusers to reduce stress</li>';
+            }
+            
+            recommendations += '</ul><h4>Interaction Recommendations</h4><ul>';
+            
+            // Interaction recommendations
+            if (scores.sociability > 15) {
+                recommendations += '<li>Frequent interaction and petting, may enjoy socializing with other cats or pets</li>';
+            } else if (scores.sociability < -15) {
+                recommendations += '<li>Respect their independence, provide moderate attention without forcing interaction</li>';
+            }
+            
+            if (scores.stress > 15) {
+                recommendations += '<li>Avoid sudden movements or sounds, interact in a gentle and consistent manner</li>';
+            }
+            
+            recommendations += '</ul>';
+            
+            return recommendations;
         }
     </script>
 </body>
