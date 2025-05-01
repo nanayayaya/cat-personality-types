@@ -285,40 +285,70 @@ const questions = [
   }
 ];
 
-// 问题组件
+// 测试问题组件
 const QuestionComponent = ({ question, onAnswer, currentTip, setCurrentTip }) => {
+  // 添加选项点击的状态
+  const [selectedOption, setSelectedOption] = useState(null);
+  
+  const handleOptionClick = (index) => {
+    setSelectedOption(index);
+    setCurrentTip(index); // 更新提示
+  };
+  
+  const handleNextQuestion = () => {
+    if (selectedOption !== null) {
+      onAnswer(question.options[selectedOption].scores); // 传递选中的分数
+      setSelectedOption(null); // 重置选择状态
+    }
+  };
+  
   return (
     <div className="card max-w-3xl mx-auto">
-      <h3 className="text-xl font-bold mb-6">{question.question}</h3>
+      <div className="flex items-center mb-6">
+        <div className="flex-1">
+          <h2 className="text-2xl font-bold">{question.question}</h2>
+        </div>
+        {/* 可选的问题图标或装饰 */}
+        <div className="ml-4 w-12 h-12 bg-primary-lighter rounded-full flex items-center justify-center">
+          <svg className="w-6 h-6 text-primary" fill="currentColor" viewBox="0 0 20 20">
+            <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" clipRule="evenodd" />
+          </svg>
+        </div>
+      </div>
       
-      <div className="space-y-4">
+      <div className="space-y-3 mb-8">
         {question.options.map((option, index) => (
-          <div 
+          <button
             key={index}
-            className="border border-neutral-200 rounded-xl p-4 hover:bg-neutral-50 cursor-pointer transition-all duration-200"
-            onClick={() => onAnswer(option.scores)}
-            onMouseEnter={() => setCurrentTip(index)}
-            onMouseLeave={() => setCurrentTip(null)}
+            className={`option-button ${selectedOption === index ? 'selected' : ''}`}
+            onClick={() => handleOptionClick(index)}
           >
-            <div className="flex items-center">
-              <div className="w-6 h-6 rounded-full border-2 border-primary flex items-center justify-center mr-3">
-                <span className="text-sm font-bold text-primary">{String.fromCharCode(65 + index)}</span>
-              </div>
-              <span>{option.text}</span>
-            </div>
-            
-            {currentTip === index && (
-              <div className="mt-3 bg-primary-light text-primary p-3 rounded-lg text-sm animate-fadeIn">
-                <div className="flex items-center">
-                  <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                    <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd"></path>
-                  </svg>
-                  <span>{question.tips[index]}</span>
-                </div>
-              </div>
-            )}
-          </div>
+            {option.text}
+          </button>
         ))}
+      </div>
+      
+      {currentTip !== null && question.tips && question.tips[currentTip] && (
+        <div className="bg-primary-lighter p-4 rounded-lg mb-6">
+          <div className="flex">
+            <div className="mr-3">
+              <svg className="w-6 h-6 text-primary" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
+              </svg>
+            </div>
+            <p className="text-neutral-800">{question.tips[currentTip]}</p>
+          </div>
+        </div>
+      )}
+      
+      <div className="flex justify-center">
+        <button 
+          className={`btn btn-primary py-3 px-8 ${selectedOption === null ? 'opacity-50 cursor-not-allowed' : ''}`}
+          onClick={handleNextQuestion}
+          disabled={selectedOption === null}
+        >
+          下一题
+        </button>
       </div>
     </div>
   );
@@ -327,43 +357,63 @@ const QuestionComponent = ({ question, onAnswer, currentTip, setCurrentTip }) =>
 // 主测试组件
 export default function PersonalityTest() {
   const [testStarted, setTestStarted] = useState(false);
-  const [preTestData, setPreTestData] = useState(null);
+  const [formData, setFormData] = useState(null);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const [scores, setScores] = useState({
-    activity: 0,
-    sociability: 0,
-    decision: 0,
-    stress: 0
-  });
+  const [scores, setScores] = useState({ activity: 0, sociability: 0, decision: 0, stress: 0 });
   const [currentTip, setCurrentTip] = useState(null);
-  const [showTipAnimation, setShowTipAnimation] = useState(false);
-
+  const [testComplete, setTestComplete] = useState(false);
+  
   const handlePreTestSubmit = (data) => {
-    setPreTestData(data);
+    setFormData(data);
     setTestStarted(true);
   };
-
+  
   const handleAnswer = (questionScores) => {
-    // 更新分数
-    const newScores = { ...scores };
-    for (const key in questionScores) {
-      newScores[key] += questionScores[key];
-    }
-    setScores(newScores);
+    // 更新总分
+    const updatedScores = { ...scores };
+    Object.keys(questionScores).forEach(key => {
+      updatedScores[key] += questionScores[key];
+    });
+    setScores(updatedScores);
     
-    // 显示小提示动画
-    setShowTipAnimation(true);
-    setTimeout(() => {
-      setShowTipAnimation(false);
-      // 移动到下一题
-      if (currentQuestionIndex < questions.length - 1) {
-        setCurrentQuestionIndex(currentQuestionIndex + 1);
-      } else {
-        // 测试完成，跳转到结果页面
-        console.log("Test completed", newScores, preTestData);
-        // 在实际应用中，这里会发送数据到后端并跳转到结果页面
+    // 重置提示状态
+    setCurrentTip(null);
+    
+    // 前进到下一个问题或完成测试
+    if (currentQuestionIndex < questions.length - 1) {
+      setCurrentQuestionIndex(currentQuestionIndex + 1);
+    } else {
+      setTestComplete(true);
+      
+      // 创建一个提交表单来跳转到结果页面
+      const form = document.createElement('form');
+      form.method = 'GET';
+      form.action = 'personality-results.html';
+      
+      // 添加分数参数
+      const addParam = (name, value) => {
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = name;
+        input.value = value;
+        form.appendChild(input);
+      };
+      
+      addParam('a', updatedScores.activity);
+      addParam('s', updatedScores.sociability);
+      addParam('d', updatedScores.decision);
+      addParam('t', updatedScores.stress);
+      
+      // 添加猫咪信息
+      if (formData) {
+        addParam('name', formData.catName);
+        addParam('breed', formData.breed);
       }
-    }, 1000);
+      
+      // 添加表单到文档并提交
+      document.body.appendChild(form);
+      form.submit();
+    }
   };
 
   return (
@@ -397,7 +447,7 @@ export default function PersonalityTest() {
                 setCurrentTip={setCurrentTip}
               />
 
-              {showTipAnimation && (
+              {testComplete && (
                 <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-xl shadow-apple-lg p-6 z-50 animate-scaleIn">
                   <div className="text-center">
                     <svg className="w-16 h-16 text-success mx-auto mb-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">

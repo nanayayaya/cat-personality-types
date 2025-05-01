@@ -61,4 +61,399 @@
 
 .animate-float {
   animation: float 3s ease-in-out infinite;
+}
+
+/* 全局CSS变量 */
+:root {
+    --primary: #ff7eb3;
+    --primary-light: #ffa8ce;
+    --primary-lighter: #ffebf4;
+    --primary-dark: #e66a9c;
+    --primary-gradient: linear-gradient(135deg, #ff7eb3 0%, #ff9a6c 100%);
+    --secondary: #ff9500;
+    --secondary-light: #ffd8a8;
+    --success: #40c057;
+    --success-light: #b2f2bb;
+    --danger: #ff6b6b;
+    --danger-light: #ffc9c9;
+    --neutral-100: #f8f9fa;
+    --neutral-200: #e9ecef;
+    --neutral-300: #dee2e6;
+    --neutral-400: #ced4da;
+    --neutral-500: #adb5bd;
+    --neutral-600: #6c757d;
+    --neutral-700: #495057;
+    --neutral-800: #343a40;
+    --neutral-900: #212529;
+    --glass-effect: rgba(255, 255, 255, 0.15);
+}
+
+/* 基础样式 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'SF Pro Display', Helvetica, Arial, sans-serif;
+    background-color: var(--neutral-100);
+    color: var(--neutral-900);
+    line-height: 1.6;
+}
+
+a {
+    color: var(--primary);
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--primary-dark);
+}
+
+/* 按钮样式 */
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 12px;
+    font-weight: 500;
+    transition: all 0.3s;
+    cursor: pointer;
+    border: none;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateX(-100%);
+    transition: transform 0.6s;
+    z-index: -1;
+}
+
+.btn:hover::before {
+    transform: translateX(0);
+}
+
+.btn-primary {
+    background: var(--primary-gradient);
+    color: white;
+    box-shadow: 0 4px 15px rgba(255, 126, 179, 0.3);
+}
+
+.btn-primary:hover {
+    background-color: #e66a9c;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 126, 179, 0.4);
+}
+
+.btn-secondary {
+    background-color: white;
+    color: var(--primary);
+    border: 2px solid white;
+}
+
+.btn-secondary:hover {
+    background-color: var(--neutral-100);
+}
+
+/* 布局工具类 */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.grid {
+    display: grid;
+}
+
+.grid-cols-1 {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
+@media (min-width: 768px) {
+    .md\:grid-cols-2 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+.gap-8 {
+    gap: 2rem;
+}
+
+.mx-auto {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.max-w-3xl {
+    max-width: 48rem;
+}
+
+.max-w-4xl {
+    max-width: 56rem;
+}
+
+.max-w-6xl {
+    max-width: 72rem;
+}
+
+.max-w-md {
+    max-width: 28rem;
+}
+
+.px-4 {
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.py-12 {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.mb-3 {
+    margin-bottom: 0.75rem;
+}
+
+.mb-4 {
+    margin-bottom: 1rem;
+}
+
+.mb-6 {
+    margin-bottom: 1.5rem;
+}
+
+.mb-12 {
+    margin-bottom: 3rem;
+}
+
+.mt-4 {
+    margin-top: 1rem;
+}
+
+.mt-8 {
+    margin-top: 2rem;
+}
+
+.mt-16 {
+    margin-top: 4rem;
+}
+
+.space-y-1 > * + * {
+    margin-top: 0.25rem;
+}
+
+.space-y-2 > * + * {
+    margin-top: 0.5rem;
+}
+
+.space-y-4 > * + * {
+    margin-top: 1rem;
+}
+
+.font-bold {
+    font-weight: 700;
+}
+
+.font-semibold {
+    font-weight: 600;
+}
+
+.text-lg {
+    font-size: 1.125rem;
+}
+
+.text-xl {
+    font-size: 1.25rem;
+}
+
+.text-2xl {
+    font-size: 1.5rem;
+}
+
+.text-3xl {
+    font-size: 1.875rem;
+}
+
+.text-4xl {
+    font-size: 2.25rem;
+}
+
+.text-5xl {
+    font-size: 3rem;
+}
+
+@media (min-width: 768px) {
+    .md\:text-3xl {
+        font-size: 1.875rem;
+    }
+    .md\:text-5xl {
+        font-size: 3rem;
+    }
+}
+
+.text-primary {
+    color: var(--primary);
+}
+
+.text-neutral-600 {
+    color: var(--neutral-600);
+}
+
+.rounded-xl {
+    border-radius: 0.75rem;
+}
+
+.rounded-2xl {
+    border-radius: 1rem;
+}
+
+.rounded-full {
+    border-radius: 9999px;
+}
+
+.bg-primary-lighter {
+    background-color: var(--primary-lighter);
+}
+
+.p-6 {
+    padding: 1.5rem;
+}
+
+@media (min-width: 768px) {
+    .md\:p-8 {
+        padding: 2rem;
+    }
+}
+
+.w-full {
+    width: 100%;
+}
+
+.w-32 {
+    width: 8rem;
+}
+
+.h-32 {
+    height: 8rem;
+}
+
+.h-64 {
+    height: 16rem;
+}
+
+.object-cover {
+    object-fit: cover;
+}
+
+.overflow-hidden {
+    overflow: hidden;
+}
+
+.list-disc {
+    list-style-type: disc;
+}
+
+.list-decimal {
+    list-style-type: decimal;
+}
+
+.pl-5 {
+    padding-left: 1.25rem;
+}
+
+.relative {
+    position: relative;
+}
+
+/* 动画效果 */
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+/* 添加Option Button样式 */
+.option-button {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 16px;
+  border-radius: 12px;
+  border: 2px solid var(--neutral-200);
+  background-color: white;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  font-size: 1rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.option-button:hover {
+  border-color: var(--primary);
+  background-color: var(--primary-lighter);
+}
+
+.option-button.selected {
+  border-color: var(--primary);
+  background-color: var(--primary-lighter);
+  color: var(--primary);
+  font-weight: 500;
+}
+
+/* 输入框样式 */
+.input {
+  display: block;
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: 12px;
+  border: 2px solid var(--neutral-200);
+  background-color: white;
+  transition: all 0.2s ease;
+  font-size: 1rem;
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px rgba(255, 126, 179, 0.1);
+}
+
+/* 动画 */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleIn {
+  from { transform: translate(-50%, -50%) scale(0.9); opacity: 0; }
+  to { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.animate-scaleIn {
+  animation: scaleIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 } 

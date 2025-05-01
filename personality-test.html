@@ -10,8 +10,11 @@
     <style>
         /* Base styles */
         :root {
-            --primary: #0096fa;
-            --primary-light: #a5d8ff;
+            --primary: #ff7eb3;
+            --primary-light: #ffa8ce;
+            --primary-lighter: #ffebf4;
+            --primary-dark: #e66a9c;
+            --primary-gradient: linear-gradient(135deg, #ff7eb3 0%, #ff9a6c 100%);
             --secondary: #ff9500;
             --secondary-light: #ffd8a8;
             --success: #40c057;
@@ -75,7 +78,7 @@
         }
 
         .btn-primary:hover {
-            background-color: #0077cc;
+            background-color: #e66a9c;
         }
 
         .btn-secondary {
@@ -174,6 +177,12 @@
             position: sticky;
             top: 0;
             z-index: 50;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+        }
+
+        header:hover {
+            box-shadow: 0 4px 15px rgba(255, 126, 179, 0.1);
         }
 
         .header-content {
@@ -186,16 +195,28 @@
         .logo {
             display: flex;
             align-items: center;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
         }
 
         .logo img {
             height: 40px;
             margin-right: 12px;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover img {
+            transform: rotate(5deg);
         }
 
         .logo span {
             font-size: 1.25rem;
             font-weight: 700;
+            color: var(--primary);
+            letter-spacing: 0.5px;
         }
 
         nav {
@@ -436,6 +457,57 @@
             text-align: center;
             color: var(--neutral-400);
         }
+
+        /* GIF animation styles */
+        .gif-container {
+            position: relative;
+            width: 100%;
+            max-width: 150px;
+            margin: 0 auto 20px;
+            z-index: 2;
+        }
+
+        .gif-container img {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .gif-container img:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .floating-gif {
+            position: fixed;
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 50%;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            z-index: 10;
+            animation: float 6s ease-in-out infinite;
+            opacity: 0.9;
+        }
+        
+        .floating-gif.top-right {
+            top: 100px;
+            right: 5%;
+        }
+        
+        .floating-gif.bottom-left {
+            bottom: 100px;
+            left: 5%;
+            animation-delay: 2s;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0); }
+            50% { transform: translateY(-10px) rotate(5deg); }
+            100% { transform: translateY(0) rotate(0); }
+        }
     </style>
 </head>
 <body>
@@ -482,77 +554,88 @@
     <!-- Test container -->
     <section class="test-container">
         <div class="container">
-            <!-- Pre-test form -->
-            <div class="test-card card" id="pre-test-form">
-                <h2 class="test-step-title">Before we start, please provide some basic information</h2>
-                <p class="test-intro">
-                    This information will help us provide a more accurate assessment of your cat's personality type and personalized recommendations.
-                </p>
-
-                <form id="catInfoForm">
-                    <div class="form-grid">
-                        <div class="form-group">
-                            <label class="form-label" for="catName">Cat's Name</label>
-                            <input type="text" id="catName" class="form-control" placeholder="e.g., Whiskers" required>
+            <!-- Test Form -->
+            <section style="padding: 80px 0;">
+                <div class="container">
+                    <div class="card" style="max-width: 800px; margin: 0 auto;">
+                        <h1 style="text-align: center; margin-bottom: 40px;">Cat Personality Test</h1>
+                        
+                        <div class="gif-container" style="max-width: 180px; margin-bottom: 30px;">
+                            <img src="images/Cat Working GIF.gif" alt="Cat working on test" />
                         </div>
+                        
+                        <form id="catTestForm">
+                            <!-- Cat Information -->
+                            <div class="form-section" id="catInfo">
+                                <h2>About Your Cat</h2>
+                                <p class="form-description">Let's start with some basic information about your cat.</p>
 
-                        <div class="form-group">
-                            <label class="form-label" for="catAge">Cat's Age</label>
-                            <input type="text" id="catAge" class="form-control" placeholder="e.g., 2 years 3 months" required>
-                        </div>
+                                <div class="form-grid">
+                                    <div class="form-group">
+                                        <label class="form-label" for="catName">Cat's Name</label>
+                                        <input type="text" id="catName" class="form-control" placeholder="e.g., Whiskers" required>
+                                    </div>
 
-                        <div class="form-group">
-                            <label class="form-label" for="catGender">Gender</label>
-                            <select id="catGender" class="form-select" required>
-                                <option value="">Please select</option>
-                                <option value="male">Male</option>
-                                <option value="female">Female</option>
-                                <option value="male-neutered">Male (neutered)</option>
-                                <option value="female-spayed">Female (spayed)</option>
-                            </select>
-                        </div>
+                                    <div class="form-group">
+                                        <label class="form-label" for="catAge">Cat's Age</label>
+                                        <input type="text" id="catAge" class="form-control" placeholder="e.g., 2 years 3 months" required>
+                                    </div>
 
-                        <div class="form-group">
-                            <label class="form-label" for="catBreed">Breed</label>
-                            <input type="text" id="catBreed" class="form-control" placeholder="e.g., Tabby, Siamese, Mixed" required>
-                        </div>
+                                    <div class="form-group">
+                                        <label class="form-label" for="catGender">Gender</label>
+                                        <select id="catGender" class="form-select" required>
+                                            <option value="">Please select</option>
+                                            <option value="male">Male</option>
+                                            <option value="female">Female</option>
+                                            <option value="male-neutered">Male (neutered)</option>
+                                            <option value="female-spayed">Female (spayed)</option>
+                                        </select>
+                                    </div>
 
-                        <div class="form-group">
-                            <label class="form-label" for="livingSpace">Living Space</label>
-                            <select id="livingSpace" class="form-select" required>
-                                <option value="small">Small (less than 30㎡)</option>
-                                <option value="medium" selected>Medium (30-90㎡)</option>
-                                <option value="large">Large (more than 90㎡)</option>
-                                <option value="indoor-outdoor">Indoor/Outdoor mixed</option>
-                            </select>
-                        </div>
+                                    <div class="form-group">
+                                        <label class="form-label" for="catBreed">Breed</label>
+                                        <input type="text" id="catBreed" class="form-control" placeholder="e.g., Tabby, Siamese, Mixed" required>
+                                    </div>
 
-                        <div class="form-group">
-                            <label class="form-label" for="multiCatHousehold">Multi-cat Household?</label>
-                            <select id="multiCatHousehold" class="form-select" required>
-                                <option value="no">No</option>
-                                <option value="yes-few">Yes (2-3 cats)</option>
-                                <option value="yes-many">Yes (4+ cats)</option>
-                            </select>
-                        </div>
+                                    <div class="form-group">
+                                        <label class="form-label" for="livingSpace">Living Space</label>
+                                        <select id="livingSpace" class="form-select" required>
+                                            <option value="small">Small (less than 30㎡)</option>
+                                            <option value="medium" selected>Medium (30-90㎡)</option>
+                                            <option value="large">Large (more than 90㎡)</option>
+                                            <option value="indoor-outdoor">Indoor/Outdoor mixed</option>
+                                        </select>
+                                    </div>
 
-                        <div class="form-group">
-                            <label class="form-label" for="humanCatRatio">Human-Cat Ratio</label>
-                            <select id="humanCatRatio" class="form-select" required>
-                                <option value="1:1">1 human : 1 cat</option>
-                                <option value="2:1">2 humans : 1 cat</option>
-                                <option value="3+:1">3+ humans : 1 cat</option>
-                                <option value="1:2+">1 human : multiple cats</option>
-                                <option value="2+:2+">Multiple humans : multiple cats</option>
-                            </select>
-                        </div>
+                                    <div class="form-group">
+                                        <label class="form-label" for="multiCatHousehold">Multi-cat Household?</label>
+                                        <select id="multiCatHousehold" class="form-select" required>
+                                            <option value="no">No</option>
+                                            <option value="yes-few">Yes (2-3 cats)</option>
+                                            <option value="yes-many">Yes (4+ cats)</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="form-label" for="humanCatRatio">Human-Cat Ratio</label>
+                                        <select id="humanCatRatio" class="form-select" required>
+                                            <option value="1:1">1 human : 1 cat</option>
+                                            <option value="2:1">2 humans : 1 cat</option>
+                                            <option value="3+:1">3+ humans : 1 cat</option>
+                                            <option value="1:2+">1 human : multiple cats</option>
+                                            <option value="2+:2+">Multiple humans : multiple cats</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-actions">
+                                    <button type="submit" class="btn btn-primary btn-lg">Start the Test</button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
-
-                    <div class="form-actions">
-                        <button type="submit" class="btn btn-primary btn-lg">Start the Test</button>
-                    </div>
-                </form>
-            </div>
+                </div>
+            </section>
 
             <!-- Test questions -->
             <div class="test-card card" id="test-questions" style="display: none;">
@@ -565,6 +648,10 @@
                         <div id="progress-indicator" class="progress-indicator" style="width: 5%;"></div>
                         <div id="progress-marker" class="progress-marker" style="left: 5%;"></div>
                     </div>
+                </div>
+
+                <div class="gif-container" style="max-width: 120px; margin: 20px auto;">
+                    <img src="images/Cat Omg GIF.gif" alt="Thinking cat" id="question-gif" />
                 </div>
 
                 <div id="question-container">
@@ -603,7 +690,11 @@
                     Based on your responses, we're calculating your cat's personality profile. This will take just a moment.
                 </p>
                 
-                <div style="text-align: center; margin: 40px 0;">
+                <div class="gif-container" style="max-width: 180px; margin: 20px auto;">
+                    <img src="images/Cat Working GIF.gif" alt="Cat working hard on results" />
+                </div>
+                
+                <div style="text-align: center; margin: 20px 0;">
                     <div style="width: 80px; height: 80px; border: 5px solid var(--primary-light); border-top-color: var(--primary); border-radius: 50%; margin: 0 auto; animation: spin 1s linear infinite;"></div>
                 </div>
                 
@@ -756,6 +847,10 @@
         </div>
     </footer>
 
+    <!-- 添加固定位置漂浮的GIF -->
+    <img src="images/Mad The Internet GIF by MOODMAN.gif" class="floating-gif top-right" alt="Thinking cat">
+    <img src="images/No Way Cat GIF.gif" class="floating-gif bottom-left" alt="Surprised cat">
+
     <script>
         // Mobile menu toggle
         document.querySelector('.menu-button').addEventListener('click', function() {
@@ -764,10 +859,10 @@
         });
 
         // Test form handling
-        document.getElementById('catInfoForm').addEventListener('submit', function(e) {
+        document.getElementById('catTestForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
-            // Store form data
+            // Store cat info
             const catData = {
                 name: document.getElementById('catName').value,
                 age: document.getElementById('catAge').value,
@@ -778,15 +873,35 @@
                 humanCatRatio: document.getElementById('humanCatRatio').value
             };
             
-            // Store data in localStorage for persistence
+            // Save to localStorage
             localStorage.setItem('catTestData', JSON.stringify(catData));
             
             // Hide pre-test form and show questions
-            document.getElementById('pre-test-form').style.display = 'none';
+            document.getElementById('catInfo').style.display = 'none';
             document.getElementById('test-questions').style.display = 'block';
             
-            // Initialize test state
-            initializeTest();
+            // Reset scores
+            scores = {
+                activity: 0,
+                sociability: 0,
+                decision: 0,
+                stress: 0
+            };
+            localStorage.setItem('catTestScores', JSON.stringify(scores));
+            
+            // Reset current question
+            currentQuestion = 1;
+            updateProgress();
+            loadQuestion(currentQuestion);
+
+            // 随机选择一个问题GIF
+            const questionGifs = [
+                "images/Cat Omg GIF.gif",
+                "images/Bored Cat GIF.gif",
+                "images/Cat Working GIF.gif",
+                "images/No Way Cat GIF.gif"
+            ];
+            document.getElementById('question-gif').src = questionGifs[Math.floor(Math.random() * questionGifs.length)];
         });
 
         // Test logic
@@ -1155,10 +1270,10 @@
                 document.getElementById('test-results').style.display = 'none';
                 
                 // Show pre-test form
-                document.getElementById('pre-test-form').style.display = 'block';
+                document.getElementById('catInfo').style.display = 'block';
                 
                 // Reset form fields
-                document.getElementById('catInfoForm').reset();
+                document.getElementById('catTestForm').reset();
                 
                 // Reset state
                 currentQuestionIndex = 0;

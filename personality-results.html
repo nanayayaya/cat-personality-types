@@ -10,8 +10,11 @@
     <style>
         /* Base styles */
         :root {
-            --primary: #0096fa;
-            --primary-light: #a5d8ff;
+            --primary: #ff7eb3;
+            --primary-light: #ffa8ce;
+            --primary-lighter: #ffebf4;
+            --primary-dark: #e66a9c;
+            --primary-gradient: linear-gradient(135deg, #ff7eb3 0%, #ff9a6c 100%);
             --secondary: #ff9500;
             --secondary-light: #ffd8a8;
             --success: #40c057;
@@ -27,6 +30,7 @@
             --neutral-700: #495057;
             --neutral-800: #343a40;
             --neutral-900: #212529;
+            --glass-effect: rgba(255, 255, 255, 0.15);
         }
 
         * {
@@ -64,18 +68,41 @@
             padding: 10px 20px;
             border-radius: 12px;
             font-weight: 500;
-            transition: all 0.2s;
+            transition: all 0.3s;
             cursor: pointer;
             border: none;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateX(-100%);
+            transition: transform 0.6s;
+            z-index: -1;
+        }
+
+        .btn:hover::before {
+            transform: translateX(0);
         }
 
         .btn-primary {
-            background-color: var(--primary);
+            background: var(--primary-gradient);
             color: white;
+            box-shadow: 0 4px 15px rgba(255, 126, 179, 0.3);
         }
 
         .btn-primary:hover {
-            background-color: #0077cc;
+            background-color: #e66a9c;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 126, 179, 0.4);
         }
 
         .btn-secondary {
@@ -106,8 +133,26 @@
             background-color: white;
             border-radius: 16px;
             padding: 24px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.04), 0 2px 10px rgba(0, 0, 0, 0.03);
             margin-bottom: 24px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--primary-gradient);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .card:hover::after {
+            opacity: 1;
         }
         
         /* Header navigation styles */
@@ -118,6 +163,12 @@
             position: sticky;
             top: 0;
             z-index: 50;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+        }
+
+        header:hover {
+            box-shadow: 0 4px 15px rgba(255, 126, 179, 0.1);
         }
 
         .header-content {
@@ -130,16 +181,28 @@
         .logo {
             display: flex;
             align-items: center;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
         }
 
         .logo img {
             height: 40px;
             margin-right: 12px;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover img {
+            transform: rotate(5deg);
         }
 
         .logo span {
             font-size: 1.25rem;
             font-weight: 700;
+            color: var(--primary);
+            letter-spacing: 0.5px;
         }
 
         nav {
@@ -180,10 +243,33 @@
         
         /* Results page styles */
         .results-header {
-            background-color: var(--primary);
+            background: var(--primary-gradient);
             color: white;
             padding: 40px 0;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .results-header::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, var(--glass-effect) 10%, transparent 60%);
+            animation: rotate 25s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .results-header .container {
+            position: relative;
+            z-index: 1;
         }
 
         .results-title {
@@ -217,21 +303,38 @@
             width: 120px;
             height: 120px;
             border-radius: 50%;
-            background-color: var(--primary-light);
+            background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary) 100%);
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 3rem;
             font-weight: 700;
-            color: var(--primary);
+            color: white;
             margin-right: 24px;
             flex-shrink: 0;
+            position: relative;
+            box-shadow: 0 10px 20px rgba(255, 126, 179, 0.2);
+            overflow: hidden;
+        }
+
+        .cat-avatar::before {
+            content: '';
+            position: absolute;
+            width: 140%;
+            height: 140%;
+            background: radial-gradient(circle, rgba(255,255,255,0.4) 0%, transparent 70%);
+            top: -20%;
+            left: -20%;
         }
 
         .cat-info h2 {
             font-size: 2rem;
             font-weight: 700;
             margin-bottom: 8px;
+            background: linear-gradient(135deg, var(--primary) 0%, #ff9a6c 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .cat-info p {
@@ -240,17 +343,36 @@
 
         .personality-type {
             padding: 24px;
-            background-color: var(--primary-light);
-            border-radius: 12px;
+            background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary-lighter) 100%);
+            border-radius: 20px;
             margin-bottom: 32px;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(255, 126, 179, 0.1);
+        }
+
+        .personality-type::before {
+            content: "";
+            position: absolute;
+            inset: 1px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.2) 100%);
+            border-radius: 19px;
+            z-index: 0;
+        }
+
+        .personality-type > div, .personality-type > p {
+            position: relative;
+            z-index: 1;
         }
 
         .type-code {
-            font-size: 2rem;
-            font-weight: 700;
+            font-size: 2.2rem;
+            font-weight: 800;
             color: var(--primary);
             margin-bottom: 8px;
+            text-shadow: 0 2px 10px rgba(255, 126, 179, 0.3);
+            letter-spacing: 2px;
         }
 
         .type-name {
@@ -297,12 +419,32 @@
         .dimension-value {
             height: 100%;
             border-radius: 6px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dimension-value::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0.1) 100%);
+            background-size: 200% 100%;
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
         }
 
         .action-buttons {
             display: flex;
             flex-direction: column;
             gap: 16px;
+            margin-top: 40px;
         }
 
         @media (min-width: 640px) {
@@ -368,6 +510,57 @@
             text-align: center;
             color: var(--neutral-400);
         }
+
+        /* GIF animation styles */
+        .gif-container {
+            position: relative;
+            width: 100%;
+            max-width: 180px;
+            margin: 0 auto 20px;
+            z-index: 2;
+        }
+
+        .gif-container img {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .gif-container img:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .corner-gif {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 50%;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            z-index: 10;
+        }
+        
+        .corner-gif.top-right {
+            top: -20px;
+            right: -20px;
+            animation: float 5s ease-in-out infinite;
+        }
+        
+        .corner-gif.bottom-left {
+            bottom: -20px;
+            left: -20px;
+            animation: float 4s ease-in-out infinite;
+            animation-delay: 1.5s;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0); }
+            50% { transform: translateY(-10px) rotate(5deg); }
+            100% { transform: translateY(0) rotate(0); }
+        }
     </style>
 </head>
 <body>
@@ -408,6 +601,9 @@
             <p class="results-subtitle">
                 A scientific assessment based on the Feline Five theory to understand your cat's unique behavioral traits and psychological needs.
             </p>
+            <div class="gif-container">
+                <img src="images/Im Ready Lets Go GIF by Leroy Patterson.gif" alt="Excited cat ready to see results" />
+            </div>
         </div>
     </section>
 
@@ -427,6 +623,10 @@
                     <div class="type-code" id="type-code">XXXX</div>
                     <div class="type-name" id="type-name">Loading...</div>
                     <p class="type-description" id="type-description">Analyzing your cat's personality traits...</p>
+                    
+                    <!-- 添加漂浮在角落的GIF -->
+                    <img src="images/Cat Working GIF.gif" class="corner-gif top-right" alt="Working cat">
+                    <img src="images/Bored Cat GIF.gif" class="corner-gif bottom-left" alt="Bored cat">
                 </div>
 
                 <div class="card">
@@ -486,6 +686,11 @@
                 <div class="action-buttons">
                     <a href="personality-test.html" class="btn btn-lg btn-primary">Take Test Again</a>
                     <a href="personality-types.html" class="btn btn-lg btn-secondary">Explore All Types</a>
+                </div>
+                
+                <!-- 添加底部GIF -->
+                <div class="gif-container" style="max-width: 150px; margin-top: 40px;">
+                    <img src="images/Oh No Facepalm GIF.gif" alt="Funny cat reaction" id="reaction-gif">
                 </div>
             </div>
         </div>
@@ -613,6 +818,24 @@
             document.getElementById('type-name').textContent = type.name;
             document.getElementById('type-description').textContent = type.description;
             document.getElementById('extended-description').textContent = type.extended_description;
+            
+            // 根据性格类型选择不同的反应GIF
+            const reactionGifs = {
+                "HETC": "images/Vibing White Cat GIF.gif", // 社交型猫咪
+                "HETA": "images/Cat Swimming GIF.gif", // 冒险猫咪
+                "HEPC": "images/hello GIF.gif", // 游戏型猫咪
+                "HEPA": "images/Cat Hello GIF.gif", // 敏感社交猫咪
+                "LITC": "images/No Way Cat GIF.gif", // 独立猫咪
+                "LITA": "images/Bored Cat GIF.gif", // 私人空间猫咪
+                "LIPC": "images/Cat Omg GIF.gif", // 观察猫咪
+                "LIPA": "images/Oh No Facepalm GIF.gif" // 羞涩猫咪
+            };
+            
+            // 如果有匹配的GIF，则显示对应类型的GIF
+            const typeCode = type.code.substring(0, 4); // 获取前四个字符的类型代码
+            if(reactionGifs[typeCode]) {
+                document.getElementById('reaction-gif').src = reactionGifs[typeCode];
+            }
             
             // Generate recommendations
             document.getElementById('recommendations').innerHTML = generateRecommendations(scores, type);

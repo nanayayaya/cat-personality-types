@@ -9,8 +9,11 @@
     <style>
         /* Base styles */
         :root {
-            --primary: #0096fa;
-            --primary-light: #a5d8ff;
+            --primary: #ff7eb3;
+            --primary-light: #ffa8ce;
+            --primary-lighter: #ffebf4;
+            --primary-dark: #e66a9c;
+            --primary-gradient: linear-gradient(135deg, #ff7eb3 0%, #ff9a6c 100%);
             --secondary: #ff9500;
             --secondary-light: #ffd8a8;
             --success: #40c057;
@@ -26,6 +29,7 @@
             --neutral-700: #495057;
             --neutral-800: #343a40;
             --neutral-900: #212529;
+            --glass-effect: rgba(255, 255, 255, 0.15);
         }
 
         * {
@@ -63,18 +67,41 @@
             padding: 10px 20px;
             border-radius: 12px;
             font-weight: 500;
-            transition: all 0.2s;
+            transition: all 0.3s;
             cursor: pointer;
             border: none;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateX(-100%);
+            transition: transform 0.6s;
+            z-index: -1;
+        }
+
+        .btn:hover::before {
+            transform: translateX(0);
         }
 
         .btn-primary {
-            background-color: var(--primary);
+            background: var(--primary-gradient);
             color: white;
+            box-shadow: 0 4px 15px rgba(255, 126, 179, 0.3);
         }
 
         .btn-primary:hover {
-            background-color: #0077cc;
+            background-color: #e66a9c;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 126, 179, 0.4);
         }
 
         .btn-secondary {
@@ -103,7 +130,25 @@
             background-color: white;
             border-radius: 16px;
             padding: 24px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.04), 0 2px 10px rgba(0, 0, 0, 0.03);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--primary-gradient);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .card:hover::after {
+            opacity: 1;
         }
 
         /* Header navigation styles */
@@ -114,6 +159,12 @@
             position: sticky;
             top: 0;
             z-index: 50;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+        }
+
+        header:hover {
+            box-shadow: 0 4px 15px rgba(255, 126, 179, 0.1);
         }
 
         .header-content {
@@ -126,16 +177,28 @@
         .logo {
             display: flex;
             align-items: center;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
         }
 
         .logo img {
             height: 40px;
             margin-right: 12px;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover img {
+            transform: rotate(5deg);
         }
 
         .logo span {
             font-size: 1.25rem;
             font-weight: 700;
+            color: var(--primary);
+            letter-spacing: 0.5px;
         }
 
         nav {
@@ -177,9 +240,32 @@
         /* CTA section styles */
         .cta {
             padding: 80px 0;
-            background-color: var(--primary);
+            background: var(--primary-gradient);
             color: white;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, var(--glass-effect) 10%, transparent 60%);
+            animation: rotate 25s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .cta .container {
+            position: relative;
+            z-index: 1;
         }
 
         .cta-title {
@@ -196,9 +282,22 @@
 
         /* Test CTA section styles */
         .test-cta {
-            background: linear-gradient(to right, var(--primary-light), var(--primary));
+            background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary) 80%, var(--secondary) 120%);
             color: white;
             padding: 80px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .test-cta::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='rgba(255,255,255,.05)' fill-rule='evenodd'/%3E%3C/svg%3E");
+            opacity: 0.3;
         }
 
         .test-content {
@@ -351,12 +450,23 @@
         .feature-icon {
             width: 64px;
             height: 64px;
-            background-color: var(--primary-light);
+            background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary) 100%);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 0 auto 24px;
+            position: relative;
+            box-shadow: 0 6px 15px rgba(255, 126, 179, 0.2);
+        }
+
+        .feature-icon::before {
+            content: '';
+            position: absolute;
+            inset: 2px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.2) 100%);
+            opacity: 0.4;
         }
 
         .feature-icon svg {
@@ -401,10 +511,19 @@
 
         .type-card {
             transition: all 0.3s;
+            position: relative;
+            z-index: 1;
+            border: 1px solid transparent;
+            background: linear-gradient(white, white) padding-box, 
+                       linear-gradient(135deg, transparent, transparent, var(--primary-light)) border-box;
         }
 
         .type-card:hover {
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 10px 25px rgba(255, 126, 179, 0.15);
+            border-color: transparent;
+            background: linear-gradient(white, white) padding-box, 
+                       var(--primary-gradient) border-box;
+            transform: translateY(-5px);
         }
 
         .type-code {
@@ -536,6 +655,54 @@
         .animate-float {
             animation: float 3s ease-in-out infinite;
         }
+
+        /* Gif Animation Container */
+        .gif-container {
+            position: relative;
+            width: 100%;
+            max-width: 200px;
+            margin: 0 auto;
+            z-index: 2;
+        }
+
+        .gif-container img {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .gif-container img:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .floating-gif {
+            position: absolute;
+            border-radius: 50%;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            z-index: 10;
+        }
+        
+        .floating-gif.top-right {
+            top: 120px;
+            right: 15%;
+            width: 180px;
+            height: 180px;
+            object-fit: cover;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .floating-gif.bottom-left {
+            bottom: 80px;
+            left: 10%;
+            width: 160px;
+            height: 160px;
+            object-fit: cover;
+            animation: float 4s ease-in-out infinite;
+            animation-delay: 1s;
+        }
     </style>
 </head>
 <body>
@@ -579,6 +746,9 @@
             <a href="personality-test.html" class="btn btn-secondary">
                 Take the Test Now
             </a>
+            <div class="gif-container" style="margin-top: 30px;">
+                <img src="images/Cat Hello GIF.gif" alt="Cat saying hello" />
+            </div>
         </div>
     </section>
 
@@ -630,6 +800,10 @@
                 </div>
             </div>
         </div>
+        
+        <!-- 添加漂浮的GIF -->
+        <img src="images/Vibing White Cat GIF.gif" alt="Happy dancing cat" class="floating-gif top-right">
+        <img src="images/Cat Omg GIF.gif" alt="Surprised cat" class="floating-gif bottom-left">
     </section>
 
     <!-- Personality Types section -->
@@ -640,6 +814,9 @@
                 <p class="section-description">
                     We've identified 16 unique cat personality types, each with specific behavioral patterns and needs.
                 </p>
+                <div class="gif-container" style="max-width: 150px; margin: 20px auto;">
+                    <img src="images/In Love Cat GIF.gif" alt="Cat in love" />
+                </div>
             </div>
 
             <div class="types-grid">
