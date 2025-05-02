@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Butterfly | Cat Personality Type</title>
+    <meta name="description" content="The Social Butterfly cat personality type - actively seeks human interaction, thrives in groups, highly adaptable. Discover care tips and products.">
+    <link rel="icon" href="../public/favicon.ico">
+    <style>
+        /* Base styles */
+        :root {
+            --primary: #ff7eb3;
+            --primary-light: #ffa8ce;
+            --primary-lighter: #ffebf4;
+            --primary-dark: #e66a9c;
+            --primary-gradient: linear-gradient(135deg, #ff7eb3 0%, #ff9a6c 100%);
+            --secondary: #ff9500;
+            --secondary-light: #ffd8a8;
+            --success: #40c057;
+            --success-light: #b2f2bb;
+            --danger: #ff6b6b;
+            --danger-light: #ffc9c9;
+            --neutral-100: #f8f9fa;
+            --neutral-200: #e9ecef;
+            --neutral-300: #dee2e6;
+            --neutral-400: #ced4da;
+            --neutral-500: #adb5bd;
+            --neutral-600: #6c757d;
+            --neutral-700: #495057;
+            --neutral-800: #343a40;
+            --neutral-900: #212529;
+            --type-color: #FFB5C9;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--neutral-100);
+            color: var(--neutral-900);
+            line-height: 1.6;
+        }
+
+        a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        a:hover {
+            color: var(--primary-dark);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Animation effects */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(-2deg); }
+            50% { transform: rotate(2deg); }
+        }
+
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .animate-pulse {
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        .animate-wiggle {
+            animation: wiggle 3s ease-in-out infinite;
+        }
+
+        /* Button styles */
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 12px;
+            font-weight: 500;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background: var(--primary-gradient);
+            color: white;
+            box-shadow: 0 4px 15px rgba(255, 126, 179, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 126, 179, 0.4);
+        }
+
+        .btn-secondary {
+            background-color: white;
+            color: var(--primary);
+            border: 1px solid var(--primary-light);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .btn-secondary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            background-color: var(--primary-lighter);
+        }
+
+        /* Navigation bar */
+        header {
+            background-color: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--neutral-200);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 40px;
+            margin-right: 12px;
+        }
+
+        .logo span {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        nav {
+            display: none;
+        }
+
+        @media (min-width: 768px) {
+            nav {
+                display: flex;
+                gap: 32px;
+            }
+
+            nav a {
+                color: var(--neutral-800);
+                font-weight: 500;
+            }
+
+            nav a:hover {
+                color: var(--primary);
+            }
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .menu-button {
+            display: block;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        @media (min-width: 768px) {
+            .menu-button {
+                display: none;
+            }
+        }
+
+        /* Type Header */
+        .type-header {
+            background-color: var(--type-color);
+            color: var(--neutral-900);
+            padding: 60px 0 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .type-title-area {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            z-index: 5;
+        }
+
+        .type-badge {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.75rem;
+            margin-bottom: 24px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .type-name {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+
+        .type-traits {
+            font-size: 1.25rem;
+            max-width: 800px;
+            margin: 0 auto 24px;
+            opacity: 0.8;
+        }
+
+        .floating-gif {
+            position: absolute;
+            border-radius: 50%;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            z-index: 1;
+        }
+
+        .floating-gif.top-right {
+            top: 20%;
+            right: 5%;
+            width: 120px;
+            height: 120px;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .floating-gif.bottom-left {
+            bottom: 10%;
+            left: 5%;
+            width: a100px;
+            height: 100px;
+            animation: float 4s ease-in-out infinite;
+            animation-delay: 1s;
+        }
+
+        .floating-gif img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        /* Main Content Area */
+        .personality-content {
+            padding: 60px 0;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+        }
+
+        @media (min-width: 992px) {
+            .content-grid {
+                grid-template-columns: 2fr 1fr;
+            }
+        }
+
+        .main-content {
+            background-color: white;
+            border-radius: 16px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            padding: 40px;
+        }
+
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .sidebar-card {
+            background-color: white;
+            border-radius: 16px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            padding: 24px;
+        }
+
+        /* Personality Profile Section */
+        .section-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+            color: var(--neutral-800);
+            border-bottom: 2px solid var(--primary-lighter);
+            padding-bottom: 12px;
+        }
+
+        .profile-text {
+            margin-bottom: 32px;
+        }
+
+        .profile-text p {
+            margin-bottom: 16px;
+        }
+
+        .stress-meter {
+            margin: 32px 0;
+            background-color: var(--neutral-200);
+            height: 12px;
+            border-radius: 6px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stress-level {
+            height: 100%;
+            width: 35%; /* Adjusted based on personality type */
+            background: linear-gradient(90deg, #40c057 0%, #ffec99 50%, #ff6b6b 100%);
+            border-radius: 6px;
+        }
+
+        .stress-marker {
+            position: absolute;
+            top: -6px;
+            left: 35%; /* Same as stress-level width */
+            width: 24px;
+            height: 24px;
+            background-color: white;
+            border: 3px solid var(--primary);
+            border-radius: 50%;
+        }
+
+        .stress-labels {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 8px;
+            font-size: 0.9rem;
+            color: var(--neutral-600);
+        }
+
+        /* Traits Chart */
+        .traits-chart {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin: 32px 0;
+        }
+
+        @media (min-width: 768px) {
+            .traits-chart {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        .trait-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .trait-bar {
+            width: 100%;
+            height: 160px;
+            background-color: var(--neutral-200);
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 12px;
+        }
+
+        .trait-level {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: var(--type-color);
+            border-radius: 8px 8px 0 0;
+        }
+
+        .trait-name {
+            font-weight: 600;
+            color: var(--neutral-800);
+        }
+
+        /* Key Characteristics */
+        .characteristics-list {
+            padding-left: 20px;
+            margin-bottom: 32px;
+        }
+
+        .characteristics-list li {
+            margin-bottom: 12px;
+            position: relative;
+        }
+
+        .characteristics-list li::before {
+            content: "•";
+            color: var(--primary);
+            font-weight: 700;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+
+        /* Care Guidelines */
+        .care-guidelines {
+            margin-bottom: 32px;
+        }
+
+        .guideline-category {
+            margin-bottom: 24px;
+        }
+
+        .category-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--primary-dark);
+        }
+
+        /* Recommended Products */
+        .product-list {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+        }
+
+        .product-card {
+            display: flex;
+            flex-direction: column;
+            background-color: white;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--neutral-200);
+            transition: all 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-image {
+            width: 100%;
+            aspect-ratio: 16/9;
+            background-color: var(--primary-lighter);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-weight: 500;
+        }
+
+        .product-info {
+            padding: 16px;
+        }
+
+        .product-name {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--neutral-800);
+        }
+
+        .product-description {
+            font-size: 0.9rem;
+            color: var(--neutral-600);
+            margin-bottom: 12px;
+        }
+
+        .product-price {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        /* Behavior Tips */
+        .tips-list {
+            padding-left: 0;
+            list-style-type: none;
+        }
+
+        .tips-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid var(--neutral-200);
+        }
+
+        .tips-list li:last-child {
+            border-bottom: none;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background-color: var(--primary-lighter);
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .cta-title {
+            font-size: 2.25rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--neutral-800);
+        }
+
+        .cta-description {
+            font-size: 1.25rem;
+            max-width: 800px;
+            margin: 0 auto 32px;
+            color: var(--neutral-700);
+        }
+
+        .cta-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @media (min-width: 576px) {
+            .cta-buttons {
+                flex-direction: row;
+            }
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--neutral-800);
+            color: white;
+            padding: 24px 0;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation bar -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="../index.html" class="logo">
+                    <img src="../public/images/logo.svg" alt="Cat Personality Types">
+                    <span>Cat Personality Test</span>
+                </a>
+                
+                <nav>
+                    <a href="../personality-test.html">Personality Test</a>
+                    <a href="../personality-types.html">Personality Types</a>
+                    <a href="../about.html">About Us</a>
+                    <a href="../blog.html">Blog</a>
+                </nav>
+                
+                <div class="header-actions">
+                    <a href="../personality-test.html" class="btn btn-primary">Take the Test</a>
+                    <button class="menu-button">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="3" y1="12" x2="21" y2="12"></line>
+                            <line x1="3" y1="6" x2="21" y2="6"></line>
+                            <line x1="3" y1="18" x2="21" y2="18"></line>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Type Header -->
+    <section class="type-header">
+        <div class="container">
+            <div class="type-title-area">
+                <div class="type-badge animate-pulse">SB</div>
+                <h1 class="type-name">Social Butterfly</h1>
+                <p class="type-traits">Actively seeks human interaction, thrives in groups, highly adaptable</p>
+            </div>
+        </div>
+        <!-- Floating GIFs -->
+        <div class="floating-gif top-right">
+            <img src="../images/Cat Hello GIF.gif" alt="Friendly cat waving hello">
+        </div>
+        <div class="floating-gif bottom-left">
+            <img src="../images/In Love Cat GIF.gif" alt="Cat showing affection">
+        </div>
+    </section>
+
+    <!-- Main Content Area -->
+    <section class="personality-content">
+        <div class="container">
+            <div class="content-grid">
+                <div class="main-content">
+                    <!-- Personality Profile Section -->
+                    <div class="section">
+                        <h2 class="section-title">Personality Profile</h2>
+                        <div class="profile-text">
+                            <p>The Social Butterfly cat personality type represents the most outgoing and human-oriented felines. These cats frequently initiate contact with their owners, rubbing against legs, purring extensively, and proudly bringing toys to show off. Their oxytocin levels increase by 45% during human interaction, demonstrating their genuine enjoyment of social contact.</p>
+                            <p>Social Butterflies flourish in multi-person households where different family members can provide varied forms of interaction. However, they may develop separation anxiety when left alone for extended periods, which can manifest as excessive vocalization or destructive behavior.</p>
+                            <p>Neurologically, these cats show enhanced activity in the ventral tegmental area—the brain's reward center—during social interactions. This makes positive reinforcement particularly effective in training.</p>
+                        </div>
+
+                        <!-- Stress Sensitivity Meter -->
+                        <div>
+                            <h3 class="category-title">Stress Sensitivity: Low (35%)</h3>
+                            <div class="stress-meter">
+                                <div class="stress-level" style="width: 35%"></div>
+                                <div class="stress-marker" style="left: 35%"></div>
+                            </div>
+                            <div class="stress-labels">
+                                <span>Low Stress</span>
+                                <span>Moderate</span>
+                                <span>High Stress</span>
+                            </div>
+                            <p style="margin-top: 12px; font-size: 0.9rem; color: var(--neutral-600);">Social Butterflies adapt well to environmental changes and novel situations, showing stress resilience in social settings.</p>
+                        </div>
+
+                        <!-- Traits Chart -->
+                        <h3 class="category-title" style="margin-top: 32px;">Core Traits</h3>
+                        <div class="traits-chart">
+                            <div class="trait-item">
+                                <div class="trait-bar">
+                                    <div class="trait-level" style="height: 85%"></div>
+                                </div>
+                                <div class="trait-name">Sociability</div>
+                            </div>
+                            <div class="trait-item">
+                                <div class="trait-bar">
+                                    <div class="trait-level" style="height: 75%"></div>
+                                </div>
+                                <div class="trait-name">Adaptability</div>
+                            </div>
+                            <div class="trait-item">
+                                <div class="trait-bar">
+                                    <div class="trait-level" style="height: 60%"></div>
+                                </div>
+                                <div class="trait-name">Energy</div>
+                            </div>
+                            <div class="trait-item">
+                                <div class="trait-bar">
+                                    <div class="trait-level" style="height: 40%"></div>
+                                </div>
+                                <div class="trait-name">Independence</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Key Characteristics -->
+                    <div class="section">
+                        <h2 class="section-title">Key Characteristics</h2>
+                        <ul class="characteristics-list">
+                            <li><strong>Social Intelligence:</strong> Social Butterflies excel at reading human cues and can distinguish between different emotional states in their owners, often responding appropriately to comfort or celebrate.</li>
+                            <li><strong>Adaptable Behavior:</strong> These cats easily adjust to new people, pets, and environments with minimal stress reactions, making them excellent candidates for multi-pet households.</li>
+                            <li><strong>Attachment Seeking:</strong> They actively work to maintain proximity to their favorite humans and may follow them from room to room throughout the day.</li>
+                            <li><strong>Vocal Communication:</strong> Social Butterflies develop larger vocal repertoires than other personality types, using different sounds for different requests or emotional states.</li>
+                            <li><strong>Play Orientation:</strong> These cats prefer interactive play with humans over solitary play and will often bring toys to initiate interaction.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Care Guidelines -->
+                    <div class="section">
+                        <h2 class="section-title">Care Guidelines</h2>
+
+                        <div class="guideline-category">
+                            <h3 class="category-title">Environment Design</h3>
+                            <p>Create an environment that facilitates both human interaction and feline independence. Position cat trees or perches near family gathering areas so your Social Butterfly can observe and participate in activities. Ensure multiple comfortable resting spots throughout high-traffic areas of your home where your cat can remain close to human activity.</p>
+                        </div>
+
+                        <div class="guideline-category">
+                            <h3 class="category-title">Activities and Interaction</h3>
+                            <p>Schedule daily interaction sessions of at least 20-30 minutes. Combine physical play with training exercises that leverage your cat's social intelligence. Consider clicker training for mental stimulation—Social Butterflies excel at learning tricks and commands due to their human orientation.</p>
+                        </div>
+
+                        <div class="guideline-category">
+                            <h3 class="category-title">Preventing Separation Anxiety</h3>
+                            <p>For households where the cat must be alone for extended periods, implement a gradual desensitization program. Begin with brief absences and slowly increase duration. Provide enrichment toys that dispense treats or require problem-solving to keep your cat mentally engaged when alone. Consider a second pet companion if your lifestyle regularly requires long absences.</p>
+                        </div>
+
+                        <div class="guideline-category">
+                            <h3 class="category-title">Health Considerations</h3>
+                            <p>Schedule regular veterinary check-ups as Social Butterflies may not always show obvious signs of distress due to their adaptable nature. Monitor weight carefully as these cats may be more food-motivated in the context of human interaction and may consume treats excessively when offered as part of social bonding.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sidebar">
+                    <!-- Recommended Products -->
+                    <div class="sidebar-card">
+                        <h3 class="section-title" style="margin-bottom: 16px;">Recommended Products</h3>
+                        <div class="product-list">
+                            <div class="product-card">
+                                <div class="product-image">Interactive Feather Wand</div>
+                                <div class="product-info">
+                                    <div class="product-name">Premium Interactive Feather Teaser</div>
+                                    <div class="product-description">Designed for human-cat playtime with multiple attachments to keep social cats engaged</div>
+                                    <div class="product-price">$18.99</div>
+                                </div>
+                            </div>
+                            <div class="product-card" style="margin-top: 16px;">
+                                <div class="product-image">Window Perch</div>
+                                <div class="product-info">
+                                    <div class="product-name">Social View Window Seat</div>
+                                    <div class="product-description">Positioned for optimal viewing of both outdoor activity and indoor human interactions</div>
+                                    <div class="product-price">$29.95</div>
+                                </div>
+                            </div>
+                            <div class="product-card" style="margin-top: 16px;">
+                                <div class="product-image">Automatic Treat Dispenser</div>
+                                <div class="product-info">
+                                    <div class="product-name">Smart Treat Companion</div>
+                                    <div class="product-description">Interactive treat dispenser with two-way audio to maintain connection during absences</div>
+                                    <div class="product-price">$45.50</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Behavior Management Tips -->
+                    <div class="sidebar-card">
+                        <h3 class="section-title" style="margin-bottom: 16px;">Behavior Management Tips</h3>
+                        <ul class="tips-list">
+                            <li><strong>Excessive Attention-Seeking:</strong> Establish scheduled interaction times and reward calm behavior to prevent demanding behaviors like excessive meowing or pawing.</li>
+                            <li><strong>Overstimulation:</strong> Learn to recognize subtle signs of overstimulation (dilated pupils, tail twitching) and provide brief breaks during play sessions.</li>
+                            <li><strong>Resource Guarding:</strong> Social cats may guard favored toys or spots. Use positive reinforcement to teach sharing behaviors in multi-pet households.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Ideal Companions -->
+                    <div class="sidebar-card">
+                        <h3 class="section-title" style="margin-bottom: 16px;">Ideal Human Match</h3>
+                        <p>Social Butterflies thrive with:</p>
+                        <ul class="characteristics-list">
+                            <li>Families or individuals who spend significant time at home</li>
+                            <li>Those who enjoy interactive play and training</li>
+                            <li>Households with consistent, predictable routines</li>
+                            <li>Pet parents who appreciate vocal, demonstrative cats</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2 class="cta-title">Want to discover your cat's personality type?</h2>
+            <p class="cta-description">Take our scientific assessment to identify your cat's unique personality profile and receive tailored care recommendations.</p>
+            <div class="cta-buttons">
+                <a href="../personality-test.html" class="btn btn-primary">Take the Test</a>
+                <a href="../personality-types.html" class="btn btn-secondary">View All Types</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>© <script>document.write(new Date().getFullYear())</script> Cat Personality Test. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.menu-button').addEventListener('click', function() {
+            const nav = document.querySelector('nav');
+            nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
+        });
+    </script>
+</body>
+</html> 

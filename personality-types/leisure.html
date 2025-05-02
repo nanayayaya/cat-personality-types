@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dreamer LIPA | Cat Personality Type</title>
+    <meta name="description" content="The Dreamer (LIPA) cat personality type: Low activity, introverted, observant, high stress. Learn how to care for this sensitive and thoughtful feline type.">
+    <link rel="icon" href="../public/favicon.ico">
+    <style>
+        /* Base styles */
+        :root {
+            --primary: #ff7eb3;
+            --primary-light: #ffa8ce;
+            --primary-lighter: #ffebf4;
+            --primary-dark: #e66a9c;
+            --primary-gradient: linear-gradient(135deg, #ff7eb3 0%, #ff9a6c 100%);
+            --secondary: #ff9500;
+            --secondary-light: #ffd8a8;
+            --success: #40c057;
+            --success-light: #b2f2bb;
+            --danger: #ff6b6b;
+            --danger-light: #ffc9c9;
+            --neutral-100: #f8f9fa;
+            --neutral-200: #e9ecef;
+            --neutral-300: #dee2e6;
+            --neutral-400: #ced4da;
+            --neutral-500: #adb5bd;
+            --neutral-600: #6c757d;
+            --neutral-700: #495057;
+            --neutral-800: #343a40;
+            --neutral-900: #212529;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--neutral-100);
+            color: var(--neutral-900);
+            line-height: 1.6;
+        }
+
+        a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        a:hover {
+            color: var(--primary-dark);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Button styles */
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 12px;
+            font-weight: 500;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateX(-100%);
+            transition: transform 0.6s;
+            z-index: -1;
+        }
+
+        .btn:hover::before {
+            transform: translateX(0);
+        }
+
+        .btn-primary {
+            background: var(--primary-gradient);
+            color: white;
+            box-shadow: 0 4px 15px rgba(255, 126, 179, 0.3);
+        }
+
+        .btn-primary:hover {
+            background-color: #e66a9c;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 126, 179, 0.4);
+        }
+
+        /* Navigation bar styles */
+        header {
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--neutral-200);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+        }
+
+        header:hover {
+            box-shadow: 0 4px 15px rgba(255, 126, 179, 0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .logo img {
+            height: 40px;
+            margin-right: 12px;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover img {
+            transform: rotate(5deg);
+        }
+
+        .logo span {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: 0.5px;
+        }
+
+        nav {
+            display: none;
+        }
+
+        @media (min-width: 768px) {
+            nav {
+                display: flex;
+                gap: 32px;
+            }
+
+            nav a {
+                color: var(--neutral-900);
+                font-weight: 500;
+            }
+
+            nav a:hover {
+                color: var(--primary);
+            }
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .menu-button {
+            display: block;
+        }
+
+        @media (min-width: 768px) {
+            .menu-button {
+                display: none;
+            }
+        }
+
+        /* Type detail page styles */
+        .type-header {
+            background-color: #FFD9B5;
+            color: var(--neutral-800);
+            padding: 60px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .type-header::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='rgba(0,0,0,.03)' fill-rule='evenodd'/%3E%3C/svg%3E");
+            opacity: 0.5;
+        }
+
+        .type-badge {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.75rem;
+            margin: 0 auto 24px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 2;
+        }
+
+        .type-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .type-traits {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* Animation effects */
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.05);
+                opacity: 0.8;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        
+        .animate-pulse {
+            animation: pulse 4s ease-in-out infinite;
+        }
+        
+        /* GIF animation elements */
+        .floating-gif {
+            position: absolute;
+            border-radius: 50%;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            z-index: 10;
+            overflow: hidden;
+        }
+        
+        .floating-gif.top-right {
+            top: 20px;
+            right: 10%;
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .floating-gif.bottom-left {
+            bottom: 20px;
+            left: 10%;
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            animation: float 4s ease-in-out infinite;
+            animation-delay: 1s;
+        }
+        
+        /* Content section */
+        .type-content {
+            padding: 60px 0;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+        }
+
+        @media (min-width: 768px) {
+            .content-grid {
+                grid-template-columns: 2fr 1fr;
+            }
+        }
+
+        .type-section {
+            background-color: white;
+            border-radius: 16px;
+            padding: 32px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .type-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--neutral-800);
+            position: relative;
+            padding-bottom: 12px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--primary-gradient);
+            border-radius: 3px;
+        }
+
+        .type-description p {
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: var(--neutral-700);
+        }
+
+        .characteristics-list {
+            list-style: none;
+        }
+
+        .characteristics-list li {
+            margin-bottom: 16px;
+            padding-left: 28px;
+            position: relative;
+            color: var(--neutral-700);
+        }
+
+        .characteristics-list li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-size: 1.5rem;
+            line-height: 1;
+        }
+
+        .sidebar-section {
+            background-color: white;
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 24px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .sidebar-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .sidebar-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--neutral-800);
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .sidebar-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: var(--primary-gradient);
+            border-radius: 2px;
+        }
+        
+        /* Gif container */
+        .gif-container {
+            position: relative;
+            width: 100%;
+            max-width: 180px;
+            margin: 20px auto;
+            z-index: 2;
+        }
+        
+        .gif-container img {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .gif-container img:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* Personality traits chart */
+        .traits-chart {
+            width: 100%;
+            margin: 30px 0;
+        }
+        
+        .trait-bar {
+            margin-bottom: 16px;
+        }
+        
+        .trait-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+        
+        .trait-name {
+            font-weight: 600;
+            color: var(--neutral-700);
+        }
+        
+        .trait-value {
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .trait-progress {
+            height: 10px;
+            background-color: var(--neutral-200);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .trait-progress-bar {
+            height: 100%;
+            border-radius: 5px;
+            background: var(--primary-gradient);
+        }
+        
+        /* Stress indicator visualization */
+        .stress-indicator {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 30px 0;
+        }
+        
+        .stress-meter {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: conic-gradient(
+                #ff6b6b 0% 80%,
+                #e9ecef 80% 100%
+            );
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            animation: pulse 4s ease-in-out infinite;
+        }
+        
+        .stress-meter::before {
+            content: "";
+            position: absolute;
+            width: 70%;
+            height: 70%;
+            top: 15%;
+            left: 15%;
+            background-color: white;
+            border-radius: 50%;
+        }
+        
+        .stress-meter-label {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+        
+        .stress-percentage {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--danger);
+        }
+        
+        .stress-text {
+            font-size: 0.9rem;
+            color: var(--neutral-600);
+        }
+        
+        .stress-explanation {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.95rem;
+            color: var(--neutral-700);
+            max-width: 300px;
+        }
+
+        /* Product recommendation styles */
+        .product-card {
+            display: flex;
+            margin-bottom: 16px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--neutral-200);
+            transition: transform 0.3s ease;
+        }
+        
+        .product-card:hover {
+            transform: translateX(5px);
+        }
+
+        .product-card:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+            margin-bottom: 0;
+        }
+
+        .product-image {
+            width: 80px;
+            height: 80px;
+            background-color: var(--neutral-200);
+            border-radius: 8px;
+            overflow: hidden;
+            margin-right: 16px;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .product-card:hover .product-image img {
+            transform: scale(1.1);
+        }
+
+        .product-info {
+            flex: 1;
+        }
+
+        .product-name {
+            font-weight: 600;
+            margin-bottom: 4px;
+            color: var(--neutral-800);
+        }
+
+        .product-description {
+            font-size: 0.9rem;
+            color: var(--neutral-600);
+            margin-bottom: 8px;
+        }
+
+        .product-price {
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        /* Behavior tips styles */
+        .tip-item {
+            margin-bottom: 16px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--neutral-200);
+            transition: transform 0.3s ease;
+        }
+        
+        .tip-item:hover {
+            transform: translateX(5px);
+        }
+
+        .tip-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+            margin-bottom: 0;
+        }
+
+        .tip-title {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--neutral-800);
+        }
+
+        .tip-content {
+            font-size: 0.95rem;
+            color: var(--neutral-700);
+        }
+
+        /* CTA section */
+        .cta-section {
+            background-color: var(--primary-lighter);
+            padding: 60px 0;
+            text-align: center;
+            margin-top: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-section::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background: url("data:image/svg+xml,%3Csvg width='52' height='26' viewBox='0 0 52 26' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ff9e9e' fill-opacity='0.1'%3E%3Cpath d='M10 10c0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6h2c0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4v2c-3.314 0-6-2.686-6-6 0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6zm25.464-1.95l8.486 8.486-1.414 1.414-8.486-8.486 1.414-1.414z' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.8;
+        }
+
+        .cta-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--neutral-800);
+            position: relative;
+            z-index: 2;
+        }
+
+        .cta-description {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 24px;
+            color: var(--neutral-700);
+            position: relative;
+            z-index: 2;
+        }
+
+        .cta-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            justify-content: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--neutral-800);
+            color: white;
+            padding: 48px 0;
+            margin-top: 60px;
+        }
+
+        .footer-bottom {
+            margin-top: 32px;
+            padding-top: 32px;
+            border-top: 1px solid var(--neutral-700);
+            text-align: center;
+            color: var(--neutral-400);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation bar -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="../index.html" class="logo">
+                    <img src="../public/images/logo.svg" alt="Cat Personality Types">
+                    <span>Cat Personality Test</span>
+                </a>
+                
+                <nav>
+                    <a href="../personality-test.html">Personality Test</a>
+                    <a href="../personality-types.html">Personality Types</a>
+                    <a href="../about.html">About Us</a>
+                    <a href="../blog.html">Blog</a>
+                </nav>
+                
+                <div class="header-actions">
+                    <a href="../personality-test.html" class="btn btn-primary">Take the Test</a>
+                    <button class="menu-button">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="3" y1="12" x2="21" y2="12"></line>
+                            <line x1="3" y1="6" x2="21" y2="6"></line>
+                            <line x1="3" y1="18" x2="21" y2="18"></line>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Type header section -->
+    <section class="type-header">
+        <div class="container">
+            <div class="type-badge animate-float">LIPA</div>
+            <h1 class="type-title">Dreamer</h1>
+            <p class="type-traits">Low Activity + Introverted + Observant + High Stress</p>
+        </div>
+        <!-- Floating GIFs -->
+        <img src="../images/Oh No Facepalm GIF.gif" alt="Sensitive cat" class="floating-gif top-right">
+        <img src="../images/Bored Cat GIF.gif" alt="Quiet cat" class="floating-gif bottom-left">
+    </section>
+
+    <!-- Type content section -->
+    <section class="type-content">
+        <div class="container">
+            <div class="content-grid">
+                <div class="main-content">
+                    <div class="type-section">
+                        <h2 class="section-title">Personality Profile</h2>
+                        <div class="type-description">
+                            <p>The Dreamer cat is sensitive and introverted, preferring familiar environments and adapting slowly to changes. These cats need quiet, predictable living conditions and gentle interactions. Their thoughtful nature makes them deeply observant but easily overwhelmed by stimulation.</p>
+                            
+                            <p>Neurologically, Dreamer cats exhibit heightened amygdala sensitivity paired with lower dopamine reactivity. This creates a temperament naturally inclined toward careful observation rather than exploration. Their high cortisol response to novelty manifests as caution rather than aggression, making them retreat from rather than confront stressors.</p>
+                            
+                            <p>These cats thrive when provided with consistent daily routines, predictable human behavior, and quiet, secure environments with multiple retreat options. They form deep, meaningful bonds once trust is established, but this process requires patience and respect for their boundaries.</p>
+                            
+                            <div class="stress-indicator">
+                                <div class="stress-meter">
+                                    <div class="stress-meter-label">
+                                        <div class="stress-percentage">80%</div>
+                                        <div class="stress-text">Stress Sensitivity</div>
+                                    </div>
+                                </div>
+                                <p class="stress-explanation">Dreamer cats have significantly higher stress reactivity than average, requiring careful environmental management and gentle handling techniques.</p>
+                            </div>
+                            
+                            <div class="traits-chart">
+                                <div class="trait-bar">
+                                    <div class="trait-label">
+                                        <span class="trait-name">Activity Level</span>
+                                        <span class="trait-value">Low (20%)</span>
+                                    </div>
+                                    <div class="trait-progress">
+                                        <div class="trait-progress-bar" style="width: 20%"></div>
+                                    </div>
+                                </div>
+                                <div class="trait-bar">
+                                    <div class="trait-label">
+                                        <span class="trait-name">Sociability</span>
+                                        <span class="trait-value">Low (15%)</span>
+                                    </div>
+                                    <div class="trait-progress">
+                                        <div class="trait-progress-bar" style="width: 15%"></div>
+                                    </div>
+                                </div>
+                                <div class="trait-bar">
+                                    <div class="trait-label">
+                                        <span class="trait-name">Observation Skills</span>
+                                        <span class="trait-value">High (85%)</span>
+                                    </div>
+                                    <div class="trait-progress">
+                                        <div class="trait-progress-bar" style="width: 85%"></div>
+                                    </div>
+                                </div>
+                                <div class="trait-bar">
+                                    <div class="trait-label">
+                                        <span class="trait-name">Adaptability</span>
+                                        <span class="trait-value">Low (10%)</span>
+                                    </div>
+                                    <div class="trait-progress">
+                                        <div class="trait-progress-bar" style="width: 10%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="gif-container">
+                                <img src="../images/Angry Cat GIF.gif" alt="Sensitive stressed cat" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="type-section">
+                        <h2 class="section-title">Key Characteristics</h2>
+                        <ul class="characteristics-list">
+                            <li><strong>High Sensitivity:</strong> Extremely responsive to sensory stimuli; easily overwhelmed by loud noises, sudden movements, or environmental changes</li>
+                            <li><strong>Strong Preference for Routine:</strong> Thrives on predictability; disruptions to daily patterns can cause significant stress</li>
+                            <li><strong>Selective Attachment:</strong> Forms deep bonds with one or two trusted individuals; hesitant with strangers</li>
+                            <li><strong>Keen Observation:</strong> Highly perceptive of subtle environmental changes and human emotional states</li>
+                            <li><strong>Retreat-Based Stress Response:</strong> When overwhelmed, responds by hiding rather than aggressive displays</li>
+                            <li><strong>Slow Trust Development:</strong> Takes significant time to build comfort with new people, places, or experiences</li>
+                            <li><strong>Depth Over Breadth:</strong> Prefers deeply exploring familiar environments rather than seeking novelty</li>
+                            <li><strong>Environmental Dependency:</strong> Wellbeing is strongly tied to the stability and safety of their surroundings</li>
+                        </ul>
+                    </div>
+
+                    <div class="type-section">
+                        <h2 class="section-title">Care Guidelines</h2>
+                        <div class="type-description">
+                            <p><strong>Environment Design:</strong> Dreamer cats require carefully structured environments with an emphasis on security and predictability. Create multiple hiding spots throughout your home—enclosed cat beds, covered perches, and dedicated "safe rooms" where the cat can retreat when stressed. Maintain consistent furniture arrangements, as even minor changes can cause anxiety. Minimize household noise and provide white noise sources (soft music, air purifiers) to mask startling sounds. Consider providing pheromone diffusers like Feliway to create a chemically reassuring atmosphere.</p>
+                            
+                            <p><strong>Activities & Interactions:</strong> Approach all interactions with gentle predictability. Always allow the cat to initiate contact rather than pursuing or picking them up. Use slow blinking and quiet speech to communicate non-threatening intentions. Keep play sessions brief and calm, focusing on interactive toys that don't create loud noises. Avoid laser pointers which can create frustration. Schedule daily short, positive interaction sessions at the same times each day to build routine. Never force attention—respect withdrawal signals immediately.</p>
+                            
+                            <p><strong>Stress Management:</strong> Learn to identify early stress signals like pupil dilation, ear positioning changes, and whisker tensing before they escalate to hiding or freezing. Create a "stress management plan" for predictable stressful events (visitors, travel, veterinary visits), implementing gradual desensitization protocols when possible. For unavoidable stressors, create a quiet room with the cat's familiar items where they can remain undisturbed. Consider natural calming supplements like L-theanine or veterinary anti-anxiety medication for extreme cases or necessary changes.</p>
+                            
+                            <p><strong>Health Considerations:</strong> Dreamer cats may mask health problems due to their naturally quiet demeanor. Schedule regular veterinary exams but work with a vet experienced in handling sensitive cats. Monitor food and water intake closely as stress can affect appetite. Watch for stress-related conditions like over-grooming, urinary issues, or digestive upsets. Consider in-home veterinary services when possible to minimize travel stress. Maintain meticulous preventative care to avoid more stressful interventions later.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sidebar">
+                    <div class="sidebar-section">
+                        <h3 class="sidebar-title">Recommended Products</h3>
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="https://via.placeholder.com/80" alt="Enclosed Cat Bed">
+                            </div>
+                            <div class="product-info">
+                                <div class="product-name">Sanctuary Enclosed Bed</div>
+                                <div class="product-description">Partially enclosed plush bed providing security while allowing observation</div>
+                                <div class="product-price">$59.99</div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="https://via.placeholder.com/80" alt="Calming Pheromone Diffuser">
+                            </div>
+                            <div class="product-info">
+                                <div class="product-name">Natural Calm Diffuser Kit</div>
+                                <div class="product-description">Synthetic pheromone diffuser to create a sense of security and reduce anxiety</div>
+                                <div class="product-price">$39.99</div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="https://via.placeholder.com/80" alt="Quiet Interactive Toy">
+                            </div>
+                            <div class="product-info">
+                                <div class="product-name">Silent Butterfly Wand</div>
+                                <div class="product-description">Ultra-quiet interactive toy with gentle movement for stress-free play</div>
+                                <div class="product-price">$19.99</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sidebar-section">
+                        <h3 class="sidebar-title">Behavior Tips</h3>
+                        <div class="tip-item">
+                            <div class="tip-title">Creating a Stress-Free Introduction</div>
+                            <div class="tip-content">When bringing a Dreamer cat home, prepare a small, quiet room with all necessities. Allow them to emerge at their own pace, which may take days or weeks. Never force exploration.</div>
+                        </div>
+                        <div class="tip-item">
+                            <div class="tip-title">Building Trust Through Patience</div>
+                            <div class="tip-content">Establish yourself as a non-threat by sitting quietly in the same room without direct eye contact. Offering treats without expectation of interaction builds positive associations.</div>
+                        </div>
+                        <div class="tip-item">
+                            <div class="tip-title">Managing Unavoidable Changes</div>
+                            <div class="tip-content">When change is necessary (moving, renovation), create a secure "base camp" with familiar items and gradually introduce changes while maintaining this safe space.</div>
+                        </div>
+                    </div>
+
+                    <div class="sidebar-section">
+                        <h3 class="sidebar-title">Ideal Companions</h3>
+                        <div class="tip-content">
+                            <p>Dreamer cats match best with calm, patient owners who appreciate their subtle communication. They thrive in households with:</p>
+                            <ul style="padding-left: 20px; margin-top: 10px;">
+                                <li>Predictable routines and quiet environments</li>
+                                <li>Adults or older children who respect boundaries</li>
+                                <li>Limited visitors and social gatherings</li>
+                                <li>Gradual, thoughtful approaches to change</li>
+                                <li>Appreciation for subtle companionship rather than high interaction</li>
+                            </ul>
+                        </div>
+                        <div class="gif-container" style="margin-top: 20px;">
+                            <img src="../images/Cat Swimming GIF.gif" alt="Calm cat" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2 class="cta-title">Want to discover your cat's personality type?</h2>
+            <p class="cta-description">Take our cat personality test to understand your cat's behavioral tendencies and get personalized care recommendations.</p>
+            <div class="cta-buttons">
+                <a href="../personality-test.html" class="btn btn-primary">Take the Test</a>
+                <a href="../personality-types.html" class="btn btn-primary" style="background: white; color: var(--primary);">View All Types</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-bottom">
+                <p>© <script>document.write(new Date().getFullYear())</script> Cat Personality Test. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.menu-button').addEventListener('click', function() {
+            const nav = document.querySelector('nav');
+            nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
+        });
+    </script>
+</body>
+</html> 

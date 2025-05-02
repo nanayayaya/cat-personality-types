@@ -26,16 +26,16 @@ const PreTestForm = ({ onSubmit }) => {
 
   return (
     <div className="card max-w-2xl mx-auto">
-      <h2 className="text-2xl font-bold mb-6">在开始测试前，请提供一些基本信息</h2>
+      <h2 className="text-2xl font-bold mb-6">Before starting the test, please provide some basic information</h2>
       <p className="text-neutral-600 mb-8">
-        这些信息将帮助我们更准确地评估您猫咪的性格类型，并提供个性化的分析结果。
+         These information will help us to evaluate your cat's personality type more accurately and provide personalized analysis results.
       </p>
       
       <form onSubmit={handleSubmit}>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
           <div>
             <label className="block text-neutral-700 font-medium mb-2" htmlFor="catName">
-              猫咪名字
+              Cat's Name
             </label>
             <input
               type="text"
@@ -44,14 +44,14 @@ const PreTestForm = ({ onSubmit }) => {
               value={formData.catName}
               onChange={handleChange}
               className="input w-full"
-              placeholder="例如：奶茶"
+              placeholder="For example: Milk Tea"
               required
             />
           </div>
           
           <div>
             <label className="block text-neutral-700 font-medium mb-2" htmlFor="catAge">
-              猫咪年龄
+              Cat's Age
             </label>
             <input
               type="text"
@@ -60,14 +60,14 @@ const PreTestForm = ({ onSubmit }) => {
               value={formData.catAge}
               onChange={handleChange}
               className="input w-full"
-              placeholder="例如：2岁3个月"
+              placeholder="For example: 2 years and 3 months"
               required
             />
           </div>
           
           <div>
             <label className="block text-neutral-700 font-medium mb-2" htmlFor="gender">
-              性别
+              Gender
             </label>
             <select
               id="gender"
@@ -77,17 +77,17 @@ const PreTestForm = ({ onSubmit }) => {
               className="input w-full"
               required
             >
-              <option value="">请选择</option>
-              <option value="male">公猫</option>
-              <option value="female">母猫</option>
-              <option value="maleCastrated">公猫（已绝育）</option>
-              <option value="femaleCastrated">母猫（已绝育）</option>
+              <option value="">Please select</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+              <option value="maleCastrated">Male (Neutered)</option>
+              <option value="femaleCastrated">Female (Spayed)</option>
             </select>
           </div>
           
           <div>
             <label className="block text-neutral-700 font-medium mb-2" htmlFor="breed">
-              品种
+              Breed
             </label>
             <input
               type="text"
@@ -96,14 +96,14 @@ const PreTestForm = ({ onSubmit }) => {
               value={formData.breed}
               onChange={handleChange}
               className="input w-full"
-              placeholder="例如：英短、橘猫、混血"
+              placeholder="For example: British Shorthair, Orange Cat, Mixed"
               required
             />
           </div>
           
           <div>
             <label className="block text-neutral-700 font-medium mb-2" htmlFor="livingSpace">
-              生活空间大小
+              Living Space Size
             </label>
             <select
               id="livingSpace"
@@ -113,16 +113,16 @@ const PreTestForm = ({ onSubmit }) => {
               className="input w-full"
               required
             >
-              <option value="small">小（30㎡以下）</option>
-              <option value="medium">中（30-90㎡）</option>
-              <option value="large">大（90㎡以上）</option>
-              <option value="outdoor">室内外混合</option>
+              <option value="small">Small (30㎡以下)</option>
+              <option value="medium">Medium (30-90㎡)</option>
+              <option value="large">Large (90㎡以上)</option>
+              <option value="outdoor">Indoor-Outdoor Mixed</option>
             </select>
           </div>
           
           <div>
             <label className="block text-neutral-700 font-medium mb-2" htmlFor="multiCatHousehold">
-              是否多猫家庭
+              Is it a multi-cat household?
             </label>
             <select
               id="multiCatHousehold"
@@ -132,15 +132,15 @@ const PreTestForm = ({ onSubmit }) => {
               className="input w-full"
               required
             >
-              <option value="no">否</option>
-              <option value="yes">是（2-3只）</option>
-              <option value="many">是（4只以上）</option>
+              <option value="no">No</option>
+              <option value="yes">Yes (2-3 cats)</option>
+              <option value="many">Yes (4 or more)</option>
             </select>
           </div>
           
           <div>
             <label className="block text-neutral-700 font-medium mb-2" htmlFor="humanCatRatio">
-              家庭人猫比例
+              Human-Cat Ratio
             </label>
             <select
               id="humanCatRatio"
@@ -150,18 +150,18 @@ const PreTestForm = ({ onSubmit }) => {
               className="input w-full"
               required
             >
-              <option value="1:1">1人:1猫</option>
-              <option value="2:1">2人:1猫</option>
-              <option value="3+:1">3人以上:1猫</option>
-              <option value="1:2+">1人:多猫</option>
-              <option value="2+:2+">多人:多猫</option>
+              <option value="1:1">1 human:1 cat</option>
+              <option value="2:1">2 humans:1 cat</option>
+              <option value="3+:1">3+ humans:1 cat</option>
+              <option value="1:2+">1 human:multiple cats</option>
+              <option value="2+:2+">multiple humans:multiple cats</option>
             </select>
           </div>
         </div>
         
         <div className="text-center">
           <button type="submit" className="btn btn-primary py-3 px-8">
-            开始测试
+            Start Test
           </button>
         </div>
       </form>
@@ -176,8 +176,8 @@ const TestProgress = ({ currentQuestion, totalQuestions }) => {
   return (
     <div className="mb-8">
       <div className="flex justify-between mb-2">
-        <span className="text-sm font-medium text-neutral-600">问题 {currentQuestion}/{totalQuestions}</span>
-        <span className="text-sm font-medium text-neutral-600">{Math.round(progress)}% 完成</span>
+        <span className="text-sm font-medium text-neutral-600">Question {currentQuestion}/{totalQuestions}</span>
+        <span className="text-sm font-medium text-neutral-600">{Math.round(progress)}% Completed</span>
       </div>
       <div className="relative w-full h-4 bg-neutral-200 rounded-full overflow-hidden">
         <div
@@ -201,104 +201,104 @@ const TestProgress = ({ currentQuestion, totalQuestions }) => {
   );
 };
 
-// 测试问题
+// Test questions
 const questions = [
   {
     id: 1,
-    question: "家中来访客人时，您的猫通常会：",
+    question: "When visitors come to your home, your cat typically:",
     options: [
-      { text: "立即上前与客人互动", scores: { activity: 2, sociability: 2, decision: 1, stress: -1 } },
-      { text: "保持距离观察一段时间后靠近", scores: { activity: 0, sociability: 1, decision: -1, stress: 0 } },
-      { text: "躲藏直到客人离开", scores: { activity: -1, sociability: -2, decision: 0, stress: 2 } },
-      { text: "在房间内但保持安全距离", scores: { activity: 0, sociability: -1, decision: 0, stress: 1 } }
+      { text: "Immediately approaches and interacts with guests", scores: { activity: 2, sociability: 2, decision: 1, stress: -1 } },
+      { text: "Observes from a distance before approaching", scores: { activity: 0, sociability: 1, decision: -1, stress: 0 } },
+      { text: "Hides until visitors leave", scores: { activity: -1, sociability: -2, decision: 0, stress: 2 } },
+      { text: "Stays in the room but maintains a safe distance", scores: { activity: 0, sociability: -1, decision: 0, stress: 1 } }
     ],
     tips: {
-      0: "27%的猫咪会主动与陌生人互动，大多数是暹罗和缅因等社交型品种",
-      1: "这是最常见的反应，约65%的猫咪会观察后再决定是否互动",
-      2: "约20%的猫咪会选择完全躲避陌生人，通常源于早期社会化不足",
-      3: "保持距离但不躲藏的猫咪通常有较强的好奇心但谨慎的性格"
+      0: "27% of cats actively interact with strangers, mostly social breeds like Siamese and Maine Coon",
+      1: "This is the most common reaction, about 65% of cats observe before deciding to interact",
+      2: "About 20% of cats choose to completely avoid strangers, usually due to insufficient early socialization",
+      3: "Cats that maintain distance without hiding usually have strong curiosity but cautious personalities"
     }
   },
   {
     id: 2,
-    question: "面对新玩具时，您的猫会：",
+    question: "When faced with a new toy, your cat will:",
     options: [
-      { text: "立即扑上去探索并玩耍", scores: { activity: 2, sociability: 0, decision: 2, stress: -1 } },
-      { text: "谨慎接近，轻轻触碰后再决定", scores: { activity: 0, sociability: 0, decision: -1, stress: 1 } },
-      { text: "完全不感兴趣", scores: { activity: -2, sociability: 0, decision: 0, stress: 0 } },
-      { text: "因害怕而躲避", scores: { activity: -1, sociability: -1, decision: -1, stress: 2 } }
+      { text: "Immediately pounce and explore it", scores: { activity: 2, sociability: 0, decision: 2, stress: -1 } },
+      { text: "Cautiously approach, touch lightly before deciding", scores: { activity: 0, sociability: 0, decision: -1, stress: 1 } },
+      { text: "Show no interest at all", scores: { activity: -2, sociability: 0, decision: 0, stress: 0 } },
+      { text: "Avoid it due to fear", scores: { activity: -1, sociability: -1, decision: -1, stress: 2 } }
     ],
     tips: {
-      0: "高活跃性的猫咪，前庭系统敏感度较低，多巴胺受体活跃",
-      1: "80%的猫咪都会表现出某种程度的初步评估行为",
-      2: "可能是年龄较大的猫，或者玩具类型不符合猎物模拟特征",
-      3: "这种反应可能表明您的猫咪在幼年阶段缺乏足够的环境刺激"
+      0: "Highly active cats have low vestibular system sensitivity and active dopamine receptors",
+      1: "80% of cats show some degree of initial assessment behavior",
+      2: "May be an older cat, or the toy type doesn't match prey simulation characteristics",
+      3: "This reaction may indicate your cat lacked sufficient environmental stimulation during kittenhood"
     }
   },
   {
     id: 3,
-    question: "有陌生猫进入您家猫的领地时，您的猫通常会：",
+    question: "When a strange cat enters your cat's territory, your cat usually:",
     options: [
-      { text: "立即上前挑战或发出警告", scores: { activity: 1, sociability: -1, decision: 2, stress: 1 } },
-      { text: "保持距离观察，逐渐接近", scores: { activity: 0, sociability: 0, decision: -1, stress: 0 } },
-      { text: "躲起来，避免接触", scores: { activity: -1, sociability: -2, decision: -1, stress: 2 } },
-      { text: "尝试友好互动和嗅探", scores: { activity: 1, sociability: 2, decision: 0, stress: -1 } }
+      { text: "Immediately challenges or issues a warning", scores: { activity: 1, sociability: -1, decision: 2, stress: 1 } },
+      { text: "Keeps distance, observes, gradually approaches", scores: { activity: 0, sociability: 0, decision: -1, stress: 0 } },
+      { text: "Hides and avoids contact", scores: { activity: -1, sociability: -2, decision: -1, stress: 2 } },
+      { text: "Attempts friendly interaction and sniffing", scores: { activity: 1, sociability: 2, decision: 0, stress: -1 } }
     ],
     tips: {
-      0: "领地防御性强，睾酮水平通常高于平均值28%",
-      1: "最常见的领地防御策略，尤其在成年猫中",
-      2: "可能表明在社会等级中位置较低或过去有负面互动经历",
-      3: "社交性极高，催产素水平通常高于平均值，多见于幼年时期多猫环境中成长的猫"
+      0: "Strong territorial defense, testosterone levels usually 28% above average",
+      1: "Most common territorial defense strategy, especially in adult cats",
+      2: "May indicate a lower position in social hierarchy or past negative interaction experiences",
+      3: "Highly social, oxytocin levels usually above average, common in cats raised in multi-cat environments during kittenhood"
     }
   },
   {
     id: 4,
-    question: "您的猫独自在家时通常会：",
+    question: "When your cat is home alone, it usually:",
     options: [
-      { text: "到处探索，玩耍，不停活动", scores: { activity: 2, sociability: 0, decision: 1, stress: -1 } },
-      { text: "大部分时间睡觉或休息", scores: { activity: -2, sociability: 0, decision: 0, stress: 0 } },
-      { text: "在窗台或高处观察外面", scores: { activity: 0, sociability: 0, decision: 0, stress: 0 } },
-      { text: "焦虑不安，发出叫声", scores: { activity: 1, sociability: 2, decision: -1, stress: 2 } }
+      { text: "Explores everywhere, plays, stays active", scores: { activity: 2, sociability: 0, decision: 1, stress: -1 } },
+      { text: "Sleeps or rests most of the time", scores: { activity: -2, sociability: 0, decision: 0, stress: 0 } },
+      { text: "Observes outside from a window or high place", scores: { activity: 0, sociability: 0, decision: 0, stress: 0 } },
+      { text: "Gets anxious, makes vocalizations", scores: { activity: 1, sociability: 2, decision: -1, stress: 2 } }
     ],
     tips: {
-      0: "高活跃型猫咪，即使没有社交刺激也能自我娱乐",
-      1: "猫科动物天生会保存能量，平均每天睡12-16小时",
-      2: "这种行为展示了猫咪的天然捕猎者本能",
-      3: "分离焦虑在猫中比狗少见，但约5%的猫会有明显表现"
+      0: "Highly active cats can entertain themselves even without social stimulation",
+      1: "Felines naturally conserve energy, sleeping 12-16 hours per day on average",
+      2: "This behavior demonstrates a cat's natural predator instinct",
+      3: "Separation anxiety is less common in cats than dogs, but about 5% of cats show obvious signs"
     }
   },
   {
     id: 5,
-    question: "在喂食时间之前，您的猫会：",
+    question: "Before feeding time, your cat will:",
     options: [
-      { text: "积极提醒您，持续不断直到喂食", scores: { activity: 1, sociability: 1, decision: 2, stress: 0 } },
-      { text: "安静等待，偶尔示意", scores: { activity: -1, sociability: 0, decision: -1, stress: -1 } },
-      { text: "不表现出特别关注，直到食物出现", scores: { activity: -2, sociability: -1, decision: -2, stress: -2 } },
-      { text: "过度兴奋，可能会跳跃或绕腿", scores: { activity: 2, sociability: 2, decision: 1, stress: 1 } }
+      { text: "Actively remind you, continuously until fed", scores: { activity: 1, sociability: 1, decision: 2, stress: 0 } },
+      { text: "Wait quietly, occasionally signaling", scores: { activity: -1, sociability: 0, decision: -1, stress: -1 } },
+      { text: "Show no special attention until food appears", scores: { activity: -2, sociability: -1, decision: -2, stress: -2 } },
+      { text: "Get overly excited, may jump or circle your legs", scores: { activity: 2, sociability: 2, decision: 1, stress: 1 } }
     ],
     tips: {
-      0: "这种行为表明您的猫可能有较强的时间感和预期奖励机制",
-      1: "33%的猫咪会在喂食前10-15分钟开始表现出轻微的期待行为",
-      2: "自给型进食行为，可能是幼年时期有充足食物来源的经历",
-      3: "高度食物激励型猫咪，可能对食物有较高敏感性或曾经历过食物匮乏"
+      0: "This behavior indicates your cat may have a strong sense of time and expectation of rewards",
+      1: "33% of cats start showing slight anticipatory behavior 10-15 minutes before feeding",
+      2: "Self-sufficient feeding behavior, possibly from kitten experiences with abundant food sources",
+      3: "Highly food-motivated cats may have higher food sensitivity or past experiences of food scarcity"
     }
   }
 ];
 
-// 测试问题组件
+// Test question component
 const QuestionComponent = ({ question, onAnswer, currentTip, setCurrentTip }) => {
-  // 添加选项点击的状态
+  // Add option click state
   const [selectedOption, setSelectedOption] = useState(null);
   
   const handleOptionClick = (index) => {
     setSelectedOption(index);
-    setCurrentTip(index); // 更新提示
+    setCurrentTip(index); // Update tip
   };
   
   const handleNextQuestion = () => {
     if (selectedOption !== null) {
-      onAnswer(question.options[selectedOption].scores); // 传递选中的分数
-      setSelectedOption(null); // 重置选择状态
+      onAnswer(question.options[selectedOption].scores); // Pass selected scores
+      setSelectedOption(null); // Reset selection state
     }
   };
   
@@ -347,14 +347,14 @@ const QuestionComponent = ({ question, onAnswer, currentTip, setCurrentTip }) =>
           onClick={handleNextQuestion}
           disabled={selectedOption === null}
         >
-          下一题
+          Next
         </button>
       </div>
     </div>
   );
 };
 
-// 主测试组件
+// Main test component
 export default function PersonalityTest() {
   const [testStarted, setTestStarted] = useState(false);
   const [formData, setFormData] = useState(null);
@@ -369,28 +369,28 @@ export default function PersonalityTest() {
   };
   
   const handleAnswer = (questionScores) => {
-    // 更新总分
+    // Update total score
     const updatedScores = { ...scores };
     Object.keys(questionScores).forEach(key => {
       updatedScores[key] += questionScores[key];
     });
     setScores(updatedScores);
     
-    // 重置提示状态
+    // Reset tip state
     setCurrentTip(null);
     
-    // 前进到下一个问题或完成测试
+    // Proceed to next question or complete test
     if (currentQuestionIndex < questions.length - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
     } else {
       setTestComplete(true);
       
-      // 创建一个提交表单来跳转到结果页面
+      // Create a form submission to redirect to results page
       const form = document.createElement('form');
       form.method = 'GET';
       form.action = 'personality-results.html';
       
-      // 添加分数参数
+      // Add score parameters
       const addParam = (name, value) => {
         const input = document.createElement('input');
         input.type = 'hidden';
@@ -404,25 +404,25 @@ export default function PersonalityTest() {
       addParam('d', updatedScores.decision);
       addParam('t', updatedScores.stress);
       
-      // 添加猫咪信息
+      // Add cat information
       if (formData) {
         addParam('name', formData.catName);
         addParam('breed', formData.breed);
       }
       
-      // 添加表单到文档并提交
+      // Add form to document and submit
       document.body.appendChild(form);
       form.submit();
     }
   };
 
   return (
-    <Layout title="猫咪性格测试">
+    <Layout title="Cat Personality Test">
       <section className="bg-gradient-to-r from-primary-light to-primary py-16 text-white">
         <div className="container mx-auto px-4 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">猫咪性格测试</h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-6">Cat Personality Test</h1>
           <p className="text-xl max-w-3xl mx-auto">
-            通过回答一系列关于您猫咪行为的问题，发现它属于哪种独特的性格类型。
+            Discover your cat's unique personality type by answering a series of questions about their behavior.
           </p>
         </div>
       </section>
@@ -453,8 +453,8 @@ export default function PersonalityTest() {
                     <svg className="w-16 h-16 text-success mx-auto mb-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"></path>
                     </svg>
-                    <p className="text-xl font-bold mb-2">已记录您的回答</p>
-                    <p className="text-neutral-500">即将进入下一题...</p>
+                    <p className="text-xl font-bold mb-2">Your answer has been recorded</p>
+                    <p className="text-neutral-500">Going to the next question...</p>
                   </div>
                 </div>
               )}
@@ -472,9 +472,9 @@ export default function PersonalityTest() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                 </svg>
               </div>
-              <h3 className="text-xl font-bold mb-3">科学准确</h3>
+              <h3 className="text-xl font-bold mb-3">Scientifically Accurate</h3>
               <p className="text-neutral-600">
-                测试基于Feline Five猫咪五因素理论，结合多项科学研究，为您的猫咪提供准确的性格分析。
+                Based on the Feline Five personality theory and multiple scientific studies, we provide accurate personality analysis for your cat.
               </p>
             </div>
 
@@ -484,9 +484,9 @@ export default function PersonalityTest() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                 </svg>
               </div>
-              <h3 className="text-xl font-bold mb-3">快速简便</h3>
+              <h3 className="text-xl font-bold mb-3">Quick and Easy</h3>
               <p className="text-neutral-600">
-                只需5分钟，回答20个简单问题，即可了解您猫咪的独特性格特点。
+                Only 5 minutes to answer 20 simple questions and understand your cat's unique personality traits.
               </p>
             </div>
 
@@ -496,9 +496,9 @@ export default function PersonalityTest() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
                 </svg>
               </div>
-              <h3 className="text-xl font-bold mb-3">实用建议</h3>
+              <h3 className="text-xl font-bold mb-3">Practical Advice</h3>
               <p className="text-neutral-600">
-                测试结果包含个性化的养护建议，帮助您根据猫咪性格特点提供更适合的环境和互动方式。
+                Test results include personalized care recommendations to help you provide a more suitable environment and interaction based on your cat's personality.
               </p>
             </div>
           </div>

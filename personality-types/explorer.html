@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explorer HETC | Cat Personality Type</title>
+    <meta name="description" content="The Explorer (HETC) cat personality is characterized by high activity, extroversion, decisiveness, and low stress sensitivity. Learn how to care for these adventurous felines.">
+    <link rel="icon" href="../public/favicon.ico">
+    <style>
+        /* Base Styles */
+        :root {
+            --primary-color: #FF7EB3;
+            --primary-light: #FFB5C9;
+            --primary-dark: #e66a9c;
+            --secondary-color: #ff9500;
+            --accent-color: #40c057;
+            --neutral-100: #f7f7f7;
+            --neutral-200: #e1e1e1;
+            --neutral-300: #cfcfcf;
+            --neutral-400: #b1b1b1;
+            --neutral-500: #9e9e9e;
+            --neutral-600: #7e7e7e;
+            --neutral-700: #626262;
+            --neutral-800: #515151;
+            --neutral-900: #3b3b3b;
+            --text-color: #333;
+            --bg-color: #fff;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --shadow-large: 0 10px 15px rgba(0, 0, 0, 0.1);
+            --border-radius: 8px;
+            --container-width: 1200px;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+        }
+        
+        .container {
+            width: 100%;
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Animation Keyframes */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+        
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .animate-pulse {
+            animation: pulse 4s ease-in-out infinite;
+        }
+        
+        .animate-bounce {
+            animation: bounce 3s ease-in-out infinite;
+        }
+        
+        /* Floating GIFs */
+        .floating-gif {
+            position: absolute;
+            z-index: 1;
+            border-radius: 12px;
+            box-shadow: var(--shadow-large);
+            max-width: 150px;
+        }
+        
+        .top-right {
+            top: 80px;
+            right: 5%;
+            animation: float 7s ease-in-out infinite;
+        }
+        
+        .bottom-left {
+            bottom: -50px;
+            left: 5%;
+            animation: bounce 5s ease-in-out infinite;
+        }
+        
+        /* Button Styles */
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            text-decoration: none;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            font-size: 1rem;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+            box-shadow: var(--shadow);
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(230, 106, 156, 0.2);
+        }
+        
+        .btn-secondary {
+            background-color: var(--neutral-100);
+            color: var(--secondary-color);
+            border: 2px solid var(--neutral-300);
+        }
+        
+        .btn-secondary:hover {
+            background-color: var(--neutral-200);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 15px 0;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+        
+        .logo img {
+            height: 30px;
+            margin-right: 10px;
+        }
+        
+        nav {
+            display: flex;
+            gap: 20px;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: var(--neutral-700);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        nav a:hover {
+            color: var(--primary-color);
+        }
+        
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .menu-button {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--neutral-700);
+        }
+        
+        /* Type Header Section */
+        .type-header {
+            background-color: var(--primary-light);
+            color: var(--neutral-800);
+            padding: 80px 0 100px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            background-image: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
+        }
+        
+        .type-badge {
+            display: inline-block;
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .type-title {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            color: white;
+        }
+        
+        .type-traits {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            color: white;
+        }
+        
+        /* Main Content Styles */
+        main {
+            padding: 50px 0;
+        }
+        
+        main .container {
+            display: grid;
+            grid-template-columns: 7fr 3fr;
+            gap: 40px;
+        }
+        
+        .content section {
+            margin-bottom: 40px;
+        }
+        
+        h2 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--secondary-color);
+        }
+        
+        h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--secondary-color);
+        }
+        
+        p {
+            margin-bottom: 15px;
+        }
+        
+        /* Personality Profile */
+        .personality-profile {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+            margin-top: -70px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .stress-indicator {
+            margin: 25px 0;
+            padding: 20px;
+            background-color: var(--neutral-100);
+            border-radius: var(--border-radius);
+        }
+        
+        .meter {
+            height: 12px;
+            background-color: var(--neutral-300);
+            border-radius: 6px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+        
+        .meter-fill {
+            height: 100%;
+            background-color: var(--accent-color);
+        }
+        
+        .traits-chart {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 25px 0;
+        }
+        
+        .trait {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .trait-meter {
+            height: 8px;
+            background-color: var(--neutral-200);
+            border-radius: 4px;
+            position: relative;
+        }
+        
+        .trait-meter.high::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 80%;
+            background-color: var(--primary-color);
+            border-radius: 4px;
+        }
+        
+        .trait-meter.medium::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 50%;
+            background-color: var(--secondary-color);
+            border-radius: 4px;
+        }
+        
+        .trait-meter.low::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 30%;
+            background-color: var(--neutral-500);
+            border-radius: 4px;
+        }
+        
+        .personality-gif {
+            display: block;
+            max-width: 100%;
+            border-radius: var(--border-radius);
+            margin: 20px auto;
+        }
+        
+        /* Key Characteristics */
+        .key-characteristics {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+        }
+        
+        .key-characteristics ul {
+            list-style-type: none;
+        }
+        
+        .key-characteristics li {
+            padding: 12px 0;
+            border-bottom: 1px solid var(--neutral-200);
+        }
+        
+        .key-characteristics li:last-child {
+            border-bottom: none;
+        }
+        
+        /* Care Guidelines */
+        .care-guidelines {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+        }
+        
+        .care-section {
+            margin-bottom: 25px;
+        }
+        
+        .care-section ul {
+            list-style-type: disc;
+            margin-left: 20px;
+        }
+        
+        .care-section li {
+            margin-bottom: 8px;
+        }
+        
+        /* Sidebar */
+        .sidebar {
+            position: relative;
+        }
+        
+        .sidebar > div {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 25px;
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
+        }
+        
+        .product-card {
+            display: flex;
+            gap: 15px;
+            padding: 15px 0;
+            border-bottom: 1px solid var(--neutral-200);
+        }
+        
+        .product-card:last-child {
+            border-bottom: none;
+        }
+        
+        .product-image {
+            width: 80px;
+            height: 80px;
+            background-color: var(--neutral-100);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+        
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .product-info h4 {
+            margin-bottom: 5px;
+            font-size: 1rem;
+        }
+        
+        .price {
+            display: inline-block;
+            margin-top: 5px;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+        
+        .tip {
+            margin-bottom: 20px;
+        }
+        
+        .tip:last-child {
+            margin-bottom: 0;
+        }
+        
+        .tip h4 {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            color: var(--secondary-color);
+        }
+        
+        .ideal-home ul {
+            list-style-type: disc;
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+        
+        .ideal-home li {
+            margin-bottom: 8px;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .cta-title {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .cta-description {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.9;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--neutral-800);
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-wrap: wrap;
+            }
+            
+            nav {
+                display: none;
+                width: 100%;
+                flex-direction: column;
+                padding: 15px 0;
+            }
+            
+            nav.active {
+                display: flex;
+            }
+            
+            .menu-button {
+                display: block;
+            }
+            
+            main .container {
+                grid-template-columns: 1fr;
+            }
+            
+            .type-title {
+                font-size: 2.3rem;
+            }
+            
+            .cta-title {
+                font-size: 2rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .floating-gif {
+                max-width: 100px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation bar -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="../index.html" class="logo">
+                    <img src="../public/images/logo.svg" alt="Cat Personality Types">
+                    <span>Cat Personality Test</span>
+                </a>
+                
+                <nav>
+                    <a href="../personality-test.html">Personality Test</a>
+                    <a href="../personality-types.html">Personality Types</a>
+                    <a href="../about.html">About Us</a>
+                    <a href="../blog.html">Blog</a>
+                </nav>
+                
+                <div class="header-actions">
+                    <a href="../personality-test.html" class="btn btn-primary">Take the Test</a>
+                    <button class="menu-button">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="3" y1="12" x2="21" y2="12"></line>
+                            <line x1="3" y1="6" x2="21" y2="6"></line>
+                            <line x1="3" y1="18" x2="21" y2="18"></line>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Type header section -->
+    <section class="type-header">
+        <div class="container">
+            <div class="type-badge animate-float">HETC</div>
+            <h1 class="type-title">Explorer</h1>
+            <p class="type-traits">High Activity + Extroverted + Decisive + Low Stress</p>
+        </div>
+        <!-- Floating GIFs -->
+        <img src="../images/Im Ready Lets Go GIF by Leroy Patterson.gif" alt="Excited explorer cat" class="floating-gif top-right">
+        <img src="../images/Cat Hello GIF.gif" alt="Friendly cat" class="floating-gif bottom-left">
+    </section>
+
+    <!-- Main content -->
+    <main>
+        <div class="container">
+            <div class="content">
+                <!-- Personality Profile -->
+                <section class="personality-profile">
+                    <h2>Personality Profile: The Explorer Cat</h2>
+                    <p>Explorer cats are naturally curious, socially confident, and highly adaptable felines who thrive on novelty and interaction. These high-energy cats approach life with enthusiasm and resilience, making quick decisions and readily embracing new experiences. Their combination of extroversion and low stress sensitivity creates a bold, adventure-seeking personality that brings dynamic energy to any household.</p>
+                    
+                    <div class="stress-indicator">
+                        <h3>Stress Sensitivity: 25%</h3>
+                        <div class="meter">
+                            <div class="meter-fill" style="width: 25%"></div>
+                        </div>
+                        <p>Explorer cats have remarkably low stress reactivity, allowing them to navigate changes and challenges with ease. This resilience stems from their naturally balanced neurochemistry, which favors dopamine and serotonin production, creating a positive outlook and robust stress-buffering system.</p>
+                    </div>
+
+                    <div class="traits-chart">
+                        <div class="trait">
+                            <span>Activity Level</span>
+                            <div class="trait-meter high"></div>
+                        </div>
+                        <div class="trait">
+                            <span>Sociability</span>
+                            <div class="trait-meter high"></div>
+                        </div>
+                        <div class="trait">
+                            <span>Adaptability</span>
+                            <div class="trait-meter high"></div>
+                        </div>
+                        <div class="trait">
+                            <span>Independence</span>
+                            <div class="trait-meter medium"></div>
+                        </div>
+                        <div class="trait">
+                            <span>Playfulness</span>
+                            <div class="trait-meter high"></div>
+                        </div>
+                    </div>
+
+                    <img src="../images/Cat Swimming GIF.gif" alt="Adventurous cat gif" class="personality-gif">
+                </section>
+
+                <!-- Key Characteristics -->
+                <section class="key-characteristics">
+                    <h2>Key Characteristics</h2>
+                    <ul>
+                        <li><strong>Boundless Curiosity:</strong> Consistently explores new environments, objects, and situations with enthusiasm</li>
+                        <li><strong>Social Confidence:</strong> Readily approaches new people and animals with a friendly, outgoing demeanor</li>
+                        <li><strong>Adaptable Nature:</strong> Quickly adjusts to changes in routine, environment, and household dynamics</li>
+                        <li><strong>Decisive Action:</strong> Makes quick decisions without excessive deliberation or hesitation</li>
+                        <li><strong>Playful Energy:</strong> Maintains kitten-like playfulness well into adulthood with high activity levels</li>
+                        <li><strong>Resilient Temperament:</strong> Bounces back quickly from startling experiences with minimal stress response</li>
+                        <li><strong>Interactive Engagement:</strong> Seeks involvement in household activities and human interactions</li>
+                    </ul>
+                </section>
+
+                <!-- Care Guidelines -->
+                <section class="care-guidelines">
+                    <h2>Care Guidelines for Explorer Cats</h2>
+                    
+                    <div class="care-section">
+                        <h3>Environmental Enrichment</h3>
+                        <p>Explorer cats thrive in stimulating environments that satisfy their need for novelty and activity. Their living space should include:</p>
+                        <ul>
+                            <li>Rotating selection of toys to maintain interest and prevent boredom</li>
+                            <li>Vertical spaces (cat trees, shelves) for climbing and surveying their territory</li>
+                            <li>Puzzle feeders and interactive toys that challenge their problem-solving abilities</li>
+                            <li>Safe outdoor access via catios, window perches, or supervised harness walks</li>
+                            <li>Novel objects introduced regularly to satisfy curiosity (boxes, paper bags, new toys)</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="care-section">
+                        <h3>Social Interaction</h3>
+                        <p>These extroverted cats have significant social needs that should be addressed through:</p>
+                        <ul>
+                            <li>Daily interactive play sessions (at least 20-30 minutes, possibly in multiple sessions)</li>
+                            <li>Regular positive interactions with visitors and new people when possible</li>
+                            <li>Consideration of a compatible feline companion for social stimulation</li>
+                            <li>Training sessions using positive reinforcement, which satisfies both mental stimulation and social needs</li>
+                            <li>Inclusion in family activities where safe and appropriate</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="care-section">
+                        <h3>Managing Energy Levels</h3>
+                        <p>Explorer cats' high energy requires appropriate channels to prevent unwanted behaviors:</p>
+                        <ul>
+                            <li>Structured play sessions that mimic hunting behaviors (chase, pounce, capture)</li>
+                            <li>Activity circuits around the home with different stations for climbing, jumping, and exploring</li>
+                            <li>Agility training or obstacle courses for physical and mental exercise</li>
+                            <li>Consider leash training for safe outdoor adventures to expand their exploration territory</li>
+                            <li>Schedule play sessions before meals to establish a natural hunt-eat-groom-sleep routine</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="care-section">
+                        <h3>Health Considerations</h3>
+                        <p>While naturally resilient, Explorer cats need specific health considerations:</p>
+                        <ul>
+                            <li>Higher caloric needs due to increased activity levels (adjust feeding accordingly)</li>
+                            <li>Regular safety checks of the environment as these cats may access unexpected areas</li>
+                            <li>Potentially increased risk of injuries due to adventurous behavior</li>
+                            <li>Possible higher parasite exposure if allowed outdoor access</li>
+                            <li>Regular veterinary check-ups to monitor weight and assess any activity-related wear on joints</li>
+                        </ul>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Sidebar with recommendations -->
+            <div class="sidebar">
+                <div class="recommended-products">
+                    <h3>Recommended Products</h3>
+                    
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="../public/images/interactive-toy.jpg" alt="Interactive Laser Toy">
+                        </div>
+                        <div class="product-info">
+                            <h4>Automatic Interactive Laser Toy</h4>
+                            <p>Randomly moving laser pattern provides exercise and mental stimulation</p>
+                            <span class="price">$34.99</span>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="../public/images/adventure-backpack.jpg" alt="Cat Backpack">
+                        </div>
+                        <div class="product-info">
+                            <h4>Traveler Cat Backpack</h4>
+                            <p>Ventilated carrier backpack for safe outdoor adventures and exploration</p>
+                            <span class="price">$59.99</span>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="../public/images/puzzle-feeder.jpg" alt="Interactive Feeder">
+                        </div>
+                        <div class="product-info">
+                            <h4>Advanced Puzzle Feeder</h4>
+                            <p>Multi-level puzzle toy that challenges problem-solving skills during feeding</p>
+                            <span class="price">$26.50</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="behavior-tips">
+                    <h3>Behavior Management Tips</h3>
+                    
+                    <div class="tip">
+                        <h4>Redirecting Mischief</h4>
+                        <p>Explorer cats' curiosity may lead to mischief. When you catch them investigating forbidden areas, redirect their attention to an acceptable alternative immediately. Consistency is key – provide similar sensory experiences in allowed activities.</p>
+                    </div>
+                    
+                    <div class="tip">
+                        <h4>Creating Exploration Zones</h4>
+                        <p>Designate specific areas of your home as "exploration zones" with changing elements. Rotate items like cardboard boxes, paper bags, tunnels, and new toys weekly to satisfy their need for novelty without them seeking it in off-limits areas.</p>
+                    </div>
+                    
+                    <div class="tip">
+                        <h4>Establishing Boundaries</h4>
+                        <p>While adaptable, Explorer cats benefit from clear boundaries. Use positive reinforcement to teach them where they can and cannot go. Consider motion-activated deterrents for areas that must remain off-limits when you're not supervising.</p>
+                    </div>
+                </div>
+                
+                <div class="ideal-home">
+                    <h3>Ideal Companions</h3>
+                    <p>Explorer cats thrive in dynamic households with owners who match their energy and engagement level. They're well-suited for:</p>
+                    <ul>
+                        <li>Active individuals or families who enjoy interactive play</li>
+                        <li>Homes where someone is frequently present for interaction</li>
+                        <li>Households with secured outdoor access or willingness to provide supervised outdoor time</li>
+                        <li>Families looking for an engaging, sociable companion</li>
+                        <li>Multi-pet households with similarly playful animals</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2 class="cta-title">Want to discover your cat's personality type?</h2>
+            <p class="cta-description">Take our detailed cat personality test to receive personalized care recommendations tailored to your cat's unique traits and needs.</p>
+            <div class="cta-buttons">
+                <a href="../personality-test.html" class="btn btn-primary">Take the Test</a>
+                <a href="../personality-types.html" class="btn btn-secondary">View All Types</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>© 2023 Cat Personality Test. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.menu-button').addEventListener('click', function() {
+            document.querySelector('nav').classList.toggle('active');
+        });
+    </script>
+</body>
+</html> 

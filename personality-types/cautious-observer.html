@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cautious Observer | Cat Personality Type</title>
+    <meta name="description" content="The Cautious Observer cat personality type - has high cortisol levels, is extremely alert to sounds and smells, and requires gradual introduction to new elements.">
+    <link rel="icon" href="../public/favicon.ico">
+    <style>
+        /* Base styles */
+        :root {
+            --primary: #ff7eb3;
+            --primary-light: #ffa8ce;
+            --primary-lighter: #ffebf4;
+            --primary-dark: #e66a9c;
+            --primary-gradient: linear-gradient(135deg, #ff7eb3 0%, #ff9a6c 100%);
+            --secondary: #ff9500;
+            --secondary-light: #ffd8a8;
+            --success: #40c057;
+            --success-light: #b2f2bb;
+            --danger: #ff6b6b;
+            --danger-light: #ffc9c9;
+            --neutral-100: #f8f9fa;
+            --neutral-200: #e9ecef;
+            --neutral-300: #dee2e6;
+            --neutral-400: #ced4da;
+            --neutral-500: #adb5bd;
+            --neutral-600: #6c757d;
+            --neutral-700: #495057;
+            --neutral-800: #343a40;
+            --neutral-900: #212529;
+            --type-color: #B3E0FF; /* Light blue for Cautious Observer */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--neutral-100);
+            color: var(--neutral-900);
+            line-height: 1.6;
+        }
+
+        a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        a:hover {
+            color: var(--primary-dark);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Animation effects */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(-2deg); }
+            50% { transform: rotate(2deg); }
+        }
+
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .animate-pulse {
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        .animate-wiggle {
+            animation: wiggle 3s ease-in-out infinite;
+        }
+
+        /* Button styles */
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 12px;
+            font-weight: 500;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background: var(--primary-gradient);
+            color: white;
+            box-shadow: 0 4px 15px rgba(255, 126, 179, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 126, 179, 0.4);
+        }
+
+        .btn-secondary {
+            background-color: white;
+            color: var(--primary);
+            border: 1px solid var(--primary-light);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .btn-secondary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            background-color: var(--primary-lighter);
+        }
+
+        /* Navigation bar */
+        header {
+            background-color: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--neutral-200);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 40px;
+            margin-right: 12px;
+        }
+
+        .logo span {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        nav {
+            display: none;
+        }
+
+        @media (min-width: 768px) {
+            nav {
+                display: flex;
+                gap: 32px;
+            }
+
+            nav a {
+                color: var(--neutral-800);
+                font-weight: 500;
+            }
+
+            nav a:hover {
+                color: var(--primary);
+            }
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .menu-button {
+            display: block;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        @media (min-width: 768px) {
+            .menu-button {
+                display: none;
+            }
+        }
+
+        /* Type Header */
+        .type-header {
+            background-color: var(--type-color);
+            color: var(--neutral-900);
+            padding: 60px 0 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .type-title-area {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            z-index: 5;
+        }
+
+        .type-badge {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.75rem;
+            margin-bottom: 24px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .type-name {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+
+        .type-traits {
+            font-size: 1.25rem;
+            max-width: 800px;
+            margin: 0 auto 24px;
+            opacity: 0.8;
+        }
+
+        .floating-gif {
+            position: absolute;
+            border-radius: 50%;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            z-index: 1;
+        }
+
+        .floating-gif.top-right {
+            top: 20%;
+            right: 5%;
+            width: 120px;
+            height: 120px;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .floating-gif.bottom-left {
+            bottom: 10%;
+            left: 5%;
+            width: 100px;
+            height: 100px;
+            animation: float 4s ease-in-out infinite;
+            animation-delay: 1s;
+        }
+
+        .floating-gif img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        /* Main Content Area */
+        .personality-content {
+            padding: 60px 0;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+        }
+
+        @media (min-width: 992px) {
+            .content-grid {
+                grid-template-columns: 2fr 1fr;
+            }
+        }
+
+        .main-content {
+            background-color: white;
+            border-radius: 16px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            padding: 40px;
+        }
+
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .sidebar-card {
+            background-color: white;
+            border-radius: 16px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            padding: 24px;
+        }
+
+        /* Personality Profile Section */
+        .section-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+            color: var(--neutral-800);
+            border-bottom: 2px solid var(--primary-lighter);
+            padding-bottom: 12px;
+        }
+
+        .profile-text {
+            margin-bottom: 32px;
+        }
+
+        .profile-text p {
+            margin-bottom: 16px;
+        }
+
+        .stress-meter {
+            margin: 32px 0;
+            background-color: var(--neutral-200);
+            height: 12px;
+            border-radius: 6px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stress-level {
+            height: 100%;
+            width: 75%; /* Adjusted based on personality type - high stress */
+            background: linear-gradient(90deg, #40c057 0%, #ffec99 50%, #ff6b6b 100%);
+            border-radius: 6px;
+        }
+
+        .stress-marker {
+            position: absolute;
+            top: -6px;
+            left: 75%; /* Same as stress-level width */
+            width: 24px;
+            height: 24px;
+            background-color: white;
+            border: 3px solid var(--primary);
+            border-radius: 50%;
+        }
+
+        .stress-labels {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 8px;
+            font-size: 0.9rem;
+            color: var(--neutral-600);
+        }
+
+        /* Traits Chart */
+        .traits-chart {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin: 32px 0;
+        }
+
+        @media (min-width: 768px) {
+            .traits-chart {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        .trait-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .trait-bar {
+            width: 100%;
+            height: 160px;
+            background-color: var(--neutral-200);
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 12px;
+        }
+
+        .trait-level {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: var(--type-color);
+            border-radius: 8px 8px 0 0;
+        }
+
+        .trait-name {
+            font-weight: 600;
+            color: var(--neutral-800);
+        }
+
+        /* Key Characteristics */
+        .characteristics-list {
+            padding-left: 20px;
+            margin-bottom: 32px;
+        }
+
+        .characteristics-list li {
+            margin-bottom: 12px;
+            position: relative;
+        }
+
+        .characteristics-list li::before {
+            content: "•";
+            color: var(--primary);
+            font-weight: 700;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+
+        /* Care Guidelines */
+        .care-guidelines {
+            margin-bottom: 32px;
+        }
+
+        .guideline-category {
+            margin-bottom: 24px;
+        }
+
+        .category-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--primary-dark);
+        }
+
+        /* Recommended Products */
+        .product-list {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+        }
+
+        .product-card {
+            display: flex;
+            flex-direction: column;
+            background-color: white;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--neutral-200);
+            transition: all 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-image {
+            width: 100%;
+            aspect-ratio: 16/9;
+            background-color: var(--primary-lighter);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-weight: 500;
+        }
+
+        .product-info {
+            padding: 16px;
+        }
+
+        .product-name {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--neutral-800);
+        }
+
+        .product-description {
+            font-size: 0.9rem;
+            color: var(--neutral-600);
+            margin-bottom: 12px;
+        }
+
+        .product-price {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        /* Behavior Tips */
+        .tips-list {
+            padding-left: 0;
+            list-style-type: none;
+        }
+
+        .tips-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid var(--neutral-200);
+        }
+
+        .tips-list li:last-child {
+            border-bottom: none;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background-color: var(--primary-lighter);
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .cta-title {
+            font-size: 2.25rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--neutral-800);
+        }
+
+        .cta-description {
+            font-size: 1.25rem;
+            max-width: 800px;
+            margin: 0 auto 32px;
+            color: var(--neutral-700);
+        }
+
+        .cta-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @media (min-width: 576px) {
+            .cta-buttons {
+                flex-direction: row;
+            }
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--neutral-800);
+            color: white;
+            padding: 24px 0;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation bar -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="../index.html" class="logo">
+                    <img src="../public/images/logo.svg" alt="Cat Personality Types">
+                    <span>Cat Personality Test</span>
+                </a>
+                
+                <nav>
+                    <a href="../personality-test.html">Personality Test</a>
+                    <a href="../personality-types.html">Personality Types</a>
+                    <a href="../about.html">About Us</a>
+                    <a href="../blog.html">Blog</a>
+                </nav>
+                
+                <div class="header-actions">
+                    <a href="../personality-test.html" class="btn btn-primary">Take the Test</a>
+                    <button class="menu-button">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="3" y1="12" x2="21" y2="12"></line>
+                            <line x1="3" y1="6" x2="21" y2="6"></line>
+                            <line x1="3" y1="18" x2="21" y2="18"></line>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Type Header -->
+    <section class="type-header">
+        <div class="container">
+            <div class="type-title-area">
+                <div class="type-badge animate-pulse">CO</div>
+                <h1 class="type-name">Cautious Observer</h1>
+                <p class="type-traits">High cortisol levels + Extremely alert to sounds + Requires gradual introduction to changes</p>
+            </div>
+        </div>
+        <!-- Floating GIFs -->
+        <div class="floating-gif top-right">
+            <img src="../images/alert-cat.gif" alt="Alert cat watching environment">
+        </div>
+        <div class="floating-gif bottom-left">
+            <img src="../images/cautious-cat.gif" alt="Cautious cat approaching with care">
+        </div>
+    </section>
+
+    <!-- Main Content Area -->
+    <section class="personality-content">
+        <div class="container">
+            <div class="content-grid">
+                <div class="main-content">
+                    <!-- Personality Profile Section -->
+                    <div class="section">
+                        <h2 class="section-title">Personality Profile</h2>
+                        <div class="profile-text">
+                            <p>The Cautious Observer cat personality type represents felines with heightened sensitivity to environmental changes. With baseline cortisol levels 42% higher than average, these cats showcase remarkable alertness to both auditory and olfactory stimuli, often detecting changes imperceptible to humans.</p>
+                            <p>A defining characteristic is their need for gradual introduction to new elements in their environment. Research demonstrates they require a full 3-day adjustment period for new items introduced to their territory, showing measurable stress responses when this adaptation time isn't provided.</p>
+                            <p>Neurologically, Cautious Observers show enhanced activity in the amygdala and locus coeruleus regions responsible for threat detection and vigilance. This heightened brain activity creates both challenges and advantages—while these cats may seem shy or reactive, they also display exceptional environmental awareness and pattern recognition abilities.</p>
+                        </div>
+
+                        <!-- Stress Sensitivity Meter -->
+                        <div>
+                            <h3 class="category-title">Stress Sensitivity: High (75%)</h3>
+                            <div class="stress-meter">
+                                <div class="stress-level" style="width: 75%"></div>
+                                <div class="stress-marker" style="left: 75%"></div>
+                            </div>
+                            <div class="stress-labels">
+                                <span>Low Stress</span>
+                                <span>Moderate</span>
+                                <span>High Stress</span>
+                            </div>
+                            <p style="margin-top: 12px; font-size: 0.9rem; color: var(--neutral-600);">Cautious Observer cats display high stress sensitivity with various environmental triggers, particularly novel stimuli, unexpected sounds, and unfamiliar scents.</p>
+                        </div>
+
+                        <!-- Traits Chart -->
+                        <h3 class="category-title" style="margin-top: 32px;">Core Traits</h3>
+                        <div class="traits-chart">
+                            <div class="trait-item">
+                                <div class="trait-bar">
+                                    <div class="trait-level" style="height: 25%"></div>
+                                </div>
+                                <div class="trait-name">Sociability</div>
+                            </div>
+                            <div class="trait-item">
+                                <div class="trait-bar">
+                                    <div class="trait-level" style="height: 30%"></div>
+                                </div>
+                                <div class="trait-name">Adaptability</div>
+                            </div>
+                            <div class="trait-item">
+                                <div class="trait-bar">
+                                    <div class="trait-level" style="height: 70%"></div>
+                                </div>
+                                <div class="trait-name">Observation</div>
+                            </div>
+                            <div class="trait-item">
+                                <div class="trait-bar">
+                                    <div class="trait-level" style="height: 95%"></div>
+                                </div>
+                                <div class="trait-name">Alertness</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Key Characteristics -->
+                    <div class="section">
+                        <h2 class="section-title">Key Characteristics</h2>
+                        <ul class="characteristics-list">
+                            <li><strong>Heightened Sensory Processing:</strong> Cautious Observers can detect auditory stimuli 32% softer than other cat types can perceive, and they notice scent changes at concentrations below human detection thresholds.</li>
+                            <li><strong>Strategic Territory Analysis:</strong> These cats systematically map their environments, creating mental catalogs of normal sounds, scents, and visual patterns to quickly identify anomalies.</li>
+                            <li><strong>Measured Approach Behavior:</strong> Demonstrate a distinct "stop-assess-proceed" pattern when encountering new objects, pausing at specific distance intervals to gather sensory information.</li>
+                            <li><strong>Preference for Elevated Observation:</strong> Spend up to 70% of waking hours in elevated positions that provide maximum environmental visibility while minimizing their own exposure.</li>
+                            <li><strong>Ritualized Introduction Needs:</strong> Require consistent, gradual introduction protocols for new objects, people, or pets, with physiological stress markers remaining elevated until full acclimation is achieved.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Care Guidelines -->
+                    <div class="section">
+                        <h2 class="section-title">Care Guidelines</h2>
+
+                        <div class="guideline-category">
+                            <h3 class="category-title">Environment Design</h3>
+                            <p>Create a consistent, predictable living space with multiple secure observation points at different heights. Establish "safe zones" throughout your home—enclosed spaces like cat caves, partially covered beds, or access to quiet rooms—where your Cautious Observer can retreat when feeling overwhelmed. Minimize rearrangement of furniture and household items, as seemingly minor changes can create significant stress.</p>
+                        </div>
+
+                        <div class="guideline-category">
+                            <h3 class="category-title">Introduction Protocols</h3>
+                            <p>Follow the "Rule of Three" when introducing any new element to your home: First place the item in a non-central location but within view; after 24 hours, move it to a secondary territory area; only on day three should it be placed in a primary living space. For new people or pets, extend this protocol to seven days with gradually increasing exposure durations and proximity.</p>
+                        </div>
+
+                        <div class="guideline-category">
+                            <h3 class="category-title">Noise Management</h3>
+                            <p>Implement proactive noise reduction strategies, particularly for unexpected sounds. Use white noise machines or soft background music to mask jarring environmental noises. Provide advance warning for necessary loud activities by establishing consistent verbal cues before vacuum use or visitor arrivals. Consider acoustic dampening materials in rooms where your Cautious Observer spends significant time.</p>
+                        </div>
+
+                        <div class="guideline-category">
+                            <h3 class="category-title">Health Considerations</h3>
+                            <p>Monitor for stress-related conditions including cystitis, over-grooming, and gastrointestinal sensitivity, which manifest more frequently in this personality type. Consider preemptive L-theanine supplements during anticipated stressful periods. Establish a consistent veterinary visit protocol, using the same carrier, route, and waiting room strategies to reduce healthcare-associated anxiety.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sidebar">
+                    <!-- Recommended Products -->
+                    <div class="sidebar-card">
+                        <h3 class="section-title" style="margin-bottom: 16px;">Recommended Products</h3>
+                        <div class="product-list">
+                            <div class="product-card">
+                                <div class="product-image">Enclosed Cat Bed</div>
+                                <div class="product-info">
+                                    <div class="product-name">SafeHaven Enclosed Retreat</div>
+                                    <div class="product-description">Partially enclosed cat bed with sound-dampening materials and removable security cover</div>
+                                    <div class="product-price">$64.99</div>
+                                </div>
+                            </div>
+                            <div class="product-card" style="margin-top: 16px;">
+                                <div class="product-image">Calming Diffuser</div>
+                                <div class="product-info">
+                                    <div class="product-name">Sensory Equilibrium Diffuser</div>
+                                    <div class="product-description">Advanced synthetic feline facial pheromone diffuser with coverage for rooms up to the 650 sq ft</div>
+                                    <div class="product-price">$42.95</div>
+                                </div>
+                            </div>
+                            <div class="product-card" style="margin-top: 16px;">
+                                <div class="product-image">Window Perch</div>
+                                <div class="product-info">
+                                    <div class="product-name">Observer's Panorama Perch</div>
+                                    <div class="product-description">Window-mounted observation platform with partial cover and non-slip surface</div>
+                                    <div class="product-price">$37.50</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Behavior Management Tips -->
+                    <div class="sidebar-card">
+                        <h3 class="section-title" style="margin-bottom: 16px;">Behavior Management Tips</h3>
+                        <ul class="tips-list">
+                            <li><strong>Visitor Protocol:</strong> Establish a consistent routine for introducing visitors that includes letting your cat observe from a distance before any interaction is attempted.</li>
+                            <li><strong>Signal Consistency:</strong> Create distinct auditory or visual signals that consistently precede potentially stressful events to provide predictability.</li>
+                            <li><strong>Desensitization Training:</strong> Implement systematic, incremental exposure to moderate stressors using positive reinforcement to gradually build resilience.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Ideal Companions -->
+                    <div class="sidebar-card">
+                        <h3 class="section-title" style="margin-bottom: 16px;">Ideal Human Match</h3>
+                        <p>Cautious Observer cats thrive with:</p>
+                        <ul class="characteristics-list">
+                            <li>Quiet, predictable individuals who maintain consistent routines</li>
+                            <li>Patient owners willing to respect extended acclimation periods</li>
+                            <li>People who appreciate subtle communication and body language</li>
+                            <li>Those who value deep, earned trust over immediate affection</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2 class="cta-title">Want to discover your cat's personality type?</h2>
+            <p class="cta-description">Take our scientific assessment to identify your cat's unique personality profile and receive tailored care recommendations.</p>
+            <div class="cta-buttons">
+                <a href="../personality-test.html" class="btn btn-primary">Take the Test</a>
+                <a href="../personality-types.html" class="btn btn-secondary">View All Types</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>© <script>document.write(new Date().getFullYear())</script> Cat Personality Test. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.menu-button').addEventListener('click', function() {
+            const nav = document.querySelector('nav');
+            nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
+        });
+    </script>
+</body>
+</html> 

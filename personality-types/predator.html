@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>冒险家 HEPA | 猫咪性格类型</title>
+    <meta name="description" content="冒险家(HEPA)型猫咪：高活跃、外向、观察性强、高应激反应。了解如何养护这种充满活力但敏感的猫咪类型。">
+    <link rel="icon" href="../public/favicon.ico">
+    <style>
+        /* 基础样式 */
+        :root {
+            --primary: #ff7eb3;
+            --primary-light: #ffa8ce;
+            --primary-lighter: #ffebf4;
+            --primary-dark: #e66a9c;
+            --primary-gradient: linear-gradient(135deg, #ff7eb3 0%, #ff9a6c 100%);
+            --secondary: #ff9500;
+            --secondary-light: #ffd8a8;
+            --success: #40c057;
+            --success-light: #b2f2bb;
+            --danger: #ff6b6b;
+            --danger-light: #ffc9c9;
+            --neutral-100: #f8f9fa;
+            --neutral-200: #e9ecef;
+            --neutral-300: #dee2e6;
+            --neutral-400: #ced4da;
+            --neutral-500: #adb5bd;
+            --neutral-600: #6c757d;
+            --neutral-700: #495057;
+            --neutral-800: #343a40;
+            --neutral-900: #212529;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--neutral-100);
+            color: var(--neutral-900);
+            line-height: 1.6;
+        }
+
+        a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        a:hover {
+            color: var(--primary-dark);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* 按钮样式 */
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 12px;
+            font-weight: 500;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateX(-100%);
+            transition: transform 0.6s;
+            z-index: -1;
+        }
+
+        .btn:hover::before {
+            transform: translateX(0);
+        }
+
+        .btn-primary {
+            background: var(--primary-gradient);
+            color: white;
+            box-shadow: 0 4px 15px rgba(255, 126, 179, 0.3);
+        }
+
+        .btn-primary:hover {
+            background-color: #e66a9c;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 126, 179, 0.4);
+        }
+
+        /* 导航栏样式 */
+        header {
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--neutral-200);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+        }
+
+        header:hover {
+            box-shadow: 0 4px 15px rgba(255, 126, 179, 0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .logo img {
+            height: 40px;
+            margin-right: 12px;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover img {
+            transform: rotate(5deg);
+        }
+
+        .logo span {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: 0.5px;
+        }
+
+        nav {
+            display: none;
+        }
+
+        @media (min-width: 768px) {
+            nav {
+                display: flex;
+                gap: 32px;
+            }
+
+            nav a {
+                color: var(--neutral-900);
+                font-weight: 500;
+            }
+
+            nav a:hover {
+                color: var(--primary);
+            }
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .menu-button {
+            display: block;
+        }
+
+        @media (min-width: 768px) {
+            .menu-button {
+                display: none;
+            }
+        }
+
+        /* 类型详情页样式 */
+        .type-header {
+            background-color: #B5DEFF;
+            color: var(--neutral-800);
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .type-badge {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.75rem;
+            margin: 0 auto 24px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .type-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .type-traits {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* 内容部分 */
+        .type-content {
+            padding: 60px 0;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+        }
+
+        @media (min-width: 768px) {
+            .content-grid {
+                grid-template-columns: 2fr 1fr;
+            }
+        }
+
+        .type-section {
+            background-color: white;
+            border-radius: 16px;
+            padding: 32px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--neutral-800);
+            position: relative;
+            padding-bottom: 12px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--primary-gradient);
+            border-radius: 3px;
+        }
+
+        .type-description p {
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: var(--neutral-700);
+        }
+
+        .characteristics-list {
+            list-style: none;
+        }
+
+        .characteristics-list li {
+            margin-bottom: 16px;
+            padding-left: 28px;
+            position: relative;
+            color: var(--neutral-700);
+        }
+
+        .characteristics-list li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-size: 1.5rem;
+            line-height: 1;
+        }
+
+        .sidebar-section {
+            background-color: white;
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 24px;
+        }
+
+        .sidebar-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--neutral-800);
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .sidebar-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: var(--primary-gradient);
+            border-radius: 2px;
+        }
+
+        /* 商品推荐样式 */
+        .product-card {
+            display: flex;
+            margin-bottom: 16px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--neutral-200);
+        }
+
+        .product-card:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+            margin-bottom: 0;
+        }
+
+        .product-image {
+            width: 80px;
+            height: 80px;
+            background-color: var(--neutral-200);
+            border-radius: 8px;
+            overflow: hidden;
+            margin-right: 16px;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .product-info {
+            flex: 1;
+        }
+
+        .product-name {
+            font-weight: 600;
+            margin-bottom: 4px;
+            color: var(--neutral-800);
+        }
+
+        .product-description {
+            font-size: 0.9rem;
+            color: var(--neutral-600);
+            margin-bottom: 8px;
+        }
+
+        .product-price {
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        /* 行为提示样式 */
+        .tip-item {
+            margin-bottom: 16px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--neutral-200);
+        }
+
+        .tip-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+            margin-bottom: 0;
+        }
+
+        .tip-title {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--neutral-800);
+        }
+
+        .tip-content {
+            font-size: 0.95rem;
+            color: var(--neutral-700);
+        }
+
+        /* CTA区域 */
+        .cta-section {
+            background-color: var(--primary-lighter);
+            padding: 60px 0;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .cta-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--neutral-800);
+        }
+
+        .cta-description {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 24px;
+            color: var(--neutral-700);
+        }
+
+        .cta-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            justify-content: center;
+        }
+
+        /* 页脚 */
+        footer {
+            background-color: var(--neutral-800);
+            color: white;
+            padding: 48px 0;
+            margin-top: 60px;
+        }
+
+        .footer-bottom {
+            margin-top: 32px;
+            padding-top: 32px;
+            border-top: 1px solid var(--neutral-700);
+            text-align: center;
+            color: var(--neutral-400);
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="../index.html" class="logo">
+                    <img src="../public/images/logo.svg" alt="猫咪性格类型">
+                    <span>猫咪性格测试</span>
+                </a>
+                
+                <nav>
+                    <a href="../personality-test.html">性格测试</a>
+                    <a href="../personality-types.html">性格类型</a>
+                    <a href="../about.html">关于我们</a>
+                    <a href="../blog.html">博客</a>
+                </nav>
+                
+                <div class="header-actions">
+                    <a href="../personality-test.html" class="btn btn-primary">开始测试</a>
+                    <button class="menu-button">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="3" y1="12" x2="21" y2="12"></line>
+                            <line x1="3" y1="6" x2="21" y2="6"></line>
+                            <line x1="3" y1="18" x2="21" y2="18"></line>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 类型标题部分 -->
+    <section class="type-header">
+        <div class="container">
+            <div class="type-badge">HEPA</div>
+            <h1 class="type-title">冒险家</h1>
+            <p class="type-traits">高活跃 + 外向 + 观察 + 高应激</p>
+        </div>
+    </section>
+
+    <!-- 类型内容部分 -->
+    <section class="type-content">
+        <div class="container">
+            <div class="content-grid">
+                <div class="main-content">
+                    <div class="type-section">
+                        <h2 class="section-title">性格描述</h2>
+                        <div class="type-description">
+                            <p>冒险家型猫咪精力充沛，好奇心强，社交能力佳，但可能容易焦虑。他们喜欢新奇体验但同时也需要安全感。这种看似矛盾的性格组合使他们成为既有趣又具挑战性的伴侣。</p>
+                            
+                            <p>冒险家猫咪具有独特的神经学特征，结合了高多巴胺敏感性与升高的皮质醇反应。他们看似矛盾的本性可以通过进化适应性解释，这种适应性需要同时具备探索能力和谨慎性。与主人的关系中，他们常常表现出矛盾的依恋模式——寻求互动的同时保持警惕。</p>
+                            
+                            <p>这类猫咪受益于有可控新奇体验引入的可预测日常规律。环境丰富化应该循序渐进，并在附近设置安全休息区。反条件作用技术可以帮助减少焦虑触发因素，而互动游戏则可以建设性地引导他们的精力。点击器训练既提供刺激又提供建立信心的机会。</p>
+                        </div>
+                    </div>
+
+                    <div class="type-section">
+                        <h2 class="section-title">主要特征</h2>
+                        <ul class="characteristics-list">
+                            <li><strong>活力四射：</strong>充满能量，需要大量活动和游戏时间</li>
+                            <li><strong>社交能力强：</strong>享受与人类和其他动物的互动</li>
+                            <li><strong>观察力敏锐：</strong>在做决定前仔细观察情况</li>
+                            <li><strong>压力敏感性高：</strong>对变化和陌生情况容易紧张</li>
+                            <li><strong>双重神经特征：</strong>同时具有高度奖励寻求和高度警觉特性</li>
+                            <li><strong>学习能力强：</strong>能够快速学习，但可能因压力而分心</li>
+                            <li><strong>矛盾依恋模式：</strong>寻求关注同时保持一定警惕</li>
+                            <li><strong>情绪表达丰富：</strong>情绪变化明显，容易观察到身体语言信号</li>
+                        </ul>
+                    </div>
+
+                    <div class="type-section">
+                        <h2 class="section-title">养护指南</h2>
+                        <div class="type-description">
+                            <p><strong>环境设计：</strong>冒险家猫咪需要既安全又刺激的环境。创建带有多个高处休息区的分层空间，在整个生活区域提供多个隐藏点和撤退区域。新物品或变化应该逐渐引入，让猫咪有时间适应。保持一个专用的"安全区"，永远不受干扰，供压力时使用。</p>
+                            
+                            <p><strong>活动与游戏：</strong>定期进行可预测的互动游戏时间，每次持续10-15分钟，而非更长更不频繁的环节。使用能激发捕猎本能但不会过度刺激的玩具。创建可控的"寻宝"活动，例如在家中隐藏零食，让他们发现。当猫咪表现出轻度压力信号时，立即结束游戏活动。</p>
+                            
+                            <p><strong>社交需求：</strong>尊重冒险家猫咪的双重需求——社交联系和独立空间。不要强迫互动，让他们主导接触程度。对积极的社交行为给予一致的正面强化。给他们提供"见习"机会，让他们从安全距离观察家庭活动。</p>
+                            
+                            <p><strong>压力管理：</strong>学习识别早期压力信号（耳朵位置变化、尾巴抽动、过度舔毛）。使用费洛威信息素扩散器帮助创造平静感。考虑在高压力期间使用温和的压力包裹（如ThunderShirt）。重大变化前使用反条件化和脱敏技术，例如搬家或假期。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sidebar">
+                    <div class="sidebar-section">
+                        <h3 class="sidebar-title">推荐产品</h3>
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="https://via.placeholder.com/80" alt="复合式猫爬架">
+                            </div>
+                            <div class="product-info">
+                                <div class="product-name">冒险家复合猫爬架</div>
+                                <div class="product-description">既有开放探索区域又有隐蔽休息区的复合式猫爬架</div>
+                                <div class="product-price">¥459</div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="https://via.placeholder.com/80" alt="猫咪减压喷雾">
+                            </div>
+                            <div class="product-info">
+                                <div class="product-name">舒压信息素喷雾</div>
+                                <div class="product-description">帮助减轻高应激猫咪焦虑情绪的信息素产品</div>
+                                <div class="product-price">¥138</div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="https://via.placeholder.com/80" alt="追踪玩具">
+                            </div>
+                            <div class="product-info">
+                                <div class="product-name">智能追踪球</div>
+                                <div class="product-description">可调节速度和复杂度的智能玩具，满足活跃需求</div>
+                                <div class="product-price">¥169</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sidebar-section">
+                        <h3 class="sidebar-title">行为提示</h3>
+                        <div class="tip-item">
+                            <div class="tip-title">如何减轻过度敏感</div>
+                            <div class="tip-content">使用预测性日常规律减少不确定性。每天同一时间进行喂食、游戏和互动，帮助冒险家猫咪建立安全感。</div>
+                        </div>
+                        <div class="tip-item">
+                            <div class="tip-title">处理社交压力</div>
+                            <div class="tip-content">客人来访前，准备安静的撤退区域。在客人到达前，进行短暂游戏环节帮助消耗多余能量，减少焦虑表现。</div>
+                        </div>
+                        <div class="tip-item">
+                            <div class="tip-title">缓解分离焦虑</div>
+                            <div class="tip-content">离家前进行"独立练习"——短暂离开然后返回，逐渐延长时间。留下带有您气味的物品提供安慰。</div>
+                        </div>
+                    </div>
+
+                    <div class="sidebar-section">
+                        <h3 class="sidebar-title">适合的伴侣</h3>
+                        <div class="tip-content">
+                            <p>冒险家猫咪最适合理解其复杂性格并能提供稳定规律的主人。他们与以下类型的家庭相处融洽：</p>
+                            <ul style="padding-left: 20px; margin-top: 10px;">
+                                <li>有耐心和一致性的单身人士或家庭</li>
+                                <li>能够保持稳定日常规律的主人</li>
+                                <li>了解猫咪行为语言的经验丰富的养猫人</li>
+                                <li>有足够时间投入训练和游戏的家庭</li>
+                                <li>家庭环境相对宁静稳定的住所</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 呼吁行动区域 -->
+    <section class="cta-section">
+        <div class="container">
+            <h2 class="cta-title">想知道您的猫咪是什么性格类型吗？</h2>
+            <p class="cta-description">参加我们的猫咪性格测试，了解您的猫咪的行为倾向，获取个性化养护建议。</p>
+            <div class="cta-buttons">
+                <a href="../personality-test.html" class="btn btn-primary">开始测试</a>
+                <a href="../personality-types.html" class="btn btn-primary" style="background: white; color: var(--primary);">查看所有类型</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <div class="footer-bottom">
+                <p>© <script>document.write(new Date().getFullYear())</script> 猫咪性格测试 版权所有</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 移动菜单切换
+        document.querySelector('.menu-button').addEventListener('click', function() {
+            const nav = document.querySelector('nav');
+            nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
+        });
+    </script>
+</body>
+</html> 

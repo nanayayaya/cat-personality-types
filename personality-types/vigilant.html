@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Commander HETA | Cat Personality Type</title>
+    <meta name="description" content="The Commander (HETA) cat personality is characterized by high activity, extroversion, decisiveness, and high stress sensitivity. Learn how to care for these confident leaders.">
+    <link rel="icon" href="../public/favicon.ico">
+    <style>
+        /* Base Styles */
+        :root {
+            --primary-color: #e74c3c;
+            --primary-light: #ff7979;
+            --primary-dark: #c0392b;
+            --secondary-color: #34495e;
+            --accent-color: #f39c12;
+            --neutral-100: #f7f7f7;
+            --neutral-200: #e1e1e1;
+            --neutral-300: #cfcfcf;
+            --neutral-400: #b1b1b1;
+            --neutral-500: #9e9e9e;
+            --neutral-600: #7e7e7e;
+            --neutral-700: #626262;
+            --neutral-800: #515151;
+            --neutral-900: #3b3b3b;
+            --text-color: #333;
+            --bg-color: #fff;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --shadow-large: 0 10px 15px rgba(0, 0, 0, 0.1);
+            --border-radius: 8px;
+            --container-width: 1200px;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+        }
+        
+        .container {
+            width: 100%;
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Animation Keyframes */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes shake {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(5px); }
+            50% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+            100% { transform: translateX(0); }
+        }
+        
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .animate-pulse {
+            animation: pulse 4s ease-in-out infinite;
+        }
+        
+        .animate-shake:hover {
+            animation: shake 0.5s ease-in-out;
+        }
+        
+        /* Floating GIFs */
+        .floating-gif {
+            position: absolute;
+            z-index: 1;
+            border-radius: 12px;
+            box-shadow: var(--shadow-large);
+            max-width: 150px;
+        }
+        
+        .top-right {
+            top: 80px;
+            right: 5%;
+            animation: float 7s ease-in-out infinite;
+        }
+        
+        .bottom-left {
+            bottom: -50px;
+            left: 5%;
+            animation: float 8s ease-in-out infinite;
+        }
+        
+        /* Button Styles */
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            text-decoration: none;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            font-size: 1rem;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+            box-shadow: var(--shadow);
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(192, 57, 43, 0.2);
+        }
+        
+        .btn-secondary {
+            background-color: var(--neutral-100);
+            color: var(--secondary-color);
+            border: 2px solid var(--neutral-300);
+        }
+        
+        .btn-secondary:hover {
+            background-color: var(--neutral-200);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 15px 0;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+        
+        .logo img {
+            height: 30px;
+            margin-right: 10px;
+        }
+        
+        nav {
+            display: flex;
+            gap: 20px;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: var(--neutral-700);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        nav a:hover {
+            color: var(--primary-color);
+        }
+        
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .menu-button {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--neutral-700);
+        }
+        
+        /* Type Header Section */
+        .type-header {
+            background-color: var(--primary-light);
+            color: white;
+            padding: 80px 0 100px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            background-image: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
+        }
+        
+        .type-badge {
+            display: inline-block;
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, the 0.3);
+        }
+        
+        .type-title {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+        
+        .type-traits {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        /* Main Content Styles */
+        main {
+            padding: 50px 0;
+        }
+        
+        main .container {
+            display: grid;
+            grid-template-columns: 7fr 3fr;
+            gap: 40px;
+        }
+        
+        .content section {
+            margin-bottom: 40px;
+        }
+        
+        h2 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--secondary-color);
+        }
+        
+        h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--secondary-color);
+        }
+        
+        p {
+            margin-bottom: 15px;
+        }
+        
+        /* Personality Profile */
+        .personality-profile {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+            margin-top: -70px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .stress-indicator {
+            margin: 25px 0;
+            padding: 20px;
+            background-color: var(--neutral-100);
+            border-radius: var(--border-radius);
+        }
+        
+        .meter {
+            height: 12px;
+            background-color: var(--neutral-300);
+            border-radius: 6px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+        
+        .meter-fill {
+            height: 100%;
+            background-color: var(--primary-color);
+        }
+        
+        .traits-chart {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 25px 0;
+        }
+        
+        .trait {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .trait-meter {
+            height: 8px;
+            background-color: var(--neutral-200);
+            border-radius: 4px;
+            position: relative;
+        }
+        
+        .trait-meter.high::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 80%;
+            background-color: var(--primary-color);
+            border-radius: 4px;
+        }
+        
+        .trait-meter.medium::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 50%;
+            background-color: var(--accent-color);
+            border-radius: 4px;
+        }
+        
+        .trait-meter.low::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 30%;
+            background-color: var(--neutral-500);
+            border-radius: 4px;
+        }
+        
+        .personality-gif {
+            display: block;
+            max-width: 100%;
+            border-radius: var(--border-radius);
+            margin: 20px auto;
+        }
+        
+        /* Key Characteristics */
+        .key-characteristics {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+        }
+        
+        .key-characteristics ul {
+            list-style-type: none;
+        }
+        
+        .key-characteristics li {
+            padding: 12px 0;
+            border-bottom: 1px solid var(--neutral-200);
+        }
+        
+        .key-characteristics li:last-child {
+            border-bottom: none;
+        }
+        
+        /* Care Guidelines */
+        .care-guidelines {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+        }
+        
+        .care-section {
+            margin-bottom: 25px;
+        }
+        
+        .care-section ul {
+            list-style-type: disc;
+            margin-left: 20px;
+        }
+        
+        .care-section li {
+            margin-bottom: 8px;
+        }
+        
+        /* Sidebar */
+        .sidebar {
+            position: relative;
+        }
+        
+        .sidebar > div {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 25px;
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
+        }
+        
+        .product-card {
+            display: flex;
+            gap: 15px;
+            padding: 15px 0;
+            border-bottom: 1px solid var(--neutral-200);
+        }
+        
+        .product-card:last-child {
+            border-bottom: none;
+        }
+        
+        .product-image {
+            width: 80px;
+            height: 80px;
+            background-color: var(--neutral-100);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+        
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .product-info h4 {
+            margin-bottom: 5px;
+            font-size: 1rem;
+        }
+        
+        .price {
+            display: inline-block;
+            margin-top: 5px;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+        
+        .tip {
+            margin-bottom: 20px;
+        }
+        
+        .tip:last-child {
+            margin-bottom: 0;
+        }
+        
+        .tip h4 {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            color: var(--secondary-color);
+        }
+        
+        .ideal-home ul {
+            list-style-type: disc;
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+        
+        .ideal-home li {
+            margin-bottom: 8px;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .cta-title {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .cta-description {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.9;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--neutral-800);
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-wrap: wrap;
+            }
+            
+            nav {
+                display: none;
+                width: 100%;
+                flex-direction: column;
+                padding: 15px 0;
+            }
+            
+            nav.active {
+                display: flex;
+            }
+            
+            .menu-button {
+                display: block;
+            }
+            
+            main .container {
+                grid-template-columns: 1fr;
+            }
+            
+            .type-title {
+                font-size: 2.3rem;
+            }
+            
+            .cta-title {
+                font-size: 2rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .floating-gif {
+                max-width: 100px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation bar -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="../index.html" class="logo">
+                    <img src="../public/images/logo.svg" alt="Cat Personality Types">
+                    <span>Cat Personality Test</span>
+                </a>
+                
+                <nav>
+                    <a href="../personality-test.html">Personality Test</a>
+                    <a href="../personality-types.html">Personality Types</a>
+                    <a href="../about.html">About Us</a>
+                    <a href="../blog.html">Blog</a>
+                </nav>
+                
+                <div class="header-actions">
+                    <a href="../personality-test.html" class="btn btn-primary">Take the Test</a>
+                    <button class="menu-button">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="3" y1="12" x2="21" y2="12"></line>
+                            <line x1="3" y1="6" x2="21" y2="6"></line>
+                            <line x1="3" y1="18" x2="21" y2="18"></line>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Type header section -->
+    <section class="type-header">
+        <div class="container">
+            <div class="type-badge animate-float">HETA</div>
+            <h1 class="type-title">Commander</h1>
+            <p class="type-traits">High Activity + Extroverted + Decisive + High Stress</p>
+        </div>
+        <!-- Floating GIFs -->
+        <img src="../images/Mad The Internet GIF by MOODMAN.gif" alt="Commanding cat" class="floating-gif top-right">
+        <img src="../images/Angry Cat GIF.gif" alt="Assertive cat" class="floating-gif bottom-left">
+    </section>
+
+    <!-- Main content -->
+    <main>
+        <div class="container">
+            <div class="content">
+                <!-- Personality Profile -->
+                <section class="personality-profile">
+                    <h2>Personality Profile: The Commander Cat</h2>
+                    <p>Commander cats are natural-born leaders with strong territorial instincts and a decisive approach to life. These highly active and extroverted felines thrive on stimulation and enjoy being at the center of household activities. With their confident demeanor and assertive communication style, HETA cats make their presence known and their needs clear.</p>
+                    
+                    <div class="stress-indicator">
+                        <h3>Stress Sensitivity: 75%</h3>
+                        <div class="meter">
+                            <div class="meter-fill" style="width: 75%"></div>
+                        </div>
+                        <p>Despite their confident exterior, Commander cats experience high stress levels and may become reactive when their environment feels out of control. This stress response stems from their heightened awareness and their need to maintain order in their territory.</p>
+                    </div>
+
+                    <div class="traits-chart">
+                        <div class="trait">
+                            <span>Activity Level</span>
+                            <div class="trait-meter high"></div>
+                        </div>
+                        <div class="trait">
+                            <span>Sociability</span>
+                            <div class="trait-meter high"></div>
+                        </div>
+                        <div class="trait">
+                            <span>Adaptability</span>
+                            <div class="trait-meter medium"></div>
+                        </div>
+                        <div class="trait">
+                            <span>Independence</span>
+                            <div class="trait-meter high"></div>
+                        </div>
+                        <div class="trait">
+                            <span>Vocalization</span>
+                            <div class="trait-meter high"></div>
+                        </div>
+                    </div>
+
+                    <img src="../images/Meow GIF by Emojipedia.gif" alt="Commanding cat gif" class="personality-gif">
+                </section>
+
+                <!-- Key Characteristics -->
+                <section class="key-characteristics">
+                    <h2>Key Characteristics</h2>
+                    <ul>
+                        <li><strong>Natural Leadership:</strong> Takes charge in multi-cat households and establishes clear boundaries</li>
+                        <li><strong>High Energy:</strong> Requires regular, challenging play sessions to maintain physical and mental wellbeing</li>
+                        <li><strong>Direct Communication:</strong> Uses clear vocalizations and body language to express needs and preferences</li>
+                        <li><strong>Territory-Focused:</strong> Actively patrols and maintains control over their living space</li>
+                        <li><strong>Problem-Solver:</strong> Shows persistence and creativity when faced with obstacles or challenges</li>
+                        <li><strong>Confident Social Interaction:</strong> Often approaches new people and animals with curiosity rather than fear</li>
+                        <li><strong>Reactive Under Stress:</strong> May display aggression or controlling behaviors when feeling threatened</li>
+                    </ul>
+                </section>
+
+                <!-- Care Guidelines -->
+                <section class="care-guidelines">
+                    <h2>Care Guidelines for Commander Cats</h2>
+                    
+                    <div class="care-section">
+                        <h3>Environment Design</h3>
+                        <p>Commander cats need an environment that allows them to exercise their natural leadership tendencies while providing appropriate outlets for their high energy levels.</p>
+                        <ul>
+                            <li>Create vertical spaces (cat trees, shelves) that allow for overseeing their territory</li>
+                            <li>Establish multiple activity zones throughout the home</li>
+                            <li>Provide scratching posts in several locations for territorial marking</li>
+                            <li>Maintain consistent feeding times and locations to support their need for routine</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="care-section">
+                        <h3>Activities and Interaction</h3>
+                        <p>These highly active cats require substantial physical and mental stimulation:</p>
+                        <ul>
+                            <li>Schedule at least 2-3 high-energy play sessions daily (15-20 minutes each)</li>
+                            <li>Incorporate puzzle feeders and intelligence toys that challenge their problem-solving abilities</li>
+                            <li>Rotate toys regularly to maintain interest and engagement</li>
+                            <li>Consider clicker training to channel their intelligence and provide mental stimulation</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="care-section">
+                        <h3>Stress Management</h3>
+                        <p>Despite their confident demeanor, Commander cats need support managing their high stress levels:</p>
+                        <ul>
+                            <li>Provide predictable daily routines to create a sense of control</li>
+                            <li>Create quiet retreat spaces for decompression after high-activity periods</li>
+                            <li>Consider pheromone products during times of change or unusually high stress</li>
+                            <li>Use enrichment activities to channel stress into productive behaviors</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="care-section">
+                        <h3>Health Considerations</h3>
+                        <p>Commander cats' high activity levels and stress sensitivity create specific health needs:</p>
+                        <ul>
+                            <li>Monitor weight carefully as these active cats may burn more calories than average</li>
+                            <li>Watch for stress-related urinary issues, especially in male cats</li>
+                            <li>Consider higher protein diets that support muscle maintenance and energy levels</li>
+                            <li>Schedule regular veterinary check-ups to monitor stress-related conditions</li>
+                        </ul>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Sidebar with recommendations -->
+            <div class="sidebar">
+                <div class="recommended-products">
+                    <h3>Recommended Products</h3>
+                    
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="../public/images/cat-tree.jpg" alt="Multi-level Cat Tower">
+                        </div>
+                        <div class="product-info">
+                            <h4>Multi-level Cat Tower</h4>
+                            <p>Provides vertical territory for supervision and high-energy climbing activities</p>
+                            <span class="price">$129.99</span>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="../public/images/interactive-toy.jpg" alt="Electronic Chase Toy">
+                        </div>
+                        <div class="product-info">
+                            <h4>Electronic Chase Toy</h4>
+                            <p>Unpredictable movement patterns challenge hunting skills and burn energy</p>
+                            <span class="price">$34.99</span>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="../public/images/stress-relief.jpg" alt="Natural Calming Spray">
+                        </div>
+                        <div class="product-info">
+                            <h4>Natural Calming Spray</h4>
+                            <p>Herbal blend helps reduce reactive behaviors during stressful situations</p>
+                            <span class="price">$22.50</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="behavior-tips">
+                    <h3>Behavior Management Tips</h3>
+                    
+                    <div class="tip">
+                        <h4>Managing Multi-Cat Dynamics</h4>
+                        <p>Commander cats often establish themselves as the household leader. Ensure each cat has their own resources (food bowls, litter boxes, resting areas) to prevent conflicts. Create separate territories using baby gates or cat shelving if tensions arise.</p>
+                    </div>
+                    
+                    <div class="tip">
+                        <h4>Handling Overarousal</h4>
+                        <p>Watch for signs that your Commander cat is becoming overstimulated: dilated pupils, tail swishing, and skin rippling. Redirect to appropriate toys before behavior escalates to biting or scratching. Provide cool-down periods after intense play.</p>
+                    </div>
+                    
+                    <div class="tip">
+                        <h4>Channeling Leadership Tendencies</h4>
+                        <p>Rather than trying to "dominate" your Commander cat (which increases stress), channel their natural leadership through training. Teaching tricks gives them a positive way to take charge while strengthening your bond.</p>
+                    </div>
+                </div>
+                
+                <div class="ideal-home">
+                    <h3>Ideal Companions</h3>
+                    <p>Commander cats thrive with active, engaged owners who understand their need for both stimulation and clear boundaries. They do best with:</p>
+                    <ul>
+                        <li>Owners who enjoy interactive play and training</li>
+                        <li>Households willing to provide environmental enrichment</li>
+                        <li>Families that appreciate a cat with a strong personality</li>
+                        <li>Experienced cat owners who can read and respond to stress signals</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2 class="cta-title">Want to discover your cat's personality type?</h2>
+            <p class="cta-description">Take our detailed cat personality test to receive personalized care recommendations tailored to your cat's unique traits and needs.</p>
+            <div class="cta-buttons">
+                <a href="../personality-test.html" class="btn btn-primary">Take the Test</a>
+                <a href="../personality-types.html" class="btn btn-secondary">View All Types</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>© 2023 Cat Personality Test. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.menu-button').addEventListener('click', function() {
+            document.querySelector('nav').classList.toggle('active');
+        });
+    </script>
+</body>
+</html> 

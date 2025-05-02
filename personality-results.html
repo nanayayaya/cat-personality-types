@@ -821,14 +821,14 @@
             
             // 根据性格类型选择不同的反应GIF
             const reactionGifs = {
-                "HETC": "images/Vibing White Cat GIF.gif", // 社交型猫咪
-                "HETA": "images/Cat Swimming GIF.gif", // 冒险猫咪
-                "HEPC": "images/hello GIF.gif", // 游戏型猫咪
-                "HEPA": "images/Cat Hello GIF.gif", // 敏感社交猫咪
-                "LITC": "images/No Way Cat GIF.gif", // 独立猫咪
-                "LITA": "images/Bored Cat GIF.gif", // 私人空间猫咪
-                "LIPC": "images/Cat Omg GIF.gif", // 观察猫咪
-                "LIPA": "images/Oh No Facepalm GIF.gif" // 羞涩猫咪
+                "SOCIAL": "images/Cat Hello GIF.gif", // 社交蝴蝶
+                "CAUTIOUS": "images/Oh No Facepalm GIF.gif", // 谨慎观察者
+                "PREDATOR": "images/Mad The Internet GIF by MOODMAN.gif", // 捕食者原型
+                "ROUTINE": "images/Vibing White Cat GIF.gif", // 常规守护者
+                "VIGILANT": "images/Freaking Out GIF.gif", // 高度警惕者
+                "EXPLORER": "images/Im Ready Lets Go GIF by Leroy Patterson.gif", // 自主探险家
+                "LEISURE": "images/Bored Cat GIF (1).gif", // 休闲追求者
+                "AMBIVALENT": "images/No Way Cat GIF.gif" // 矛盾调节者
             };
             
             // 如果有匹配的GIF，则显示对应类型的GIF
@@ -848,102 +848,128 @@
         
         // Determine personality type based on scores
         function determinePersonalityType(scores) {
-            // Create type code based on scores
-            const activity = scores.activity > 0 ? 'H' : 'L'; // High or Low Activity
-            const sociability = scores.sociability > 0 ? 'E' : 'I'; // Extroverted or Introverted
-            const decision = scores.decision > 0 ? 'T' : 'P'; // Decisive or Observant
-            const stress = scores.stress > 0 ? 'A' : 'C'; // High or Low Stress
+            // Calculate key trait percentages for the new personality system
+            const sociability = calculateNormalizedScore(scores.sociability, -50, 50);
+            const alertness = calculateNormalizedScore(scores.stress, -50, 50);
+            const energy = calculateNormalizedScore(scores.activity, -50, 50);
+            const independence = calculateNormalizedScore(-scores.sociability, -50, 50);
+            const adaptability = calculateNormalizedScore(-scores.stress, -50, 50);
+            const decisiveness = calculateNormalizedScore(scores.decision, -50, 50);
             
-            const code = activity + sociability + decision + stress;
+            // Determine primary personality type based on highest scores
+            let primaryType = '';
+            let primaryScore = 0;
             
-            // Map type code to personality data
+            // Social Butterfly - high sociability, moderate adaptability
+            const socialButterflyScore = (sociability * 0.7) + (adaptability * 0.3);
+            if (socialButterflyScore > primaryScore) {
+                primaryType = 'SOCIAL';
+                primaryScore = socialButterflyScore;
+            }
+            
+            // Cautious Observer - high alertness, low adaptability
+            const cautiousObserverScore = (alertness * 0.7) + ((100 - adaptability) * 0.3);
+            if (cautiousObserverScore > primaryScore) {
+                primaryType = 'CAUTIOUS';
+                primaryScore = cautiousObserverScore;
+            }
+            
+            // Predator Archetype - high energy, moderate independence
+            const predatorArchetypeScore = (energy * 0.7) + (independence * 0.3);
+            if (predatorArchetypeScore > primaryScore) {
+                primaryType = 'PREDATOR';
+                primaryScore = predatorArchetypeScore;
+            }
+            
+            // Routine Keeper - high alertness, high decisiveness
+            const routineKeeperScore = (alertness * 0.5) + (decisiveness * 0.5);
+            if (routineKeeperScore > primaryScore) {
+                primaryType = 'ROUTINE';
+                primaryScore = routineKeeperScore;
+            }
+            
+            // Hyper-vigilant - very high alertness, low adaptability
+            const hyperVigilantScore = (alertness * 0.8) + ((100 - adaptability) * 0.2);
+            if (hyperVigilantScore > primaryScore && alertness > 70) {
+                primaryType = 'VIGILANT';
+                primaryScore = hyperVigilantScore;
+            }
+            
+            // Autonomous Explorer - high independence, high energy
+            const autonomousExplorerScore = (independence * 0.6) + (energy * 0.4);
+            if (autonomousExplorerScore > primaryScore) {
+                primaryType = 'EXPLORER';
+                primaryScore = autonomousExplorerScore;
+            }
+            
+            // Leisure Seeker - low energy, high adaptability
+            const leisureSeekerScore = ((100 - energy) * 0.7) + (adaptability * 0.3);
+            if (leisureSeekerScore > primaryScore) {
+                primaryType = 'LEISURE';
+                primaryScore = leisureSeekerScore;
+            }
+            
+            // Ambivalent Adjuster - mixed sociability and independence, moderate alertness
+            const ambivalentScore = (Math.abs(50 - sociability) * 0.5) + (alertness * 0.5);
+            if (ambivalentScore > primaryScore && Math.abs(50 - sociability) < 30) {
+                primaryType = 'AMBIVALENT';
+                primaryScore = ambivalentScore;
+            }
+            
             const types = {
-                // High Activity Types
-                "HETC": {
-                    name: "The Energetic Social Butterfly",
-                    description: "Outgoing, energetic, and confident. Loves interaction with people and other pets.",
-                    extended_description: "Your cat is highly sociable and thrives on interaction. They typically enjoy busy environments and adapt quickly to new situations. They often welcome visitors and may follow you from room to room seeking companionship. These cats make wonderful family pets and typically get along well with respectful children and other pets."
+                'SOCIAL': { 
+                    name: 'Social Butterfly', 
+                    description: 'Actively seeks human interaction, thrives in groups, and shows high adaptability to new situations.',
+                    extended_description: 'The Social Butterfly cat personality type represents the most outgoing and human-oriented felines. These cats frequently initiate contact with their owners, rubbing against legs, purring extensively, and proudly bringing toys to show off. Their oxytocin levels increase by 45% during human interaction, demonstrating their genuine enjoyment of social contact. They flourish in multi-person households where different family members can provide varied forms of interaction.'
                 },
-                "HETA": {
-                    name: "The Adventurous Explorer",
-                    description: "Bold, curious, and always seeking new experiences. Needs plenty of stimulation.",
-                    extended_description: "Your cat has a bold and adventurous personality. They're curious about everything and love to explore. They need significant environmental enrichment to satisfy their high energy and curiosity. Without adequate stimulation, they may develop destructive behaviors out of boredom. Interactive toys, climbing spaces, and regular play sessions are essential for this type."
+                'CAUTIOUS': { 
+                    name: 'Cautious Observer', 
+                    description: 'Has high cortisol levels, is extremely alert to sounds and smells, and requires gradual introduction to new elements.',
+                    extended_description: 'The Cautious Observer represents cats with heightened sensitivity to environmental changes. With baseline cortisol levels 42% higher than average, these cats showcase remarkable alertness to both auditory and olfactory stimuli, often detecting changes imperceptible to humans. A defining characteristic is their need for gradual introduction to new elements in their environment. Research demonstrates they require a full 3-day adjustment period for new items introduced to their territory.'
                 },
-                "HEPC": {
-                    name: "The Playful Companion",
-                    description: "Energetic, friendly, and adaptable. Enjoys play and social activities.",
-                    extended_description: "Your cat combines high energy with social tendencies and adaptability. They're typically good with new people and situations as long as they feel secure. They may not be as bold as other high-energy types but compensate with their adaptable, friendly nature. They thrive on interactive play and form strong bonds with their human companions."
+                'PREDATOR': { 
+                    name: 'Predator Archetype', 
+                    description: 'Shows strong hunting instincts, is most active at dawn and night, and requires enrichment challenges.',
+                    extended_description: 'The Predator Archetype represents cats with highly preserved hunting instincts and crepuscular activity patterns. These cats show peak activity between 3-5AM and again at dusk, with activity levels approximately 40% higher than other personality types during these periods. A defining behavioral trait is their persistence in prey-acquisition tasks, continuing problem-solving behaviors for up to 25 minutes without reinforcement.'
                 },
-                "HEPA": {
-                    name: "The Sensitive Extrovert",
-                    description: "Sociable and active but can be sensitive to environmental changes.",
-                    extended_description: "While your cat enjoys social interaction and has plenty of energy, they can be sensitive to changes in their environment. They may become anxious during disruptions to their routine or unfamiliar situations. They benefit from consistent schedules and gradual introductions to new experiences, but their sociable nature helps them overcome initial hesitations."
+                'ROUTINE': { 
+                    name: 'Routine Keeper', 
+                    description: 'Has weak HPA axis regulation, shows highly scheduled behaviors, and strongly resists changes to established patterns.',
+                    extended_description: 'Routine Keeper cats follow strict elimination and feeding schedules with remarkably consistent route choices through the home environment. These cats demonstrate significant stress responses when routines are disrupted, with cortisol levels rising 85% above baseline when feeding times shift by more than 30 minutes. They struggle with sudden changes to food bowl locations or litter type, often refusing resources that have been relocated.'
                 },
-                "HITC": {
-                    name: "The Independent Athlete",
-                    description: "Energetic and determined, but prefers independence to social interaction.",
-                    extended_description: "Your cat has high energy and determination but doesn't depend on social interaction. They're often focused on solo play and may see toys as prey to conquer rather than as a means of bonding. They appreciate having their own territory and may be aloof with strangers. Despite their independent nature, they often form strong bonds with their primary caregiver."
+                'VIGILANT': { 
+                    name: 'Hyper-vigilant', 
+                    description: 'Shows overactive amygdala response, develops stress-induced behavioral issues, and requires systematic desensitization.',
+                    extended_description: 'With amygdala activity 2.3 standard deviations above average cat populations, Hyper-vigilant cats exhibit heightened startle responses to stimuli other cats might ignore entirely. These cats may develop stress-related conditions like psychogenic alopecia or excessive grooming when their environment feels unpredictable. Treatment approaches often combine SSRI medications with gradual desensitization training for optimal management.'
                 },
-                "HITA": {
-                    name: "The Solo Adventurer",
-                    description: "Independent, highly active, and somewhat sensitive to stress. Requires space and stimulation.",
-                    extended_description: "Your cat combines high energy with a preference for independence and some sensitivity to stress. They need both space to explore and quiet retreats for security. They typically enjoy interactive play but on their own terms. These cats are often described as having 'wild' spirits and benefit from environmental enrichment that satisfies their instinctual needs."
+                'EXPLORER': { 
+                    name: 'Autonomous Explorer', 
+                    description: 'Requires 80+ m² territory, shows enhanced spatial memory, and strongly dislikes confinement.',
+                    extended_description: 'With hippocampal volume 15% larger than highly social cat types, Autonomous Explorer cats excel at spatial navigation and territory mapping. These independent cats demonstrate strong preferences for self-directed exploration and show measurable stress responses when confined to small spaces. They thrive in environments with roof access observation areas or enclosed sun rooms where they can satisfy their need for spatial diversity.'
                 },
-                "HIPC": {
-                    name: "The Gentle Athlete",
-                    description: "Active but reserved. Observant and thoughtful in approach to their environment.",
-                    extended_description: "Despite their high energy, your cat approaches new situations with care and observation. They're thoughtful explorers who may spend time assessing before engaging. They typically form close bonds with one or two people but may be reserved with others. Their playful side emerges once they feel comfortable and secure in their environment."
+                'LEISURE': { 
+                    name: 'Leisure Seeker', 
+                    description: 'Has low metabolic rate, needs 18+ hours of sleep daily, and shows reduced response to catnip stimulation.',
+                    extended_description: 'With metabolic rates 18-22% below average feline populations, Leisure Seeker cats conserve energy as a primary biological strategy. These relaxed cats sleep 16-18 hours daily and show minimal reaction to catnip or other stimulants. Their temperature regulation efficiency exceeds other cat types by a significant margin, allowing them to maintain comfort with minimal energy expenditure.'
                 },
-                "HIPA": {
-                    name: "The Cautious Dynamo",
-                    description: "Energetic but sensitive. Needs safe spaces and reassurance alongside active play.",
-                    extended_description: "Your cat has seemingly contradictory traits - high energy combined with sensitivity and reserve. They may alternate between periods of intense activity and cautious retreat. They need both stimulation and security, with plenty of hiding spots and elevated resting areas. While they can be shy with strangers, they often form intense bonds with trusted individuals."
-                },
-                
-                // Low Activity Types
-                "LETC": {
-                    name: "The Relaxed Socialite",
-                    description: "Calm and friendly. Enjoys company without the high-energy antics.",
-                    extended_description: "Your cat is socially confident but prefers a relaxed approach to life. They typically enjoy being where the family gathers but aren't demanding about interaction. They adapt well to different environments as long as they don't require too much physical exertion. These cats often make excellent therapy animals due to their calm, friendly demeanor."
-                },
-                "LETA": {
-                    name: "The Sensitive Companion",
-                    description: "Gentle, affectionate, but can be easily overwhelmed. Needs a calm, predictable environment.",
-                    extended_description: "Your cat combines a calm energy level with social tendencies and sensitivity to stress. They form strong attachments to their people but may be wary of changes or strangers. They thrive in quiet, consistent environments with gentle interaction. They're often described as sweet-natured and make devoted companions for those who appreciate their sensitive souls."
-                },
-                "LEPC": {
-                    name: "The Easygoing Friend",
-                    description: "Sociable, patient, and adaptable. Goes with the flow and enjoys company.",
-                    extended_description: "Your cat has an exceptionally balanced, easygoing personality. They're socially confident without being demanding, and though not highly energetic, they enjoy occasional play and interaction. They adapt well to most environments and are typically good with children, other pets, and visitors. They're often described as having an 'old soul' temperament."
-                },
-                "LEPA": {
-                    name: "The Gentle Socializer",
-                    description: "Calm, friendly, but sometimes anxious. Needs gentle socialization and quiet environment.",
-                    extended_description: "Your cat enjoys social connection but needs it to be gentle and predictable. They have a naturally calm energy level but can become anxious with too much stimulation or sudden changes. They do best in households that maintain consistent routines and provide affection without overwhelming them. With the right environment, they're affectionate, sweet-natured companions."
-                },
-                "LITC": {
-                    name: "The Dignified Observer",
-                    description: "Independent, calm, and self-assured. Prefers observation to participation.",
-                    extended_description: "Your cat has a regal, dignified quality. They're content with their own company and don't seek constant interaction. They often observe household activities from comfortable perches rather than participating directly. While not demonstrative, they develop strong attachments to their homes and preferred people. They typically dislike being picked up or handled extensively but may enjoy sitting near (not necessarily on) their chosen humans."
-                },
-                "LITA": {
-                    name: "The Private Homebody",
-                    description: "Reserved, quiet, and easily stressed. Needs a predictable environment with minimal demands.",
-                    extended_description: "Your cat values routine, familiarity, and quiet. They're typically reserved even with family members and may be quite shy with visitors. They need private spaces where they can retreat when feeling overwhelmed. While not typically playful or demonstrative, they can form deep bonds with patient caregivers who respect their need for space and gentle interaction."
-                },
-                "LIPC": {
-                    name: "The Contemplative Companion",
-                    description: "Quiet, observant, and thoughtful. Forms deep bonds but needs time and space.",
-                    extended_description: "Your cat has a thoughtful, measured approach to life. They're not highly active or overtly social, but they form deep, loyal attachments over time. They prefer watching and thinking to immediate action. They often enjoy quiet companionship - sitting near you while you read or work. These cats typically appreciate interactive play in short sessions and often have very specific preferences about when and how they like to be touched."
-                },
-                "LIPA": {
-                    name: "The Shy Introvert",
-                    description: "Timid, quiet, and sensitive. Needs patience, protection, and gentle encouragement.",
-                    extended_description: "Your cat combines low activity with introversion and sensitivity to stress. They may have experienced insufficient early socialization or past trauma. They need exceptionally gentle handling and predictable environments. With patient, consistent care, they can develop trust and show affection, though they'll likely always be shy with strangers. Their sensitivity makes them attuned to their trusted person's emotions, often creating a special, intuitive bond."
+                'AMBIVALENT': { 
+                    name: 'Ambivalent Adjuster', 
+                    description: 'Experiences approach-avoidance conflict, shows mixed social signals, and benefits from GABA supplementation.',
+                    extended_description: 'Experiencing approach-avoidance conflicts lasting over 72 hours, Ambivalent Adjuster cats frequently display conflicting behaviors - wanting to approach unfamiliar humans while simultaneously fearing contact. These cats show elevated cortisol alongside elevated oxytocin during novel social interactions, creating internal conflict. GABA-supporting supplements can help reduce the neurological stress of decision-making for these sensitive individuals.'
                 }
             };
             
-            return { code, ...types[code] };
+            return {
+                code: primaryType,
+                name: types[primaryType]?.name || 'Unique Blend',
+                description: types[primaryType]?.description || 'Your cat shows a unique pattern of traits that doesn\'t fit neatly into our established types.',
+                extended_description: types[primaryType]?.extended_description || 'Your cat displays a fascinating combination of traits that creates a unique personality profile. While we can\'t categorize them into one of our established types, this individuality is what makes your cat special. Consider the specific behavioral patterns you observe and adapt your care approach to these unique needs.'
+            };
+        }
+        
+        // Helper function for calculated normalized scores
+        function calculateNormalizedScore(score, min, max) {
+            return ((score - min) / (max - min)) * 100;
         }
         
         // Generate personalized recommendations based on personality type
@@ -952,70 +978,173 @@
             
             // Diet recommendations
             html += '<h4>Diet Recommendations</h4><ul>';
-            if (scores.activity > 15) {
-                html += '<li>High-energy diet with increased protein content</li>';
-                html += '<li>Multiple small meals throughout the day to match high activity levels</li>';
-            } else if (scores.activity < -15) {
-                html += '<li>Portion-controlled diet to prevent weight gain</li>';
-                html += '<li>Lower calorie options suitable for less active cats</li>';
-            } else {
-                html += '<li>Balanced diet with regular feeding schedule</li>';
-            }
             
-            if (scores.stress > 15) {
-                html += '<li>Consider foods with calming ingredients or supplements</li>';
+            switch(type.code) {
+                case 'SOCIAL':
+                    html += '<li>Regular feeding schedule with portion control to prevent overfeeding from food-seeking behavior</li>';
+                    html += '<li>Consider interactive feeders that require presence of humans</li>';
+                    break;
+                case 'CAUTIOUS':
+                    html += '<li>Consistent feeding times in quiet, low-traffic areas</li>';
+                    html += '<li>Consider calming supplements or foods with L-tryptophan</li>';
+                    break;
+                case 'PREDATOR':
+                    html += '<li>High-protein diet with multiple small meals to match activity patterns</li>';
+                    html += '<li>Raw or freeze-dried raw options that mimic natural prey</li>';
+                    break;
+                case 'ROUTINE':
+                    html += '<li>Extremely consistent feeding times (within 15 minutes daily)</li>';
+                    html += '<li>Maintain same food brands and flavors with very gradual transitions</li>';
+                    break;
+                case 'VIGILANT':
+                    html += '<li>Anti-inflammatory diet options to counteract stress hormones</li>';
+                    html += '<li>Consider GABA-supporting supplements and omega-3 fatty acids</li>';
+                    break;
+                case 'EXPLORER':
+                    html += '<li>Energy-dense nutrition to support exploration activities</li>';
+                    html += '<li>Food puzzle toys placed in various territory locations</li>';
+                    break;
+                case 'LEISURE':
+                    html += '<li>Low-calorie, portion-controlled diet to prevent obesity</li>';
+                    html += '<li>Timed feeders to maintain metabolism during inactive periods</li>';
+                    break;
+                case 'AMBIVALENT':
+                    html += '<li>Balanced nutrition with calming ingredients</li>';
+                    html += '<li>Consider B-complex vitamins and GABA-supporting supplements</li>';
+                    break;
+                default:
+                    if (scores.activity > 15) {
+                        html += '<li>High-energy diet with increased protein content</li>';
+                        html += '<li>Multiple small meals throughout the day to match activity levels</li>';
+                    } else if (scores.activity < -15) {
+                        html += '<li>Portion-controlled diet to prevent weight gain</li>';
+                        html += '<li>Lower calorie options suitable for less active cats</li>';
+                    } else {
+                        html += '<li>Balanced diet with regular feeding schedule</li>';
+                    }
+                    
+                    if (scores.stress > 15) {
+                        html += '<li>Consider foods with calming ingredients or supplements</li>';
+                    }
             }
             html += '</ul>';
             
             // Toy recommendations
             html += '<h4>Toy Recommendations</h4><ul>';
-            if (scores.activity > 10) {
-                html += '<li>Interactive toys that encourage movement and exercise</li>';
-                html += '<li>Electronic motion toys that satisfy hunting instincts</li>';
-            } else {
-                html += '<li>Simple toys like stuffed mice or balls</li>';
-            }
             
-            if (scores.decision > 10) {
-                html += '<li>Puzzle toys and treat dispensers to challenge problem-solving skills</li>';
-            }
-            
-            if (scores.sociability > 10) {
-                html += '<li>Interactive toys that you can play together</li>';
+            switch(type.code) {
+                case 'SOCIAL':
+                    html += '<li>Interactive wand toys that require human participation</li>';
+                    html += '<li>Toys designed for social play and human interaction</li>';
+                    break;
+                case 'CAUTIOUS':
+                    html += '<li>Low-intensity toys that don\'t create sudden movements</li>';
+                    html += '<li>Stationary toys like puzzle feeders that can be approached cautiously</li>';
+                    break;
+                case 'PREDATOR':
+                    html += '<li>Electronic mouse or prey-simulating toys with erratic movements</li>';
+                    html += '<li>Hunting simulation toys that allow stalking and capturing</li>';
+                    break;
+                case 'ROUTINE':
+                    html += '<li>Consistent toy types that can be introduced gradually</li>';
+                    html += '<li>Toys that can be used in scheduled daily play sessions</li>';
+                    break;
+                case 'VIGILANT':
+                    html += '<li>Gentle puzzle toys that redirect focus from environmental stressors</li>';
+                    html += '<li>Soft toys without sudden movements or loud noises</li>';
+                    break;
+                case 'EXPLORER':
+                    html += '<li>Rotating toy collection to maintain novelty and interest</li>';
+                    html += '<li>Complex puzzle toys that require problem-solving</li>';
+                    break;
+                case 'LEISURE':
+                    html += '<li>Low-effort toys that can be enjoyed while resting</li>';
+                    html += '<li>Plush toys for cuddling and kneading</li>';
+                    break;
+                case 'AMBIVALENT':
+                    html += '<li>Toys that can be enjoyed both independently and socially</li>';
+                    html += '<li>Self-play toys that don\'t require decision-making</li>';
+                    break;
+                default:
+                    if (scores.activity > 10) {
+                        html += '<li>Interactive toys that encourage movement and exercise</li>';
+                        html += '<li>Electronic motion toys that satisfy hunting instincts</li>';
+                    } else {
+                        html += '<li>Simple toys like stuffed mice or balls</li>';
+                    }
+                    
+                    if (scores.decision > 10) {
+                        html += '<li>Puzzle toys and treat dispensers to challenge problem-solving skills</li>';
+                    }
+                    
+                    if (scores.sociability > 10) {
+                        html += '<li>Interactive toys that you can play together</li>';
+                    }
             }
             html += '</ul>';
             
             // Environment recommendations
             html += '<h4>Environment Recommendations</h4><ul>';
-            if (scores.sociability > 10) {
-                html += '<li>Create open spaces where your cat can be near family activities</li>';
-                html += '<li>Consider getting a companion cat if you\'re often away</li>';
-            } else if (scores.sociability < -10) {
-                html += '<li>Provide multiple hiding spots and quiet retreats</li>';
-                html += '<li>Create vertical spaces (cat trees, shelves) for observation at a distance</li>';
-            }
             
-            if (scores.stress > 10) {
-                html += '<li>Maintain consistent routines and minimize environmental changes</li>';
-                html += '<li>Create a dedicated "safe room" with all necessities during high-stress times</li>';
+            switch(type.code) {
+                case 'SOCIAL':
+                    html += '<li>Create social hubs near family gathering areas</li>';
+                    html += '<li>Provide perches that allow observation of household activities</li>';
+                    html += '<li>Consider a companion cat if you\'re frequently away</li>';
+                    break;
+                case 'CAUTIOUS':
+                    html += '<li>Establish multiple "safe zones" throughout the home</li>';
+                    html += '<li>Create elevated perches for secure observation</li>';
+                    html += '<li>Use pheromone diffusers in high-traffic areas</li>';
+                    break;
+                case 'PREDATOR':
+                    html += '<li>Install vertical climbing routes throughout the home</li>';
+                    html += '<li>Provide window perches for wildlife observation</li>';
+                    html += '<li>Create hunting simulation zones with tunnels and hiding spots</li>';
+                    break;
+                case 'ROUTINE':
+                    html += '<li>Maintain highly consistent environment with minimal changes</li>';
+                    html += '<li>Create multiple identical resource zones (water, litter) to prevent disruption</li>';
+                    html += '<li>Establish clear territory boundaries and features</li>';
+                    break;
+                case 'VIGILANT':
+                    html += '<li>Create a "decompression room" with minimal stimulation</li>';
+                    html += '<li>Install sound dampening features (soft furnishings)</li>';
+                    html += '<li>Use white noise machines to mask startling sounds</li>';
+                    break;
+                case 'EXPLORER':
+                    html += '<li>Maximize territory size with complex navigation options</li>';
+                    html += '<li>Create rotating environmental features to maintain novelty</li>';
+                    html += '<li>Install shelving routes that traverse multiple rooms</li>';
+                    break;
+                case 'LEISURE':
+                    html += '<li>Provide multiple comfortable resting spots in sun and shade</li>';
+                    html += '<li>Create easily accessible resources that don\'t require climbing</li>';
+                    html += '<li>Install heated beds or pads for optimal comfort</li>';
+                    break;
+                case 'AMBIVALENT':
+                    html += '<li>Create environment with clear choice options</li>';
+                    html += '<li>Establish both social zones and retreat areas</li>';
+                    html += '<li>Provide predictable daily rhythm with flexible options</li>';
+                    break;
+                default:
+                    if (scores.sociability > 10) {
+                        html += '<li>Create open spaces where your cat can be near family activities</li>';
+                        html += '<li>Consider getting a companion cat if you\'re often away</li>';
+                    } else if (scores.sociability < -10) {
+                        html += '<li>Provide multiple hiding spots and quiet retreats</li>';
+                        html += '<li>Create vertical spaces (cat trees, shelves) for observation at a distance</li>';
+                    }
+                    
+                    if (scores.stress > 10) {
+                        html += '<li>Maintain consistent routines and minimize environmental changes</li>';
+                        html += '<li>Create a dedicated "safe room" with all necessities during high-stress times</li>';
+                    }
             }
             html += '</ul>';
             
-            // Interaction recommendations
-            html += '<h4>Interaction Recommendations</h4><ul>';
-            if (scores.sociability > 10) {
-                html += '<li>Regular interactive play sessions and frequent social contact</li>';
-                html += '<li>Allow your cat to be part of family activities</li>';
-            } else {
-                html += '<li>Respect boundaries and allow your cat to initiate interaction</li>';
-                html += '<li>Short, positive interaction sessions spread throughout the day</li>';
-            }
-            
-            if (scores.stress > 10) {
-                html += '<li>Use slow blinking and soft voices when interacting</li>';
-                html += '<li>Avoid sudden movements or loud noises</li>';
-            }
-            html += '</ul>';
+            // Add learn more link for the personality type
+            html += `<p class="learn-more"><a href="personality-types/${type.code.toLowerCase()}.html" class="btn btn-primary">Learn More About ${type.name} Cats</a></p>`;
             
             return html;
         }

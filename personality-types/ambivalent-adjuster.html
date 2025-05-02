@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ambivalent Adjuster | Cat Personality Type</title>
+    <meta name="description" content="The Ambivalent Adjuster cat personality type - experiences approach-avoidance conflict, shows mixed social signals, and benefits from GABA supplementation.">
+    <link rel="icon" href="../public/favicon.ico">
+    <style>
+        /* Base styles */
+        :root {
+            --primary: #ff7eb3;
+            --primary-light: #ffa8ce;
+            --primary-lighter: #ffebf4;
+            --primary-dark: #e66a9c;
+            --primary-gradient: linear-gradient(135deg, #ff7eb3 0%, #ff9a6c 100%);
+            --secondary: #ff9500;
+            --secondary-light: #ffd8a8;
+            --success: #40c057;
+            --success-light: #b2f2bb;
+            --danger: #ff6b6b;
+            --danger-light: #ffc9c9;
+            --neutral-100: #f8f9fa;
+            --neutral-200: #e9ecef;
+            --neutral-300: #dee2e6;
+            --neutral-400: #ced4da;
+            --neutral-500: #adb5bd;
+            --neutral-600: #6c757d;
+            --neutral-700: #495057;
+            --neutral-800: #343a40;
+            --neutral-900: #212529;
+            --type-color: #D4C1E0; /* Lavender for Ambivalent Adjuster */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--neutral-100);
+            color: var(--neutral-900);
+            line-height: 1.6;
+        }
+
+        a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        a:hover {
+            color: var(--primary-dark);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Animation effects */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(-2deg); }
+            50% { transform: rotate(2deg); }
+        }
+
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .animate-pulse {
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        .animate-wiggle {
+            animation: wiggle 3s ease-in-out infinite;
+        }
+
+        /* Button styles */
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 12px;
+            font-weight: 500;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background: var(--primary-gradient);
+            color: white;
+            box-shadow: 0 4px 15px rgba(255, 126, 179, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 126, 179, 0.4);
+        }
+
+        .btn-secondary {
+            background-color: white;
+            color: var(--primary);
+            border: 1px solid var(--primary-light);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .btn-secondary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            background-color: var(--primary-lighter);
+        }
+
+        /* Navigation bar */
+        header {
+            background-color: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--neutral-200);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 40px;
+            margin-right: 12px;
+        }
+
+        .logo span {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        nav {
+            display: none;
+        }
+
+        @media (min-width: 768px) {
+            nav {
+                display: flex;
+                gap: 32px;
+            }
+
+            nav a {
+                color: var(--neutral-800);
+                font-weight: 500;
+            }
+
+            nav a:hover {
+                color: var(--primary);
+            }
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .menu-button {
+            display: block;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        @media (min-width: 768px) {
+            .menu-button {
+                display: none;
+            }
+        }
+
+        /* Type Header */
+        .type-header {
+            background-color: var(--type-color);
+            color: var(--neutral-900);
+            padding: 60px 0 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .type-title-area {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            z-index: 5;
+        }
+
+        .type-badge {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.75rem;
+            margin-bottom: 24px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .type-name {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+
+        .type-traits {
+            font-size: 1.25rem;
+            max-width: 800px;
+            margin: 0 auto 24px;
+            opacity: 0.8;
+        }
+
+        .floating-gif {
+            position: absolute;
+            border-radius: 50%;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            z-index: 1;
+        }
+
+        .floating-gif.top-right {
+            top: 20%;
+            right: 5%;
+            width: 120px;
+            height: 120px;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .floating-gif.bottom-left {
+            bottom: 10%;
+            left: 5%;
+            width: 100px;
+            height: 100px;
+            animation: float 4s ease-in-out infinite;
+            animation-delay: 1s;
+        }
+
+        .floating-gif img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        /* Main Content Area */
+        .personality-content {
+            padding: 60px 0;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+        }
+
+        @media (min-width: 992px) {
+            .content-grid {
+                grid-template-columns: 2fr 1fr;
+            }
+        }
+
+        .main-content {
+            background-color: white;
+            border-radius: 16px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            padding: 40px;
+        }
+
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .sidebar-card {
+            background-color: white;
+            border-radius: 16px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            padding: 24px;
+        }
+
+        /* Personality Profile Section */
+        .section-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+            color: var(--neutral-800);
+            border-bottom: 2px solid var(--primary-lighter);
+            padding-bottom: 12px;
+        }
+
+        .profile-text {
+            margin-bottom: 32px;
+        }
+
+        .profile-text p {
+            margin-bottom: 16px;
+        }
+
+        .stress-meter {
+            margin: 32px 0;
+            background-color: var(--neutral-200);
+            height: 12px;
+            border-radius: 6px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stress-level {
+            height: 100%;
+            width: 35%; /* Adjusted based on personality type */
+            background: linear-gradient(90deg, #40c057 0%, #ffec99 50%, #ff6b6b 100%);
+            border-radius: 6px;
+        }
+
+        .stress-marker {
+            position: absolute;
+            top: -6px;
+            left: 35%; /* Same as stress-level width */
+            width: 24px;
+            height: 24px;
+            background-color: white;
+            border: 3px solid var(--primary);
+            border-radius: 50%;
+        }
+
+        .stress-labels {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 8px;
+            font-size: 0.9rem;
+            color: var(--neutral-600);
+        }
+
+        /* Traits Chart */
+        .traits-chart {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin: 32px 0;
+        }
+
+        @media (min-width: 768px) {
+            .traits-chart {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        .trait-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .trait-bar {
+            width: 100%;
+            height: 160px;
+            background-color: var(--neutral-200);
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 12px;
+        }
+
+        .trait-level {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: var(--type-color);
+            border-radius: 8px 8px 0 0;
+        }
+
+        .trait-name {
+            font-weight: 600;
+            color: var(--neutral-800);
+        }
+
+        /* Key Characteristics */
+        .characteristics-list {
+            padding-left: 20px;
+            margin-bottom: 32px;
+        }
+
+        .characteristics-list li {
+            margin-bottom: 12px;
+            position: relative;
+        }
+
+        .characteristics-list li::before {
+            content: "•";
+            color: var(--primary);
+            font-weight: 700;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+
+        /* Care Guidelines */
+        .care-guidelines {
+            margin-bottom: 32px;
+        }
+
+        .guideline-category {
+            margin-bottom: 24px;
+        }
+
+        .category-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--primary-dark);
+        }
+
+        /* Recommended Products */
+        .product-list {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+        }
+
+        .product-card {
+            display: flex;
+            flex-direction: column;
+            background-color: white;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--neutral-200);
+            transition: all 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-image {
+            width: 100%;
+            aspect-ratio: 16/9;
+            background-color: var(--primary-lighter);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-weight: 500;
+        }
+
+        .product-info {
+            padding: 16px;
+        }
+
+        .product-name {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--neutral-800);
+        }
+
+        .product-description {
+            font-size: 0.9rem;
+            color: var(--neutral-600);
+            margin-bottom: 12px;
+        }
+
+        .product-price {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        /* Behavior Tips */
+        .tips-list {
+            padding-left: 0;
+            list-style-type: none;
+        }
+
+        .tips-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid var(--neutral-200);
+        }
+
+        .tips-list li:last-child {
+            border-bottom: none;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background-color: var(--primary-lighter);
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .cta-title {
+            font-size: 2.25rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--neutral-800);
+        }
+
+        .cta-description {
+            font-size: 1.25rem;
+            max-width: 800px;
+            margin: 0 auto 32px;
+            color: var(--neutral-700);
+        }
+
+        .cta-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @media (min-width: 576px) {
+            .cta-buttons {
+                flex-direction: row;
+            }
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--neutral-800);
+            color: white;
+            padding: 24px 0;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation bar -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="../index.html" class="logo">
+                    <img src="../public/images/logo.svg" alt="Cat Personality Types">
+                    <span>Cat Personality Test</span>
+                </a>
+                
+                <nav>
+                    <a href="../personality-test.html">Personality Test</a>
+                    <a href="../personality-types.html">Personality Types</a>
+                    <a href="../about.html">About Us</a>
+                    <a href="../blog.html">Blog</a>
+                </nav>
+                
+                <div class="header-actions">
+                    <a href="../personality-test.html" class="btn btn-primary">Take the Test</a>
+                    <button class="menu-button">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="3" y1="12" x2="21" y2="12"></line>
+                            <line x1="3" y1="6" x2="21" y2="6"></line>
+                            <line x1="3" y1="18" x2="21" y2="18"></line>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Type Header -->
+    <section class="type-header">
+        <div class="container">
+            <div class="type-title-area">
+                <div class="type-badge animate-pulse">AA</div>
+                <h1 class="type-name">Ambivalent Adjuster</h1>
+                <p class="type-traits">Approach-avoidance conflict + Mixed social signals + GABA-responsive behavior</p>
+            </div>
+        </div>
+        <!-- Floating GIFs -->
+        <div class="floating-gif top-right">
+            <img src="../images/hesitant-cat.gif" alt="Hesitant cat showing mixed signals">
+        </div>
+        <div class="floating-gif bottom-left">
+            <img src="../images/conflicted-cat.gif" alt="Cat with conflicting behaviors">
+        </div>
+    </section>
+
+    <!-- Main Content Area -->
+    <section class="personality-content">
+        <div class="container">
+            <div class="content-grid">
+                <div class="main-content">
+                    <!-- Personality Profile Section -->
+                    <div class="section">
+                        <h2 class="section-title">Personality Profile</h2>
+                        <div class="profile-text">
+                            <p>The Ambivalent Adjuster cat personality type represents felines experiencing approach-avoidance conflicts lasting over 72 hours, frequently displaying conflicting behaviors—wanting to approach unfamiliar humans while simultaneously fearing contact.</p>
+                            <p>These cats show elevated cortisol alongside elevated oxytocin during novel social interactions, creating internal conflict. Neurological studies reveal distinctive patterns in the anterior cingulate cortex—the brain region responsible for resolving competing motivations and emotional regulation.</p>
+                            <p>This unique personality type demonstrates significant flexibility in behavior based on environmental context, but struggles with decisive action in novel or ambiguous situations. GABA-supporting supplements can help reduce the neurological stress of decision-making for these sensitive individuals, allowing their natural adaptive capacities to function more effectively.</p>
+                        </div>
+
+                        <!-- Stress Sensitivity Meter -->
+                        <div>
+                            <h3 class="category-title">Stress Sensitivity: Variable (45-65%)</h3>
+                            <div class="stress-meter">
+                                <div class="stress-level" style="width: 55%"></div>
+                                <div class="stress-marker" style="left: 55%"></div>
+                            </div>
+                            <div class="stress-labels">
+                                <span>Low Stress</span>
+                                <span>Moderate</span>
+                                <span>High Stress</span>
+                            </div>
+                            <p style="margin-top: 12px; font-size: 0.9rem; color: var(--neutral-600);">Ambivalent Adjusters show variable stress sensitivity, with consistent exposure to the same stimulus potentially producing dramatically different responses at different times.</p>
+                        </div>
+
+                        <!-- Traits Chart -->
+                        <h3 class="category-title" style="margin-top: 32px;">Core Traits</h3>
+                        <div class="traits-chart">
+                            <div class="trait-item">
+                                <div class="trait-bar">
+                                    <div class="trait-level" style="height: 50%"></div>
+                                </div>
+                                <div class="trait-name">Sociability</div>
+                            </div>
+                            <div class="trait-item">
+                                <div class="trait-bar">
+                                    <div class="trait-level" style="height: 75%"></div>
+                                </div>
+                                <div class="trait-name">Adaptability</div>
+                            </div>
+                            <div class="trait-item">
+                                <div class="trait-bar">
+                                    <div class="trait-level" style="height: 35%"></div>
+                                </div>
+                                <div class="trait-name">Decisiveness</div>
+                            </div>
+                            <div class="trait-item">
+                                <div class="trait-bar">
+                                    <div class="trait-level" style="height: 80%"></div>
+                                </div>
+                                <div class="trait-name">Sensitivity</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Key Characteristics -->
+                    <div class="section">
+                        <h2 class="section-title">Key Characteristics</h2>
+                        <ul class="characteristics-list">
+                            <li><strong>Approach-Avoidance Conflict:</strong> Ambivalent Adjusters display the classic "want-to-but-can't" behavior pattern, approaching desired interactions or objects before suddenly retreating—often cycling through this pattern multiple times.</li>
+                            <li><strong>Contextual Personality Shifts:</strong> Demonstrate remarkably different behavioral patterns depending on environmental context, sometimes appearing like entirely different cats when observed in different settings.</li>
+                            <li><strong>Indecision Paralysis:</strong> May freeze or display displacement behaviors (sudden grooming, stretching) when faced with competing motivations or unclear environmental signals.</li>
+                            <li><strong>Mixed Communication Signals:</strong> Often display contradictory body language—purring while maintaining a tense posture, or soliciting attention while simultaneously maintaining distance.</li>
+                            <li><strong>Neurochemical Sensitivity:</strong> Show pronounced behavioral responses to substances affecting GABA and serotonin pathways, with calming supplements often producing noticeable improvements in decision-making capacity.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Care Guidelines -->
+                    <div class="section">
+                        <h2 class="section-title">Care Guidelines</h2>
+
+                        <div class="guideline-category">
+                            <h3 class="category-title">Environmental Structure</h3>
+                            <p>Create a physical environment featuring clear choice architecture—providing distinct pathways and options rather than ambiguous spaces. Design areas with graduated exposure levels (fully protected hiding spots transitioning to partially exposed resting areas, then to open social spaces) to allow self-paced engagement. Implement consistent environmental cues that signal safety and predictability, including specific sounds or visual markers associated with positive experiences.</p>
+                        </div>
+
+                        <div class="guideline-category">
+                            <h3 class="category-title">Interaction Protocols</h3>
+                            <p>Develop consistent, predictable interaction patterns with minimal ambiguity. When initiating contact, maintain a neutral position allowing the cat to approach rather than directly approaching them. Allow complete interaction cycles to finish naturally without interruption—even if this means tolerating multiple approach-retreat sequences. Use consistent verbal cues to signal the beginning and end of interaction sessions to reduce uncertainty.</p>
+                        </div>
+
+                        <div class="guideline-category">
+                            <h3 class="category-title">Nutritional Support</h3>
+                            <p>Consider supplementation with GABA-supporting compounds like L-theanine (found in specialized feline supplements) or tryptophan precursors to facilitate serotonin production. Implement a B-complex vitamin regimen, as these vitamins are crucial for neurotransmitter production and regulation of stress responses. Maintain exceptionally consistent feeding schedules and locations to provide reliable daily anchors.</p>
+                        </div>
+
+                        <div class="guideline-category">
+                            <h3 class="category-title">Health Monitoring</h3>
+                            <p>Observe for shifts in baseline conflict behaviors as potential indicators of underlying medical concerns—increased decision paralysis can precede the development of physical symptoms by days or weeks. Schedule regular veterinary check-ups using low-stress handling protocols and the same veterinary staff whenever possible. Consider blood work screening for thyroid function, as hyperthyroidism can exacerbate ambivalent behaviors in predisposed cats.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sidebar">
+                    <!-- Recommended Products -->
+                    <div class="sidebar-card">
+                        <h3 class="section-title" style="margin-bottom: 16px;">Recommended Products</h3>
+                        <div class="product-list">
+                            <div class="product-card">
+                                <div class="product-image">Calming Aid</div>
+                                <div class="product-info">
+                                    <div class="product-name">NeuroBalance Support Formula</div>
+                                    <div class="product-description">Specialized supplement with L-theanine, GABA precursors, and B-vitamins to support balanced neurotransmitter function</div>
+                                    <div class="product-price">$39.95</div>
+                                </div>
+                            </div>
+                            <div class="product-card" style="margin-top: 16px;">
+                                <div class="product-image">Retreat Space</div>
+                                <div class="product-info">
+                                    <div class="product-name">Transition Zone Perch System</div>
+                                    <div class="product-description">Three-stage cat perch with progressively exposed sections, allowing choice between hiding and observation</div>
+                                    <div class="product-price">$72.50</div>
+                                </div>
+                            </div>
+                            <div class="product-card" style="margin-top: 16px;">
+                                <div class="product-image">Interactive Toy</div>
+                                <div class="product-info">
+                                    <div class="product-name">Confidence Building Wand Toy</div>
+                                    <div class="product-description">Distance-adjustable interactive toy allowing engagement from varying comfort zones</div>
+                                    <div class="product-price">$27.95</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Behavior Management Tips -->
+                    <div class="sidebar-card">
+                        <h3 class="section-title" style="margin-bottom: 16px;">Behavior Management Tips</h3>
+                        <ul class="tips-list">
+                            <li><strong>Handling Decision Paralysis:</strong> When your cat shows freezing behaviors, provide gentle environmental cues (soft sounds or subtle movements) to help break the cycle without startling.</li>
+                            <li><strong>Managing Mixed Signals:</strong> Respect conflicting communication by responding to the more cautious signal when your cat displays both approach and avoidance cues simultaneously.</li>
+                            <li><strong>Building Confidence:</strong> Create predictable "success routines" with guaranteed positive outcomes to establish behavioral momentum and improve decision-making capabilities.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Ideal Companions -->
+                    <div class="sidebar-card">
+                        <h3 class="section-title" style="margin-bottom: 16px;">Ideal Human Match</h3>
+                        <p>Ambivalent Adjuster cats thrive with:</p>
+                        <ul class="characteristics-list">
+                            <li>Patient individuals comfortable with inconsistent responses</li>
+                            <li>People who can maintain emotional neutrality during interactions</li>
+                            <li>Those willing to implement structured, predictable daily routines</li>
+                            <li>Owners who appreciate the complexity of feline emotional processing</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2 class="cta-title">Want to discover your cat's personality type?</h2>
+            <p class="cta-description">Take our scientific assessment to identify your cat's unique personality profile and receive tailored care recommendations.</p>
+            <div class="cta-buttons">
+                <a href="../personality-test.html" class="btn btn-primary">Take the Test</a>
+                <a href="../personality-types.html" class="btn btn-secondary">View All Types</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>© <script>document.write(new Date().getFullYear())</script> Cat Personality Test. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.menu-button').addEventListener('click', function() {
+            const nav = document.querySelector('nav');
+            nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
+        });
+    </script>
+</body>
+</html> 
