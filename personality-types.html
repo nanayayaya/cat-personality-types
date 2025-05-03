@@ -249,27 +249,26 @@
 
         .type-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
         }
 
         .type-header {
-            padding: 24px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
+            padding: 24px 24px 12px;
+            border-bottom: 1px solid var(--neutral-200);
         }
 
         .type-badge {
-            width: 80px;
-            height: 80px;
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary-light);
+            color: white;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: 700;
-            font-size: 1.25rem;
+            font-weight: 600;
             margin-bottom: 16px;
+            font-size: 0.85rem;
         }
 
         /* Type color coding */
@@ -286,27 +285,38 @@
             font-size: 1.5rem;
             font-weight: 700;
             margin-bottom: 8px;
-            color: var(--neutral-800);
         }
 
         .type-traits {
             font-size: 0.9rem;
             color: var(--neutral-600);
-            line-height: 1.5;
+            margin-bottom: 0;
+        }
+
+        .type-image {
+            height: 180px;
+            overflow: hidden;
+        }
+
+        .type-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .type-card:hover .type-image img {
+            transform: scale(1.05);
         }
 
         .type-description {
-            padding: 0 24px 24px;
-            color: var(--neutral-700);
-            font-size: 0.95rem;
-            line-height: 1.6;
+            padding: 12px 24px;
             flex-grow: 1;
+            font-size: 0.95rem;
         }
 
         .type-actions {
             padding: 0 24px 24px;
-            display: flex;
-            justify-content: center;
         }
 
         .type-actions .btn {
@@ -520,6 +530,9 @@
                     <h2 class="type-name">Social Butterfly</h2>
                     <p class="type-traits">Actively seeks human interaction, thrives in groups, highly adaptable</p>
                 </div>
+                <div class="type-image">
+                    <img src="images/Social Butterfly.jpg" alt="Social Butterfly Cat Personality Type" />
+                </div>
                 <p class="type-description">These cats frequently rub against humans, purr often, and proudly show off toys. They flourish in multi-person households and may develop separation anxiety when left alone.</p>
                 <div class="type-actions">
                     <a href="personality-types/social-butterfly.html" class="btn btn-primary">Learn More</a>
@@ -532,6 +545,9 @@
                     <div class="type-badge">CO</div>
                     <h2 class="type-name">Cautious Observer</h2>
                     <p class="type-traits">High cortisol levels, extremely alert to sounds/smells, needs gradual introduction</p>
+                </div>
+                <div class="type-image">
+                    <img src="images/Cautious Observer.jpg" alt="Cautious Observer Cat Personality Type" />
                 </div>
                 <p class="type-description">With heightened sensitivity to environmental changes, these cats require a 3-day adjustment period for new items. Pheromone diffusers are recommended to help manage their careful nature.</p>
                 <div class="type-actions">
@@ -546,6 +562,9 @@
                     <h2 class="type-name">Predator Archetype</h2>
                     <p class="type-traits">Hunting instinct, most active at dawn/night, needs enrichment challenges</p>
                 </div>
+                <div class="type-image">
+                    <img src="images/Predator Archetype.jpg" alt="Predator Archetype Cat Personality Type" />
+                </div>
                 <p class="type-description">Showing peak activity between 3-5AM and at dusk with 40% higher activity levels, these cats thrive with multi-level hunting paths and electronic prey-simulating toys.</p>
                 <div class="type-actions">
                     <a href="personality-types/predator-archetype.html" class="btn btn-primary">Learn More</a>
@@ -558,6 +577,9 @@
                     <div class="type-badge">RK</div>
                     <h2 class="type-name">Routine Keeper</h2>
                     <p class="type-traits">Weak HPA axis regulation, highly scheduled behaviors, resists change</p>
+                </div>
+                <div class="type-image">
+                    <img src="images/Routine Keeper.jpg" alt="Routine Keeper Cat Personality Type" />
                 </div>
                 <p class="type-description">These cats follow strict elimination and feeding schedules with remarkably consistent route choices. They struggle with sudden changes to food bowl locations or litter type.</p>
                 <div class="type-actions">
@@ -572,6 +594,9 @@
                     <h2 class="type-name">Hyper-vigilant</h2>
                     <p class="type-traits">Overactive amygdala, stress-induced behavioral issues, needs desensitization</p>
                 </div>
+                <div class="type-image">
+                    <img src="images/Hyper-vigilant.jpg" alt="Hyper-vigilant Cat Personality Type" />
+                </div>
                 <p class="type-description">With amygdala activity 2.3 standard deviations above average, these cats may develop psychogenic alopecia or excessive grooming. Treatment often combines SSRI medications with gradual desensitization training.</p>
                 <div class="type-actions">
                     <a href="personality-types/hyper-vigilant.html" class="btn btn-primary">Learn More</a>
@@ -584,6 +609,9 @@
                     <div class="type-badge">AE</div>
                     <h2 class="type-name">Autonomous Explorer</h2>
                     <p class="type-traits">Needs 80+ m² territory, enhanced spatial memory, dislikes confinement</p>
+                </div>
+                <div class="type-image">
+                    <img src="images/Autonomous Explorer.jpg" alt="Autonomous Explorer Cat Personality Type" />
                 </div>
                 <p class="type-description">With hippocampal volume 15% larger than social cats, these independent explorers excel at spatial navigation. They thrive with roof observation areas or enclosed sun rooms.</p>
                 <div class="type-actions">
@@ -598,6 +626,9 @@
                     <h2 class="type-name">Leisure Seeker</h2>
                     <p class="type-traits">Low metabolic rate, 18+ hour sleep needs, reduced catnip response</p>
                 </div>
+                <div class="type-image">
+                    <img src="images/Leisure Seeker.jpg" alt="Leisure Seeker Cat Personality Type" />
+                </div>
                 <p class="type-description">With metabolic rates 18-22% below average, these relaxed cats sleep up to 18 hours daily and show minimal reaction to catnip. Regular BMI monitoring is essential to prevent obesity-related conditions.</p>
                 <div class="type-actions">
                     <a href="personality-types/leisure-seeker.html" class="btn btn-primary">Learn More</a>
@@ -610,6 +641,9 @@
                     <div class="type-badge">AA</div>
                     <h2 class="type-name">Ambivalent Adjuster</h2>
                     <p class="type-traits">Approach-avoidance conflict, mixed social signals, benefits from GABA support</p>
+                </div>
+                <div class="type-image">
+                    <img src="images/Ambivalent Adjuster.jpg" alt="Ambivalent Adjuster Cat Personality Type" />
                 </div>
                 <p class="type-description">Experiencing approach-avoidance conflicts lasting over 72 hours, these cats often want to approach strangers but fear contact. GABA supplements can help reduce decision stress.</p>
                 <div class="type-actions">

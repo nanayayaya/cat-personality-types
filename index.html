@@ -488,13 +488,14 @@
         /* Personality types section styles */
         .personality-types {
             padding: 80px 0;
-            background-color: var(--neutral-100);
+            background-color: white;
         }
 
         .types-grid {
             display: grid;
-            grid-template-columns: 1fr;
+            grid-template-columns: repeat(1, 1fr);
             gap: 24px;
+            margin-top: 40px;
         }
 
         @media (min-width: 640px) {
@@ -503,66 +504,67 @@
             }
         }
 
-        @media (min-width: 950px) {
+        @media (min-width: 992px) {
             .types-grid {
                 grid-template-columns: repeat(4, 1fr);
             }
         }
 
-        .type-card {
-            transition: all 0.3s;
-            position: relative;
-            z-index: 1;
-            border: 1px solid transparent;
-            background: linear-gradient(white, white) padding-box, 
-                       linear-gradient(135deg, transparent, transparent, var(--primary-light)) border-box;
-        }
-
-        .type-card:hover {
-            box-shadow: 0 10px 25px rgba(255, 126, 179, 0.15);
-            border-color: transparent;
-            background: linear-gradient(white, white) padding-box, 
-                       var(--primary-gradient) border-box;
-            transform: translateY(-5px);
-        }
-
         .type-code {
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
             margin-bottom: 16px;
+            font-size: 0.8rem;
+        }
+        
+        .type-image {
+            height: 160px;
+            overflow: hidden;
+            margin-bottom: 16px;
+            border-radius: 8px;
+        }
+        
+        .type-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .type-card:hover .type-image img {
+            transform: scale(1.05);
         }
 
         .type-title {
-            font-size: 1.25rem;
-            font-weight: 700;
+            font-size: 1.4rem;
             margin-bottom: 8px;
+            font-weight: 700;
+            color: var(--neutral-800);
         }
 
         .type-description {
+            font-size: 0.85rem;
             color: var(--neutral-600);
-            margin-bottom: 16px;
+            margin-bottom: 12px;
+            font-family: monospace;
         }
 
         .type-detail {
+            font-size: 0.9rem;
             color: var(--neutral-700);
             margin-bottom: 16px;
         }
 
         .type-link {
+            font-size: 0.9rem;
             font-weight: 500;
-        }
-
-        .type-link:hover {
-            text-decoration: underline;
+            display: inline-block;
         }
 
         .types-action {
             text-align: center;
-            margin-top: 48px;
+            margin-top: 40px;
         }
 
         /* Footer styles */
@@ -824,6 +826,9 @@
                     <div class="type-code" style="background-color: var(--primary-light);">
                         <span style="color: var(--primary); font-weight: 700;">EXPLORER</span>
                     </div>
+                    <div class="type-image">
+                        <img src="images/Autonomous Explorer.jpg" alt="Autonomous Explorer Personality Type">
+                    </div>
                     <h3 class="type-title">Autonomous Explorer</h3>
                     <p class="type-description">
                         Needs 80+ m² territory + Enhanced spatial memory + Dislikes confinement
@@ -837,6 +842,9 @@
                 <div class="type-card card">
                     <div class="type-code" style="background-color: var(--secondary-light);">
                         <span style="color: var(--secondary); font-weight: 700;">VIGILANT</span>
+                    </div>
+                    <div class="type-image">
+                        <img src="images/Hyper-vigilant.jpg" alt="Hyper-vigilant Personality Type">
                     </div>
                     <h3 class="type-title">Hyper-vigilant</h3>
                     <p class="type-description">
@@ -852,6 +860,9 @@
                     <div class="type-code" style="background-color: var(--success-light);">
                         <span style="color: var(--success); font-weight: 700;">AMBIVALENT</span>
                     </div>
+                    <div class="type-image">
+                        <img src="images/Ambivalent Adjuster.jpg" alt="Ambivalent Adjuster Personality Type">
+                    </div>
                     <h3 class="type-title">Ambivalent Adjuster</h3>
                     <p class="type-description">
                         Approach-avoidance conflict + Mixed social signals + Benefits from GABA
@@ -865,6 +876,9 @@
                 <div class="type-card card">
                     <div class="type-code" style="background-color: var(--danger-light);">
                         <span style="color: var(--danger); font-weight: 700;">LEISURE</span>
+                    </div>
+                    <div class="type-image">
+                        <img src="images/Leisure Seeker.jpg" alt="Leisure Seeker Personality Type">
                     </div>
                     <h3 class="type-title">Leisure Seeker</h3>
                     <p class="type-description">
