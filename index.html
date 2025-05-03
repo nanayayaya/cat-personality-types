@@ -685,6 +685,7 @@
             border-radius: 50%;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             z-index: 10;
+            overflow: hidden;
         }
         
         .floating-gif.top-right {
@@ -692,7 +693,6 @@
             right: 15%;
             width: 180px;
             height: 180px;
-            object-fit: cover;
             animation: float 6s ease-in-out infinite;
         }
         
@@ -701,9 +701,15 @@
             left: 10%;
             width: 160px;
             height: 160px;
-            object-fit: cover;
             animation: float 4s ease-in-out infinite;
             animation-delay: 1s;
+        }
+        
+        .floating-gif img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
         }
     </style>
 </head>
@@ -824,70 +830,70 @@
             <div class="types-grid">
                 <div class="type-card card">
                     <div class="type-code" style="background-color: var(--primary-light);">
-                        <span style="color: var(--primary); font-weight: 700;">EXPLORER</span>
+                        <span style="color: var(--primary); font-weight: 700;">SOCIAL</span>
                     </div>
                     <div class="type-image">
-                        <img src="images/Autonomous Explorer.jpg" alt="Autonomous Explorer Personality Type">
+                        <img src="images/Social Butterfly.jpg" alt="Social Butterfly Cat Personality Type">
                     </div>
-                    <h3 class="type-title">Autonomous Explorer</h3>
+                    <h3 class="type-title">Social Butterfly</h3>
                     <p class="type-description">
-                        Needs 80+ m² territory + Enhanced spatial memory + Dislikes confinement
+                        Actively seeks human interaction + Thrives in groups + Highly adaptable
                     </p>
                     <p class="type-detail">
-                        Independent, loves exploration, excels at spatial navigation, needs larger territories
+                        Frequently rubs against humans, purrs often, shows off toys, flourishes in multi-person households
                     </p>
-                    <a href="personality-types/explorer.html" class="type-link" style="color: var(--primary);">Learn More →</a>
+                    <a href="personality-types/social-butterfly.html" class="type-link" style="color: var(--primary);">Learn More →</a>
                 </div>
 
                 <div class="type-card card">
                     <div class="type-code" style="background-color: var(--secondary-light);">
-                        <span style="color: var(--secondary); font-weight: 700;">VIGILANT</span>
+                        <span style="color: var(--secondary); font-weight: 700;">CAUTIOUS</span>
                     </div>
                     <div class="type-image">
-                        <img src="images/Hyper-vigilant.jpg" alt="Hyper-vigilant Personality Type">
+                        <img src="images/Cautious Observer.jpg" alt="Cautious Observer Cat Personality Type">
                     </div>
-                    <h3 class="type-title">Hyper-vigilant</h3>
+                    <h3 class="type-title">Cautious Observer</h3>
                     <p class="type-description">
-                        Overactive amygdala + Stress-induced behaviors + Needs desensitization
+                        High cortisol levels + Extremely alert to sounds + Requires gradual introduction
                     </p>
                     <p class="type-detail">
-                        Heightened startle responses, alert to subtle changes, may develop stress-related conditions
+                        Shows heightened sensitivity to environmental changes, requires adjustment periods for new items
                     </p>
-                    <a href="personality-types/vigilant.html" class="type-link" style="color: var(--primary);">Learn More →</a>
+                    <a href="personality-types/cautious-observer.html" class="type-link" style="color: var(--primary);">Learn More →</a>
                 </div>
 
                 <div class="type-card card">
                     <div class="type-code" style="background-color: var(--success-light);">
-                        <span style="color: var(--success); font-weight: 700;">AMBIVALENT</span>
+                        <span style="color: var(--success); font-weight: 700;">PREDATOR</span>
                     </div>
                     <div class="type-image">
-                        <img src="images/Ambivalent Adjuster.jpg" alt="Ambivalent Adjuster Personality Type">
+                        <img src="images/Predator Archetype.jpg" alt="Predator Archetype Cat Personality Type">
                     </div>
-                    <h3 class="type-title">Ambivalent Adjuster</h3>
+                    <h3 class="type-title">Predator Archetype</h3>
                     <p class="type-description">
-                        Approach-avoidance conflict + Mixed social signals + Benefits from GABA
+                        Strong hunting instinct + Active at dawn/dusk + Advanced problem-solving 
                     </p>
                     <p class="type-detail">
-                        Experiences internal conflicts during social interactions, wants to approach but fears contact
+                        Shows peak activity at dawn/dusk, thrives with hunting paths and prey-simulating toys
                     </p>
-                    <a href="personality-types/ambivalent.html" class="type-link" style="color: var(--primary);">Learn More →</a>
+                    <a href="personality-types/predator-archetype.html" class="type-link" style="color: var(--primary);">Learn More →</a>
                 </div>
 
                 <div class="type-card card">
                     <div class="type-code" style="background-color: var(--danger-light);">
-                        <span style="color: var(--danger); font-weight: 700;">LEISURE</span>
+                        <span style="color: var(--danger); font-weight: 700;">ROUTINE</span>
                     </div>
                     <div class="type-image">
-                        <img src="images/Leisure Seeker.jpg" alt="Leisure Seeker Personality Type">
+                        <img src="images/Routine Keeper.jpg" alt="Routine Keeper Cat Personality Type">
                     </div>
-                    <h3 class="type-title">Leisure Seeker</h3>
+                    <h3 class="type-title">Routine Keeper</h3>
                     <p class="type-description">
-                        Low metabolic rate + 18+ hour sleep needs + Reduced catnip response
+                        Weak HPA axis regulation + Highly scheduled behaviors + Resists change
                     </p>
                     <p class="type-detail">
-                        Relaxed, energy-conserving, sleeps extensively, minimal reaction to stimulants
+                        Follows strict schedules and consistent routes, struggles with changes to environment
                     </p>
-                    <a href="personality-types/leisure.html" class="type-link" style="color: var(--primary);">Learn More →</a>
+                    <a href="personality-types/routine-keeper.html" class="type-link" style="color: var(--primary);">Learn More →</a>
                 </div>
             </div>
 
