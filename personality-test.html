@@ -483,12 +483,12 @@
             position: fixed;
             width: 80px;
             height: 80px;
-            object-fit: cover;
             border-radius: 50%;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             z-index: 10;
             animation: float 6s ease-in-out infinite;
             opacity: 0.9;
+            overflow: hidden;
         }
         
         .floating-gif.top-right {
@@ -500,6 +500,13 @@
             bottom: 100px;
             left: 5%;
             animation-delay: 2s;
+        }
+        
+        .floating-gif img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
         }
         
         @keyframes float {
@@ -570,6 +577,97 @@
         @keyframes loading-animation {
             0% { transform: translateX(-100%); }
             100% { transform: translateX(400%); }
+        }
+
+        /* Test results styling */
+        .cat-profile {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .cat-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+
+        .cat-info {
+            flex-grow: 1;
+        }
+
+        .personality-type {
+            text-align: center;
+            background-color: var(--primary-lighter);
+            padding: 30px;
+            border-radius: 16px;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .type-code {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary);
+            background-color: white;
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .type-image {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            overflow: hidden;
+            border: 6px solid white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        @media (max-width: 480px) {
+            .type-image {
+                width: 120px;
+                height: 120px;
+                border-width: 4px;
+            }
+            
+            .type-name {
+                font-size: 1.5rem;
+            }
+            
+            .type-description {
+                font-size: 1rem;
+            }
+        }
+        
+        .type-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .type-name {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .type-description {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
         }
     </style>
 </head>
@@ -754,6 +852,9 @@
 
                 <div class="personality-type">
                     <div class="type-code" id="type-code">XXXX</div>
+                    <div class="type-image" id="type-image">
+                        <img id="personality-image" src="" alt="Cat Personality Type">
+                    </div>
                     <div class="type-name" id="type-name">Loading...</div>
                     <p class="type-description" id="type-description">Analyzing your cat's personality traits...</p>
                 </div>
@@ -1383,6 +1484,38 @@
             document.getElementById('type-name').textContent = type.name;
             document.getElementById('type-description').textContent = type.description;
             document.getElementById('extended-description').textContent = type.extended_description;
+            
+            // Set personality type image
+            const typeImageMap = {
+                'SOCIAL': 'Social Butterfly.jpg',
+                'CAUTIOUS': 'Cautious Observer.jpg',
+                'PREDATOR': 'Predator Archetype.jpg',
+                'ROUTINE': 'Routine Keeper.jpg',
+                'VIGILANT': 'Hyper-vigilant.jpg',
+                'EXPLORER': 'Autonomous Explorer.jpg',
+                'LEISURE': 'Leisure Seeker.jpg',
+                'AMBIVALENT': 'Ambivalent Adjuster.jpg'
+            };
+            
+            // Type color mapping (matching the colors used in personality-types.html)
+            const typeColorMap = {
+                'SOCIAL': '#FFB5C9',
+                'CAUTIOUS': '#FFCF91',
+                'PREDATOR': '#AFF8D8',
+                'ROUTINE': '#B5DEFF',
+                'VIGILANT': '#D8B5FF',
+                'EXPLORER': '#FFB5E5',
+                'LEISURE': '#B5FFD9',
+                'AMBIVALENT': '#FFE8B5'
+            };
+            
+            const imageSrc = typeImageMap[type.code] || 'Cat Personality.jpg';
+            document.getElementById('personality-image').src = `images/${imageSrc}`;
+            document.getElementById('personality-image').alt = type.name;
+            
+            // Set background color for personality type section
+            const typeColor = typeColorMap[type.code] || 'var(--primary-lighter)';
+            document.querySelector('.personality-type').style.backgroundColor = typeColor;
             
             // Generate recommendations
             document.getElementById('recommendations').innerHTML = generateRecommendations(scores, type);
